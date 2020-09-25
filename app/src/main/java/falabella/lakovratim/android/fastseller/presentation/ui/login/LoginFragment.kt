@@ -7,11 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentLoginBinding
 import falabella.lakovratim.android.fastseller.presentation.ui.MainActivity
 import falabella.lakovratim.android.fastseller.presentation.util.Constant.USERNAME_PATTERN
 import falabella.lakovratim.android.fastseller.presentation.util.Constant.USER_ARG
 import falabella.lakovratim.android.fastseller.presentation.util.extension.addSpaceFilter
+import falabella.lakovratim.android.fastseller.presentation.util.extension.webLink
 import kotlinx.android.synthetic.main.fragment_login.*
 import java.util.regex.Pattern
 
@@ -56,6 +58,8 @@ class LoginFragment : Fragment() {
                 }
             }
         }
+
+        binding.forgotPassword.webLink(R.color.textColor)
 
         binding.buttonLogin.setOnClickListener {
             Intent(
