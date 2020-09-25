@@ -43,6 +43,8 @@ android {
     }
 }
 
+apply plugin: 'com.google.gms.google-services'
+
 dependencies {
     //Jetbrains
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
@@ -96,6 +98,13 @@ dependencies {
 
     //Design
     implementation 'com.airbnb.android:lottie:3.4.2'
+
+    //firebase
+    implementation 'com.google.firebase:firebase-core:17.5.0'
+    implementation 'com.google.firebase:firebase-analytics:17.5.0'
+
+    //map
+    implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
 
 }

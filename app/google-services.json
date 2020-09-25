@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "516346907084",
+    "firebase_url": "https://lakovratim.firebaseio.com",
+    "project_id": "lakovratim",
+    "storage_bucket": "lakovratim.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:516346907084:android:b49d4c42dc46717189f569",
+        "android_client_info": {
+          "package_name": "falabella.lakovratim.android.fastSeller"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "516346907084-kqtm1menv1ve62olj7gqpng4huc6nf3k.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "falabella.lakovratim.android.fastSeller",
+            "certificate_hash": "47844a1135bcfd2b632564e19cddf8584df6c413"
+          }
+        },
+        {
+          "client_id": "516346907084-s2qufs72h4feo6ojihfthm3q2ajvh5dq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiHOcZZ10Amt1JJG7nPZvx4O9zpEK4F0s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "516346907084-s2qufs72h4feo6ojihfthm3q2ajvh5dq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
