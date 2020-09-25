@@ -41,6 +41,11 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    viewBinding {
+        enabled = true
+    }
+
 }
 
 apply plugin: 'com.google.gms.google-services'
@@ -97,7 +102,7 @@ dependencies {
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
-    implementation 'com.google.firebase:firebase-messaging-directboot:20.2.0'
+    //implementation 'com.google.firebase:firebase-messaging-directboot:20.2.0'
 
     //Design
     implementation 'com.airbnb.android:lottie:3.4.2'
@@ -108,8 +113,4 @@ dependencies {
 
     //map
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
-
-
-
-
 }
