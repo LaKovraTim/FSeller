@@ -32,5 +32,5 @@ interface AppComponent : FragmentInjector {
 }
 
 interface FragmentInjector {
-    fun inject(counterApplication: OrderListFragment)
+    fun inject(orderListFragment: OrderListFragment)
 }
