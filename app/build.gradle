@@ -97,5 +97,9 @@ dependencies {
     //Design
     implementation 'com.airbnb.android:lottie:3.4.2'
 
+    //WorkManager
+    implementation 'androidx.work:work-runtime-ktx:2.4.0'
+    implementation 'androidx.work:work-runtime-ktx:2.4.0'
+
 
 }
