@@ -93,4 +93,9 @@ dependencies {
     //Navigation
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.0"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.0"
+
+    //Design
+    implementation 'com.airbnb.android:lottie:3.4.2'
+
+
 }
