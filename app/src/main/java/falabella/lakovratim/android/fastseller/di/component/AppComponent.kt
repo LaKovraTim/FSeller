@@ -8,6 +8,7 @@ import falabella.lakovratim.android.fastseller.di.module.RepositoryModule
 import falabella.lakovratim.android.fastseller.di.module.RetrofitModule
 import falabella.lakovratim.android.fastseller.di.module.ViewModelModule
 import falabella.lakovratim.android.fastseller.presentation.CounterApplication
+import falabella.lakovratim.android.fastseller.presentation.ui.order.OrderListFragment
 import javax.inject.Singleton
 
 @Singleton
@@ -31,4 +32,5 @@ interface AppComponent : FragmentInjector {
 }
 
 interface FragmentInjector {
+    fun inject(counterApplication: OrderListFragment)
 }
