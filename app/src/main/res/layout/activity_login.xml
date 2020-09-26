@@ -7,25 +7,24 @@
     android:animateLayoutChanges="true"
     tools:context="falabella.lakovratim.android.fastseller.presentation.ui.login.LoginActivity">
 
-   <FrameLayout
-       android:id="@+id/loginContainer"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       app:layout_constraintBottom_toBottomOf="parent"
-       app:layout_constraintEnd_toEndOf="parent"
-       app:layout_constraintStart_toStartOf="parent"
-       app:layout_constraintTop_toTopOf="parent">
+    <FrameLayout
+        android:id="@+id/loginContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-      <LinearLayout
-          android:id="@+id/splash"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:background="@drawable/gradient_splash"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintStart_toStartOf="parent"
-          app:layout_constraintTop_toTopOf="parent">
-
-      </LinearLayout>
-   </FrameLayout>
+        <LinearLayout
+            android:id="@+id/splash"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/gradient_splash"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:orientation="horizontal" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
