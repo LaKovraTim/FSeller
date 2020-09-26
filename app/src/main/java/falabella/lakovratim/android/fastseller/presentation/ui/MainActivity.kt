@@ -5,9 +5,6 @@ package falabella.lakovratim.android.fastseller.presentation.ui
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.work.WorkManager
-import falabella.lakovratim.android.fastseller.R
-import falabella.lakovratim.android.fastseller.data.remote.workRequest
 import falabella.lakovratim.android.fastseller.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +18,6 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        WorkManager.getInstance(this).enqueue(workRequest)
+//        WorkManager.getInstance(this).enqueue(workRequest)
     }
 }

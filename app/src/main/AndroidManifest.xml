@@ -14,13 +14,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".presentation.ui.login.LoginActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar">
+        <activity
+            android:name=".presentation.ui.login.LoginActivity"
+            android:theme="@style/MainActivityTheme">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
 
             </intent-filter>-->
+        </activity>
+
+        <activity
+            android:name="falabella.lakovratim.android.fastseller.presentation.ui.MainActivity"
+            android:theme="@style/MainActivityTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <meta-data
@@ -35,20 +45,10 @@
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorAccent" />
 
-
-        <activity android:name="falabella.lakovratim.android.fastseller.presentation.ui.MainActivity"
-            android:theme="@style/Theme.Design.Light.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-
-
         <service
             android:name="falabella.lakovratim.android.fastseller.presentation.util.MyFirebaseMessagingService"
-            android:exported="false"
-            android:directBootAware="true">
+            android:directBootAware="true"
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
