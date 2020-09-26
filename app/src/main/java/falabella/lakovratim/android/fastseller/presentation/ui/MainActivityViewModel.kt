@@ -35,6 +35,4 @@ open class MainActivityViewModel @Inject constructor(
         getWorkOrdersUseCase.execute("100", ::handleSuccess, ::handleFailure)
 
     }
-
-
 }

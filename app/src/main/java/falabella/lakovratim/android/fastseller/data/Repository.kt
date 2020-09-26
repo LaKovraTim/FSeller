@@ -40,7 +40,7 @@ class Repository @Inject constructor(
         val response = counterAPI.sendOrder(
             sellerId,
             workerId,
-            image,
+            createFileForTest(),
             comment,
             latitude,
             longitude,
@@ -50,7 +50,7 @@ class Repository @Inject constructor(
 
     }
 
-    private fun createRequestSendOrder(): File? {
+    private fun createFileForTest(): File? {
         val file: File = File(
             Environment.getExternalStorageDirectory().toString() + "/" + File.separator + "test.txt"
         )
