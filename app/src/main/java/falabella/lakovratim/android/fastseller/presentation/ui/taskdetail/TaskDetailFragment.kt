@@ -72,10 +72,12 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         when (option) {
             is OrderMenu.SeeMap -> openWaze()
             is OrderMenu.Delivered ->     {
-                findNavController().navigate(R.id.action_taskDetailFragment_to_bottomSheetDeliveryFragment)
+                BottomSheetDeliveryFragment().show(childFragmentManager.beginTransaction(), null)
+                //findNavController().navigate(R.id.action_taskDetailFragment_to_bottomSheetDeliveryFragment)
             }
             is OrderMenu.Postpone -> {
-                findNavController().navigate(R.id.action_taskDetailFragment_to_bottomSheetPostponeFragment)
+                BottomSheetPostponeFragment().show(childFragmentManager.beginTransaction(), null)
+                //findNavController().navigate(R.id.action_taskDetailFragment_to_bottomSheetPostponeFragment)
             }
             is OrderMenu.Refuse -> {
 
