@@ -33,7 +33,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.orderRecycler.adapter = orderListAdapter.apply {
-            items = listOf(1, 2, 3, 4, 5, 6, 7)
+            items = listOf()
         }
 
         showFilters()
@@ -41,7 +41,11 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
 
     private fun showFilters() {
         binding.recyclerViewFilter.adapter = orderFilterAdapter.apply {
-            items = listOf(getString(R.string.text_filter_active),getString(R.string.text_filter_retry),getString(R.string.text_filter_cancel))
+            items = listOf(
+                getString(R.string.text_filter_active),
+                getString(R.string.text_filter_retry),
+                getString(R.string.text_filter_cancel)
+            )
             context = requireContext()
         }
     }
