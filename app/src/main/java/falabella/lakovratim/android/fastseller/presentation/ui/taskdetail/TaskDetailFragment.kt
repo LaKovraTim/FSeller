@@ -67,7 +67,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
                 OrderOptions(
                     OrderMenu.Call(),
-                    resources.getDrawable(R.drawable.ic_check, null),
+                    resources.getDrawable(R.drawable.ic_phone_in_talk, null),
                     "Llamar\nal cliente"
                 ),
 
