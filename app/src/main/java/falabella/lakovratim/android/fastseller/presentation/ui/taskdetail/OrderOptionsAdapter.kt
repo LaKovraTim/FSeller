@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.AdapterOrderOptionsBinding
 import falabella.lakovratim.android.fastseller.domain.model.OrderOptions
-import falabella.lakovratim.android.fastseller.domain.model.WorkOrderResponse
 import falabella.lakovratim.android.fastseller.presentation.util.OrderMenu
 import javax.inject.Inject
 import kotlin.reflect.KFunction1

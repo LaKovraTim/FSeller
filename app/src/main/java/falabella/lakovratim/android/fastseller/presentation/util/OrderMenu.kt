@@ -5,4 +5,6 @@ sealed class OrderMenu {
     class Delivered : OrderMenu()
     class Postpone : OrderMenu()
     class Refuse : OrderMenu()
+    class Call : OrderMenu()
+    class PayWithQR : OrderMenu()
 }

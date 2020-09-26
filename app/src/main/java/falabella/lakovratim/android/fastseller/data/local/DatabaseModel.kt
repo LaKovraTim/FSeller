@@ -7,7 +7,7 @@ package falabella.lakovratim.android.fastseller.data.local
 /* Database data */
 
 const val DATABASE_NAME = "fastseller.sqlite"
-const val DATABASE_VERSION = 1
+const val DATABASE_VERSION = 2
 
 const val TABLE_WORK_ORDER = "workorders"
 
