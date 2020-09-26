@@ -72,9 +72,6 @@ class LoginFragment : Fragment() {
                     .show()
                 return@setOnClickListener
             }
-            if (!validateFields()) {
-                return@setOnClickListener
-            }
             if (viewModel.login(
                     binding.editTextTextUser.text.toString(),
                     binding.editTextTextPassword.text.toString()
