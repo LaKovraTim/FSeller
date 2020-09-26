@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CounterApp</string>
+    <string name="app_name">FastSeller</string>
     <string name="default_notification">Hi there</string>
     <string name="login">Iniciar Sesion</string>
     <string name="forgot_pass">¿Se te olvidó tu contraseña?</string>
@@ -12,6 +12,7 @@
     <string name="text_filter_cancel">Cancelados</string>
     <string name="text_order_statuses">Estados del pedido</string>
     <string name="text_order_detail">Detalle del pedido</string>
+    <string name="prefs_file">prefs</string>
 
 
     <!-- TASK DETAIL-->

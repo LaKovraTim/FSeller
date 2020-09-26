@@ -13,3 +13,8 @@ fun Activity.hideKeyboard() {
     }
     window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
 }
+
+fun Activity.finishWithFade(){
+    finish()
+    overridePendingTransition(0, android.R.anim.fade_out)
+}
