@@ -1,11 +1,11 @@
 package falabella.lakovratim.android.fastseller.presentation.ui.order
 
 import android.content.Context
-import android.util.Log
+import android.content.res.ColorStateList
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.appcompat.content.res.AppCompatResources.getDrawable
-import androidx.core.view.forEach
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.AdapterFilterItemBinding
@@ -15,6 +15,10 @@ class OrderFilterAdapter @Inject constructor() :
     RecyclerView.Adapter<OrderFilterAdapter.ViewHolder>() {
 
     var items: List<String> = listOf()
+    var context:Context? = null
+
+    private var previousPosition = -1
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -26,12 +30,21 @@ class OrderFilterAdapter @Inject constructor() :
         )
     }
 
+    @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val filter = items[position]
         holder.filterName.text = filter
 
         holder.filterItem.setOnClickListener {
-            holder.filterItem.setBackgroundResource(R.drawable.button_item_filter_green)
+            previousPosition = position;
+            notifyDataSetChanged();
+        }
+
+        if(position == previousPosition){
+            holder.filterItem.backgroundTintList = ColorStateList.valueOf(context!!.resources.getColor(R.color.greenBackground,null));
+        }
+        else {
+            holder.filterItem.backgroundTintList = ColorStateList.valueOf(context!!.resources.getColor(R.color.screenBackground,null));
         }
     }
 

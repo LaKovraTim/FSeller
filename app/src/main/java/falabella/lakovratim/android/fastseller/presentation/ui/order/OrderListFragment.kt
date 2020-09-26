@@ -42,6 +42,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
     private fun showFilters() {
         binding.recyclerViewFilter.adapter = orderFilterAdapter.apply {
             items = listOf(getString(R.string.text_filter_active),getString(R.string.text_filter_retry),getString(R.string.text_filter_cancel))
+            context = requireContext()
         }
     }
 }
