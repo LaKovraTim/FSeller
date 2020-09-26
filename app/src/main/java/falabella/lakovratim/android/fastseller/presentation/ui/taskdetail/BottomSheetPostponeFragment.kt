@@ -90,7 +90,7 @@ class BottomSheetPostponeFragment : BottomSheetDialogFragment() {
                     })
             }
         }
-        dialog.setCanceledOnTouchOutside(false)
+        dialog.setCanceledOnTouchOutside(true)
         return dialog
     }
 

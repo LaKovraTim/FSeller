@@ -9,13 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.AdapterOrderOptionsBinding
 import falabella.lakovratim.android.fastseller.domain.model.OrderOptions
+import falabella.lakovratim.android.fastseller.domain.model.WorkOrderResponse
+import falabella.lakovratim.android.fastseller.presentation.util.OrderMenu
 import javax.inject.Inject
+import kotlin.reflect.KFunction1
 
 class OrderOptionsAdapter @Inject constructor() :
 RecyclerView.Adapter<OrderOptionsAdapter.ViewHolder>() {
 
     var items= listOf<OrderOptions>()
     private var previousPosition = -1
+
+    lateinit var option: KFunction1<OrderMenu, Unit>
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -29,14 +35,11 @@ RecyclerView.Adapter<OrderOptionsAdapter.ViewHolder>() {
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        //val options = items.
-
         holder.optionItemTitle.text = items[position].title
         holder.imageOptionItem.setImageDrawable( items[position].drawable)
-
-        //holder.optionItemTitle.text = options[1].
         holder.optionItem.setOnClickListener {
             previousPosition = position;
+            option.invoke(items[position].option)
             notifyDataSetChanged();
         }
 
@@ -46,7 +49,7 @@ RecyclerView.Adapter<OrderOptionsAdapter.ViewHolder>() {
         }
         else {
             holder.optionItem.backgroundTintList = ColorStateList.valueOf(holder.itemView.context.resources.getColor(
-                R.color.screenBackground,null));
+                R.color.circle_option_gray,null));
         }
     }
 
@@ -57,4 +60,6 @@ RecyclerView.Adapter<OrderOptionsAdapter.ViewHolder>() {
         val optionItemTitle = binding.optionItemTitle
         val imageOptionItem = binding.imageOptionItem
     }
+
+
 }
