@@ -92,6 +92,8 @@
                     android:id="@+id/textView15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="16dp"
                     android:letterSpacing="0.02"
                     android:text="Nuestros medios de pago"
                     android:textColor="#5C6166"
@@ -112,6 +114,13 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView15"
                     app:srcCompat="@drawable/ic_group_pay" />
+
+                <ImageView
+                    android:id="@+id/imageView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_view"
+                    tools:layout_editor_absoluteX="13dp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -127,9 +136,8 @@
 
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
-                    android:layout_height="400dp"
-                    android:layout_marginTop="24dp"
-                    android:layout_marginBottom="124dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?selectableItemBackground"
@@ -144,63 +152,93 @@
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:padding="10dp">
 
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/checkCMR"
+                            android:visibility="invisible"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:lottie_autoPlay="true"
+                            app:lottie_rawRes="@raw/check_cmr" />
 
                         <TextView
                             android:id="@+id/textView16"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="32dp"
+                            android:layout_marginBottom="8dp"
                             android:text="Valor a pagar"
+                            android:textColor="@color/grey"
                             app:layout_constraintBottom_toTopOf="@+id/textView17"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintVertical_chainStyle="packed"
-                            tools:layout_editor_absoluteX="130dp" />
+                            app:layout_constraintVertical_chainStyle="packed" />
 
                         <TextView
                             android:id="@+id/textView17"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
+                            android:fontFamily="@font/myriad_pro_light"
                             android:text="$18.000"
+                            android:textSize="20sp"
                             app:layout_constraintBottom_toTopOf="@+id/imageView8"
-                            app:layout_constraintTop_toBottomOf="@+id/textView16"
-                            tools:layout_editor_absoluteX="141dp" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
                         <ImageView
                             android:id="@+id/imageView8"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:layout_constraintBottom_toTopOf="@+id/textView19"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/textView17"
-                            app:srcCompat="@drawable/ic_qr"
-                            tools:layout_editor_absoluteX="103dp" />
+                            app:srcCompat="@drawable/ic_qr" />
 
                         <TextView
                             android:id="@+id/textView19"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="TextView"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="32dp"
+                            android:text="Nº 123334456778"
+                            android:textColor="@color/grey"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/imageView8"
-                            tools:layout_editor_absoluteX="140dp" />
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView8" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </androidx.cardview.widget.CardView>
 
                 <ImageView
-                    android:id="@+id/imageView7"
-                    android:elevation="10dp"
+                    android:id="@+id/imageFala"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/ic_falabella_icon"
-                    tools:layout_editor_absoluteX="158dp" />
+                    android:elevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_falabella_icon" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout9"
-                android:layout_width="409dp"
-                android:layout_height="122dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -209,11 +247,20 @@
 
                 <TextView
                     android:id="@+id/textView20"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="TextView"
-                    tools:layout_editor_absoluteX="165dp"
-                    tools:layout_editor_absoluteY="65dp" />
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="64dp"
+                    android:layout_marginBottom="8dp"
+                    android:lines="2"
+                    android:textColor="@color/grey"
+                    android:gravity="center_horizontal"
+                    android:text="Paga con QR, la forma de pago más simple,confiable y segura "
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
