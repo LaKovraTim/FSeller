@@ -8,6 +8,7 @@ import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentOrderListBinding
 import falabella.lakovratim.android.fastseller.presentation.appComponent
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
+import falabella.lakovratim.android.fastseller.presentation.util.extension.invisible
 import javax.inject.Inject
 
 class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
@@ -55,6 +56,10 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     }
 
     override fun onEmptyFilter(isEmpty: Boolean) {
-        TODO("Not yet implemented")
+        if (isEmpty) {
+            binding.orderRecycler.invisible()
+        } else {
+            binding.orderRecycler.invisible()
+        }
     }
 }

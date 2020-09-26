@@ -12,4 +12,5 @@
     <string name="text_filter_cancel">Cancelados</string>
     <string name="text_order_statuses">Estados del pedido</string>
     <string name="content_description_retail_logo">Logo Retail</string>
+    <string name="no_order_in_list">Sin resultados</string>
 </resources>
