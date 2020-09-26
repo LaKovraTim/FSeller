@@ -17,9 +17,9 @@ class LoginActivity : AppCompatActivity() {
         lifecycleScope.launch() {
             whenStarted {
                 delay(2000)
-                splash.gone()
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.loginContainer, LoginFragment(), null).commit()
+                splash.gone()
             }
         }
 

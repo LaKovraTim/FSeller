@@ -6,8 +6,10 @@
     <color name="textColor">#212121</color>
     <color name="tintColor">#FF9500</color>
     <color name="grey">#8A9199</color>
+    <color name="greyDisable">#B38A9199</color>
     <color name="screenBackground">#E5E5E5</color>
     <color name="textColorBlack">#3E3E3E</color>
     <color name="text_color">#686C71</color>
     <color name="white">#FFFFFF</color>
+    <color name="textHintColor">#CCA9A9A9</color>
 </resources>

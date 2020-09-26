@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import falabella.lakovratim.android.fastseller.R
@@ -43,18 +44,16 @@ class LoginFragment : Fragment() {
             doAfterTextChanged {
                 it?.let {
                     isValidPass = it.length >= 6
-                    validateFields()
                 }
             }
         }
 
-        with(receiver = editTextTextUser){
+        with(receiver = editTextTextUser) {
             addSpaceFilter()
             doAfterTextChanged {
                 it?.let {
                     isValidUsername = android.util.Patterns.EMAIL_ADDRESS.matcher(it).matches() ||
                             Pattern.compile(USERNAME_PATTERN).matcher(it).matches()
-                    validateFields()
                 }
             }
         }
@@ -62,17 +61,25 @@ class LoginFragment : Fragment() {
         binding.forgotPassword.webLink(R.color.textColor)
 
         binding.buttonLogin.setOnClickListener {
+            if(binding.editTextTextPassword.text.isNullOrEmpty() || binding.editTextTextUser.text.isNullOrEmpty())
+                Toast.makeText(context, getString(R.string.empty_credencials), Toast.LENGTH_SHORT)
+                    .show()
+            if (!validateFields()) {
+                return@setOnClickListener
+            }
+
             Intent(
                 context, MainActivity::class.java
-            ).putExtra(USER_ARG, binding.editTextTextUser.toString()).also {
-                startActivity(it)
-            }
+            ).putExtra(USER_ARG, binding.editTextTextUser.toString())
+                .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP).also {
+                    startActivity(it)
+                }
         }
     }
 
-    private fun validateFields() {
-        binding.buttonLogin.isEnabled = isValidPass && isValidUsername
-    }
+    private fun validateFields(): Boolean =
+        isValidPass && isValidUsername
+
 
     override fun onDestroyView() {
         super.onDestroyView()
