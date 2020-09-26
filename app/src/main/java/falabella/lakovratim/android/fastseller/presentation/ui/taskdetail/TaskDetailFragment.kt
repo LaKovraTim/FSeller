@@ -16,13 +16,14 @@ import javax.inject.Inject
 
 
 class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
+
     @Inject
     lateinit var orderOptionsAdapter: OrderOptionsAdapter
+
     override fun setBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
     ): FragmentTaskDetailBinding = FragmentTaskDetailBinding.inflate(inflater, container, false)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,21 +34,26 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         super.onViewCreated(view, savedInstanceState)
         showFilters()
 
+        binding.include.headerBack.setOnClickListener {
+            activity?.onBackPressed()
+        }
     }
-
 
     private fun showFilters() {
         binding.recyclerViewOptions.adapter = orderOptionsAdapter.apply {
             items = listOf(
-                OrderOptions(resources.getDrawable(R.drawable.ic_place,null), "Ver mapa"),
-                OrderOptions(resources.getDrawable(R.drawable.ic_check,null), "Entregado"),
-                OrderOptions(resources.getDrawable(R.drawable.ic_schedule,null), "Postergar\nPedido"),
-                OrderOptions(resources.getDrawable(R.drawable.ic_tv_off_rounded,null), "Rechazar\npedido"),)
+                OrderOptions(resources.getDrawable(R.drawable.ic_place, null), "Ver mapa"),
+                OrderOptions(resources.getDrawable(R.drawable.ic_check, null), "Entregado"),
+                OrderOptions(
+                    resources.getDrawable(R.drawable.ic_schedule, null),
+                    "Postergar\nPedido"
+                ),
+                OrderOptions(
+                    resources.getDrawable(R.drawable.ic_tv_off_rounded, null),
+                    "Rechazar\npedido"
+                ),
+            )
         }
-
-
-
-
 
 
     }
