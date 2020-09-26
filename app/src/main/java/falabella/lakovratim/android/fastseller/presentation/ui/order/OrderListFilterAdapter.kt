@@ -8,13 +8,19 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.AdapterFilterItemBinding
+import falabella.lakovratim.android.fastseller.domain.model.OrderFilter
+import falabella.lakovratim.android.fastseller.presentation.util.Filter
+import falabella.lakovratim.android.fastseller.presentation.util.OrderMenu
 import javax.inject.Inject
+import kotlin.reflect.KFunction1
 
 class OrderListFilterAdapter @Inject constructor() :
     RecyclerView.Adapter<OrderListFilterAdapter.ViewHolder>() {
 
-    var items: List<String> = listOf()
+    var items: List<OrderFilter> = listOf()
     private var previousPosition = -1
+    lateinit var filter: KFunction1<Filter, Unit>
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -28,11 +34,11 @@ class OrderListFilterAdapter @Inject constructor() :
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val filter = items[position]
-        holder.filterName.text = filter
+        holder.filterName.text = items[position].name
 
         holder.filterItem.setOnClickListener {
             previousPosition = position;
+            filter.invoke(items[position].filter)
             notifyDataSetChanged();
         }
 

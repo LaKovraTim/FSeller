@@ -5,18 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentOrderListBinding
 import falabella.lakovratim.android.fastseller.domain.model.Customer
-import falabella.lakovratim.android.fastseller.domain.model.Product
+import falabella.lakovratim.android.fastseller.domain.model.OrderFilter
 import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import falabella.lakovratim.android.fastseller.presentation.appComponent
 import falabella.lakovratim.android.fastseller.presentation.ui.MainActivityViewModel
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
+import falabella.lakovratim.android.fastseller.presentation.util.Filter
 import falabella.lakovratim.android.fastseller.presentation.util.Resource
-import falabella.lakovratim.android.fastseller.presentation.util.ResourceResult
 import falabella.lakovratim.android.fastseller.presentation.util.extension.*
 import javax.inject.Inject
 
@@ -140,7 +139,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 arrayListOf(),
                 1,
                 arrayListOf(),
-                "pendiente"
+                "Activo"
             )
         )
     }
@@ -153,10 +152,11 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     private fun showFilters() {
         binding.recyclerViewFilter.adapter = orderListFilterAdapter.apply {
             items = listOf(
-                getString(R.string.text_filter_active),
-                getString(R.string.text_filter_retry),
-                getString(R.string.text_filter_cancel)
+                OrderFilter(Filter.Active(), getString(R.string.text_filter_active)),
+                OrderFilter(Filter.Retry(), getString(R.string.text_filter_retry)),
+                OrderFilter(Filter.Cancel(), getString(R.string.text_filter_cancel))
             )
+            filter = ::order
         }
     }
 
@@ -171,4 +171,18 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     override fun onSelectItem(item: WorkOrder) {
         findNavController().navigate(R.id.action_orderListFragment_to_taskDetailFragment)
     }
+
+
+    private fun order(option: Filter) {
+        when (option) {
+            is Filter.Active -> filterOrdered("activo")
+
+            is Filter.Retry -> filterOrdered("pendiente")
+
+            is Filter.Cancel -> filterOrdered("cancelado")
+        }
+    }
+
+    private fun filterOrdered(value: String) = orderListAdapter.filter.filter(value)
+
 }
