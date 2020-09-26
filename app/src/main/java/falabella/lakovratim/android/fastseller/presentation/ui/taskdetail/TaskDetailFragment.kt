@@ -1,7 +1,6 @@
 package falabella.lakovratim.android.fastseller.presentation.ui.taskdetail
 
 import android.annotation.SuppressLint
-import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -92,13 +91,10 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
     private fun openWaze() {
         try {
-            val url = "https://waze.com/ul?q=Hawaii"
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            requireActivity().startActivity(intent)
+            val uri = "waze://?ll=40.761043, -73.980545&navigate=yes"
+            requireActivity().startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
         } catch (ex: Exception) {
-            val intent =
-                Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.waze"))
-            requireActivity().startActivity(intent)
+            requireActivity().startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.waze")))
         }
     }
 }
