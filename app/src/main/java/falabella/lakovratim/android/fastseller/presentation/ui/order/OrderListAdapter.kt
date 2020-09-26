@@ -8,10 +8,10 @@ import android.widget.Filter
 import android.widget.Filterable
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.AdapterOrderListItemBinding
 import falabella.lakovratim.android.fastseller.domain.model.WorkOrderResponse
 import javax.inject.Inject
-import kotlin.random.Random
 
 class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAdapter.ViewHolder>(),
     Filterable {
@@ -38,12 +38,13 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val order = auxItems[position]
 
-        //TODO set values from real object
-        holder.orderItemTitle.text = "Pedido #${Random.nextInt()}"
-        holder.orderItemClient.text = "Realizada por: Elba Lazo"
-        holder.orderItemDate.text = "Fecha entrega: Lunes, 28 de Septiembre"
-        holder.orderItemDescription.setOnClickListener {
-            Toast.makeText(holder.itemView.context, "In Development", Toast.LENGTH_SHORT).show()
+        with(holder.itemView.context) {
+            holder.orderItemTitle.text = this.getString(R.string.order_number, order.number)
+            holder.orderItemClient.text = this.getString(R.string.made_by, order.customer)
+            holder.orderItemDate.text = this.getString(R.string.delivety_date, order.deliveryDate)
+            holder.orderItemDescription.setOnClickListener {
+                Toast.makeText(this, "In Development", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
