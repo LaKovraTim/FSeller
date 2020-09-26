@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentOrderListBinding
 import falabella.lakovratim.android.fastseller.domain.model.Customer
+import falabella.lakovratim.android.fastseller.domain.model.Product
 import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import falabella.lakovratim.android.fastseller.presentation.appComponent
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
@@ -67,65 +68,61 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
 
         binding.orderRecycler.adapter = orderListAdapter.apply {
             actionListener = this@OrderListFragment
-            items = mutableListOf()
+            items = mock()
         }
 
         showFilters()
     }
 
-    /*private fun mock(): List<WorkOrders> {
+    private fun mock(): List<WorkOrder> {
         return listOf(
-            WorkOrders(
-                1,
-                arrayListOf(),
-                "Ninguno",
-                "2020/09/26",
-                Customer(null, null, "Elba", null, null, "Lazo"),
-                "2020/09/26",
-                5699968,
-                arrayListOf(),
+            WorkOrder(
                 "1",
-                ""
-            ),
-            WorkOrders(
-                1,
-                arrayListOf(),
                 "Ninguno",
                 "2020/09/26",
-                Customer(null, null, "Juan", null, null, "Perez"),
-                "2020/09/26",
-                5699969,
-                arrayListOf(),
-                "1",
-                ""
-            ),
-            WorkOrders(
-                1,
-                arrayListOf(),
-                "Ninguno",
-                "2020/09/26",
-                Customer(null, null, "Ramiro", null, null, "Ramirez"),
-                "2020/09/26",
-                5699970,
-                arrayListOf(),
-                "1",
-                ""
-            ),
-            WorkOrders(
-                1,
-                arrayListOf(),
-                "Ninguno",
-                "2020/09/26",
-                Customer(null, null, "Rob", null, null, "Martin"),
+                Customer(null, null, "Rob", null, "Martin"),
                 "2020/09/28",
-                5699971,
                 arrayListOf(),
+                1,
+                arrayListOf(),
+                "pendiente"
+            ),
+            WorkOrder(
                 "1",
-                ""
+                "Ninguno",
+                "2020/09/26",
+                Customer(null, null, "Rob", null, "Martin"),
+                "2020/09/28",
+                arrayListOf(),
+                1,
+                arrayListOf(),
+                "pendiente"
+            ),
+            WorkOrder(
+                "1",
+                "Ninguno",
+                "2020/09/26",
+                Customer(null, null, "Rob", null, "Martin"),
+                "2020/09/28",
+                arrayListOf(),
+                1,
+                arrayListOf(),
+                "pendiente"
+            ),
+            WorkOrder(
+                "1",
+                "Ninguno",
+                "2020/09/26",
+                Customer(null, null, "Rob", null, "Martin"),
+                "2020/09/28",
+                arrayListOf(),
+                1,
+                arrayListOf(),
+                "pendiente"
             )
         )
     }
-*/
+
     override fun hideProgress() {
         super.hideProgress()
         binding.orderListSwipe.isRefreshing = false
