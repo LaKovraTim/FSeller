@@ -11,5 +11,19 @@
     <string name="text_filter_retry">Reintentando</string>
     <string name="text_filter_cancel">Cancelados</string>
     <string name="text_order_statuses">Estados del pedido</string>
+    <string name="text_order_detail">Detalle del pedido</string>
     <string name="prefs_file">prefs</string>
+
+
+    <!-- TASK DETAIL-->
+    <string name="text_realized_by">Detalle del pedido</string>
+    <string name="text_date_detail">Fecha de solicitud</string>
+    <string name="text_payment_method">Medio de pago</string>
+
+
+    <string name="content_description_retail_logo">Logo Retail</string>
+    <string name="no_order_in_list">Sin resultados</string>
+    <string name="order_number">Pedido #%d</string>
+    <string name="made_by">Realizada por: %s</string>
+    <string name="delivety_date">Fecha entrega: %s</string>
 </resources>

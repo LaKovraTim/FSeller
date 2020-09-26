@@ -6,8 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import falabella.lakovratim.android.fastseller.presentation.util.extension.gone
+import falabella.lakovratim.android.fastseller.presentation.util.extension.visible
 import javax.inject.Inject
 
 abstract class BaseFragment<T : ViewBinding> : Fragment() {
@@ -29,8 +32,26 @@ abstract class BaseFragment<T : ViewBinding> : Fragment() {
     }
 
     open fun showProgress() {
+        with(requireContext()) {
+            (binding.root.findViewById(
+                resources.getIdentifier(
+                    "progress_include",
+                    "id",
+                    packageName
+                )
+            ) as? ConstraintLayout?)?.visible()
+        }
     }
 
     open fun hideProgress() {
+        with(requireContext()) {
+            (binding.root.findViewById(
+                resources.getIdentifier(
+                    "progress_include",
+                    "id",
+                    packageName
+                )
+            ) as? ConstraintLayout?)?.gone()
+        }
     }
 }

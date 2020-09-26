@@ -8,9 +8,11 @@ import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentOrderListBinding
 import falabella.lakovratim.android.fastseller.presentation.appComponent
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
+import falabella.lakovratim.android.fastseller.presentation.util.extension.invisible
 import javax.inject.Inject
 
-class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
+class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
+    OrderListAdapter.ActionListener {
 
     @Inject
     lateinit var orderListAdapter: OrderListAdapter
@@ -32,17 +34,47 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.orderListSwipe.setColorSchemeResources(
+            R.color.colorPrimaryDark,
+            R.color.colorPrimary,
+            R.color.colorAccent
+        )
+        binding.orderListSwipe.setOnRefreshListener {
+            //TODO call to get order list
+            hideProgress()
+        }
+
+        //TODO remove
+        hideProgress()
+
         binding.orderRecycler.adapter = orderListAdapter.apply {
-            items = listOf(1, 2, 3, 4, 5, 6, 7)
+            actionListener = this@OrderListFragment
+            items = listOf()
         }
 
         showFilters()
     }
 
+    override fun hideProgress() {
+        super.hideProgress()
+        binding.orderListSwipe.isRefreshing = false
+    }
+
     private fun showFilters() {
         binding.recyclerViewFilter.adapter = orderFilterAdapter.apply {
-            items = listOf(getString(R.string.text_filter_active),getString(R.string.text_filter_retry),getString(R.string.text_filter_cancel))
-            context = requireContext()
+            items = listOf(
+                getString(R.string.text_filter_active),
+                getString(R.string.text_filter_retry),
+                getString(R.string.text_filter_cancel)
+            )
+        }
+    }
+
+    override fun onEmptyFilter(isEmpty: Boolean) {
+        if (isEmpty) {
+            binding.orderRecycler.invisible()
+        } else {
+            binding.orderRecycler.invisible()
         }
     }
 }
