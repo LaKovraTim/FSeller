@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentTaskDetailBinding
 import falabella.lakovratim.android.fastseller.domain.model.OrderOptions
@@ -42,15 +43,25 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
     private fun showFilters() {
         binding.recyclerViewOptions.adapter = orderOptionsAdapter.apply {
             items = listOf(
-                OrderOptions(OrderMenu.SeeMap(),resources.getDrawable(R.drawable.ic_place, null), getString(R.string.text_see_map)),
-                OrderOptions(OrderMenu.SeeMap(),resources.getDrawable(R.drawable.ic_check, null), "Entregado"),
                 OrderOptions(
-                    OrderMenu.SeeMap(),resources.getDrawable(R.drawable.ic_schedule, null),
-                    "Postergar\nPedido"
+                    OrderMenu.SeeMap(),
+                    resources.getDrawable(R.drawable.ic_place, null),
+                    getString(R.string.text_see_map)
+                ),
+                OrderOptions(
+                    OrderMenu.Delivered(),
+                    resources.getDrawable(R.drawable.ic_check, null),
+                    getString(R.string.text_delivered)
+                ),
+                OrderOptions(
+                    OrderMenu.Postpone(),
+                    resources.getDrawable(R.drawable.ic_schedule, null),
+                    getString(R.string.text_postpone)
+
                 ),
                 OrderOptions(
                     OrderMenu.SeeMap(), resources.getDrawable(R.drawable.ic_tv_off_rounded, null),
-                    "Rechazar\npedido"
+                    getString(R.string.text_refuse)
                 ),
             )
             option = ::orderOptions
@@ -60,7 +71,16 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
     private fun orderOptions(option: OrderMenu) {
         when (option) {
-            OrderMenu.SeeMap() -> openWaze()
+            is OrderMenu.SeeMap -> openWaze()
+            is OrderMenu.Delivered ->     {
+                findNavController().navigate(R.id.action_taskDetailFragment_to_bottomSheetDeliveryFragment)
+            }
+            is OrderMenu.Postpone -> {
+                findNavController().navigate(R.id.action_taskDetailFragment_to_bottomSheetPostponeFragment)
+            }
+            is OrderMenu.Refuse -> {
+
+            }
         }
     }
 
@@ -68,11 +88,11 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         try {
             val url = "https://waze.com/ul?q=Hawaii"
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-            startActivity(intent)
+            requireActivity().startActivity(intent)
         } catch (ex: Exception) {
             val intent =
                 Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.waze"))
-            startActivity(intent)
+            requireActivity().startActivity(intent)
         }
     }
 }
