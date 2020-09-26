@@ -19,13 +19,14 @@ import javax.inject.Inject
 
 
 class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
+
     @Inject
     lateinit var orderOptionsAdapter: OrderOptionsAdapter
+
     override fun setBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
     ): FragmentTaskDetailBinding = FragmentTaskDetailBinding.inflate(inflater, container, false)
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +37,9 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         super.onViewCreated(view, savedInstanceState)
         showFilters()
 
+        binding.include.headerBack.setOnClickListener {
+            activity?.onBackPressed()
+        }
     }
 
 
@@ -60,11 +64,12 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
                 ),
                 OrderOptions(
-                    OrderMenu.SeeMap(), resources.getDrawable(R.drawable.ic_tv_off_rounded, null),
+                    OrderMenu.Refuse(), resources.getDrawable(R.drawable.ic_tv_off_rounded, null),
                     getString(R.string.text_refuse)
                 ),
             )
             option = ::orderOptions
+
         }
     }
 
@@ -82,6 +87,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
             }
         }
+
     }
 
     private fun openWaze() {
