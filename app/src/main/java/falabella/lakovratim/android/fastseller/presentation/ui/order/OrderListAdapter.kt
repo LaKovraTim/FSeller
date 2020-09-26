@@ -79,7 +79,7 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
                 values = if (constraint.isNullOrEmpty()) {
                     items
                 } else {
-                    items.filter { it.id.contains(constraint.trim(), true) }
+                    items.filter { it.id.contains(constraint.trim(), true) || it.status!!.contains(constraint.trim(), true)}
                 } as MutableList
             }
         }

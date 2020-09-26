@@ -4,17 +4,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentOrderListBinding
 import falabella.lakovratim.android.fastseller.domain.model.Customer
-import falabella.lakovratim.android.fastseller.domain.model.Product
+import falabella.lakovratim.android.fastseller.domain.model.OrderFilter
 import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import falabella.lakovratim.android.fastseller.presentation.appComponent
+import falabella.lakovratim.android.fastseller.presentation.ui.MainActivityViewModel
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
-import falabella.lakovratim.android.fastseller.presentation.util.extension.hideKeyboard
-import falabella.lakovratim.android.fastseller.presentation.util.extension.invisible
-import falabella.lakovratim.android.fastseller.presentation.util.extension.visible
+import falabella.lakovratim.android.fastseller.presentation.util.Filter
+import falabella.lakovratim.android.fastseller.presentation.util.Resource
+import falabella.lakovratim.android.fastseller.presentation.util.extension.*
 import javax.inject.Inject
 
 class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
@@ -26,6 +28,8 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     @Inject
     lateinit var orderListFilterAdapter: OrderListFilterAdapter
 
+    private val viewModel: MainActivityViewModel by activityViewModels { viewModelFactory }
+
     override fun setBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -36,8 +40,29 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         appComponent().inject(this)
     }
 
+    private fun handleWorkOrders(resource: Resource<List<WorkOrder>>?) {
+        when (resource) {
+            is Resource.Success -> {
+                binding.progressInclude.gone()
+                viewModel.workOrders.value?.data?.let {
+                    showWorkOrders(it)
+                }
+
+            }
+            is Resource.Error -> {
+                binding.progressInclude.gone()
+            }
+            is Resource.Loading -> {
+                binding.progressInclude.visible()
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        observe(viewModel.workOrders, ::handleWorkOrders)
+        viewModel.getOrders()
 
         binding.searchView.setOnQueryTextListener(object :
             android.widget.SearchView.OnQueryTextListener {
@@ -48,7 +73,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                orderListAdapter.filter.filter(newText)
+                filterOrdered(newText)
                 return true
             }
         })
@@ -66,13 +91,18 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         //TODO remove
         hideProgress()
 
-        binding.orderRecycler.adapter = orderListAdapter.apply {
-            actionListener = this@OrderListFragment
-            items = mock()
-        }
-
         showFilters()
     }
+
+
+    private fun showWorkOrders(data: List<WorkOrder>) {
+        binding.orderRecycler.adapter = orderListAdapter.apply {
+           actionListener = this@OrderListFragment
+           items = data
+       }
+    }
+
+
 
     private fun mock(): List<WorkOrder> {
         return listOf(
@@ -118,7 +148,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 arrayListOf(),
                 1,
                 arrayListOf(),
-                "pendiente"
+                "Activo"
             )
         )
     }
@@ -131,10 +161,11 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     private fun showFilters() {
         binding.recyclerViewFilter.adapter = orderListFilterAdapter.apply {
             items = listOf(
-                getString(R.string.text_filter_active),
-                getString(R.string.text_filter_retry),
-                getString(R.string.text_filter_cancel)
+                OrderFilter(Filter.Active(), getString(R.string.text_filter_active)),
+                OrderFilter(Filter.Retry(), getString(R.string.text_filter_retry)),
+                OrderFilter(Filter.Cancel(), getString(R.string.text_filter_cancel))
             )
+            filter = ::order
         }
     }
 
@@ -149,4 +180,18 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     override fun onSelectItem(item: WorkOrder) {
         findNavController().navigate(R.id.action_orderListFragment_to_taskDetailFragment)
     }
+
+
+    private fun order(option: Filter) {
+        when (option) {
+            is Filter.Active -> filterOrdered("activo")
+
+            is Filter.Retry -> filterOrdered("pendiente")
+
+            is Filter.Cancel -> filterOrdered("cancelado")
+        }
+    }
+
+    private fun filterOrdered(value: String?) = orderListAdapter.filter.filter(value)
+
 }
