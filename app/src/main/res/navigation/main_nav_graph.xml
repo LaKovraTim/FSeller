@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_taskDetailFragment_to_paymentFragment"
             app:destination="@id/paymentFragment" />
+        <action
+            android:id="@+id/action_taskDetailFragment_to_visitRegistrationFragment"
+            app:destination="@id/visitRegistrationFragment" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetDeliveryFragment"
@@ -42,7 +45,7 @@
         android:label="BottomSheetPostponeFragment" />
     <fragment
         android:id="@+id/visitRegistrationFragment"
-        android:name="falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.VisitRegistrationFragment"
+        android:name="falabella.lakovratim.android.fastseller.presentation.ui.visitRegistration.VisitRegistrationFragment"
         android:label="VisitRegistrationFragment"
         tools:layout="@layout/fragment_visit_registration" />
     <fragment

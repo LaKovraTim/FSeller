@@ -79,9 +79,9 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
         }
 
-   /*     val lim = GridLayoutManager(context, 5)
-        lim.orientation = LinearLayoutManager.VERTICAL
-        binding.recyclerViewOptions.layoutManager = lim*/
+        /*     val lim = GridLayoutManager(context, 5)
+             lim.orientation = LinearLayoutManager.VERTICAL
+             binding.recyclerViewOptions.layoutManager = lim*/
     }
 
 
@@ -89,8 +89,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         when (option) {
             is OrderMenu.SeeMap -> openWaze()
             is OrderMenu.Delivered -> {
-                BottomSheetDeliveryFragment().show(childFragmentManager.beginTransaction(), null)
-                //findNavController().navigate(R.id.action_taskDetailFragment_to_bottomSheetDeliveryFragment)
+                findNavController().navigate(R.id.action_taskDetailFragment_to_visitRegistrationFragment)
             }
             is OrderMenu.Postpone -> {
                 BottomSheetPostponeFragment().show(childFragmentManager.beginTransaction(), null)
@@ -100,7 +99,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
             }
 
-            is OrderMenu.PayWithQR ->{
+            is OrderMenu.PayWithQR -> {
                 findNavController().navigate(R.id.paymentFragment)
             }
 
