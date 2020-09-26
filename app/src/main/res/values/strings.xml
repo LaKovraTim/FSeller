@@ -4,4 +4,5 @@
     <string name="login">Iniciar Sesion</string>
     <string name="forgot_pass">¿Se te olvidó tu contraseña?</string>
     <string name="text_orders">Pedidos</string>
+    <string name="see_detail">Ver el detalle → </string>
 </resources>

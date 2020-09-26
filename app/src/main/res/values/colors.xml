@@ -8,4 +8,6 @@
     <color name="grey">#8A9199</color>
     <color name="screenBackground">#E5E5E5</color>
     <color name="textColorBlack">#3E3E3E</color>
+    <color name="text_color">#686C71</color>
+    <color name="white">#FFFFFF</color>
 </resources>
