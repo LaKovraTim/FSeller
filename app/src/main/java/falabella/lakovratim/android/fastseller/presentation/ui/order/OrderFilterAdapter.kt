@@ -9,16 +9,14 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.AdapterFilterItemBinding
+import falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.MapBottomSheet
 import javax.inject.Inject
 
 class OrderFilterAdapter @Inject constructor() :
     RecyclerView.Adapter<OrderFilterAdapter.ViewHolder>() {
 
     var items: List<String> = listOf()
-    var context:Context? = null
-
     private var previousPosition = -1
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -39,12 +37,14 @@ class OrderFilterAdapter @Inject constructor() :
             previousPosition = position;
             notifyDataSetChanged();
         }
+        //MapBottomSheet.newInstance()
+          //  .show(holder.itemView.context.supportFragmentManager, "")
 
         if(position == previousPosition){
-            holder.filterItem.backgroundTintList = ColorStateList.valueOf(context!!.resources.getColor(R.color.greenBackground,null));
+            holder.filterItem.backgroundTintList = ColorStateList.valueOf(holder.itemView.context.resources.getColor(R.color.greenBackground,null));
         }
         else {
-            holder.filterItem.backgroundTintList = ColorStateList.valueOf(context!!.resources.getColor(R.color.screenBackground,null));
+            holder.filterItem.backgroundTintList = ColorStateList.valueOf(holder.itemView.context.resources.getColor(R.color.screenBackground,null));
         }
     }
 

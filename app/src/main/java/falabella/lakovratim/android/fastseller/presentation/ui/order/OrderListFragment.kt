@@ -51,7 +51,6 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 getString(R.string.text_filter_retry),
                 getString(R.string.text_filter_cancel)
             )
-            context = requireContext()
         }
     }
 
