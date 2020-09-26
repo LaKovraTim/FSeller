@@ -38,7 +38,6 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        BottomSheetDeliveryFragment().show(childFragmentManager.beginTransaction(), null)
         return binding.root
     }
 
@@ -72,9 +71,7 @@ class LoginFragment : Fragment() {
                     .show()
                 return@setOnClickListener
             }
-            if (!validateFields()) {
-                return@setOnClickListener
-            }
+
             if (viewModel.login(
                     binding.editTextTextUser.text.toString(),
                     binding.editTextTextPassword.text.toString()

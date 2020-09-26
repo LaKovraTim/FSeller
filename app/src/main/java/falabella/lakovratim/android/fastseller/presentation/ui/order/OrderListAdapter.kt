@@ -43,14 +43,19 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
 
         with(holder.itemView.context) {
 
-            holder.orderItemImage.setImageDrawable(AppCompatResources.getDrawable(this, logos.random()))
+            holder.orderItemImage.setImageDrawable(
+                AppCompatResources.getDrawable(
+                    this,
+                    logos.random()
+                )
+            )
             holder.orderItemTitle.text = this.getString(R.string.order_number, order.number)
             holder.orderItemClient.text = this.getString(
                 R.string.made_by,
                 "${order.customer?.firstName} ${order.customer?.secondName}"
             )
             holder.orderItemDate.text = this.getString(R.string.delivety_date, order.deliveryDate)
-            holder.orderItemDescription.setOnClickListener {
+            holder.card.setOnClickListener {
                 actionListener?.onSelectItem(order)
             }
         }
@@ -64,6 +69,7 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
         val orderItemDate = binding.orderItemDate
         val orderItemDescription = binding.orderItemDescription
         val orderItemClient = binding.orderItemClient
+        val card = binding.orderItemCard
     }
 
     override fun getFilter(): Filter = object : Filter() {
