@@ -28,6 +28,9 @@
         <action
             android:id="@+id/action_taskDetailFragment_to_bottomSheetPostponeFragment"
             app:destination="@id/bottomSheetPostponeFragment" />
+        <action
+            android:id="@+id/action_taskDetailFragment_to_paymentFragment"
+            app:destination="@id/paymentFragment" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetDeliveryFragment"
@@ -37,4 +40,8 @@
         android:id="@+id/bottomSheetPostponeFragment"
         android:name="falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.BottomSheetPostponeFragment"
         android:label="BottomSheetPostponeFragment" />
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="falabella.lakovratim.android.fastseller.presentation.ui.payment.PaymentFragment"
+        android:label="PaymentFragment" />
 </navigation>

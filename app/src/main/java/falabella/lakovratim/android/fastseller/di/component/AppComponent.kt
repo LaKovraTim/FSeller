@@ -9,6 +9,7 @@ import falabella.lakovratim.android.fastseller.di.module.RetrofitModule
 import falabella.lakovratim.android.fastseller.di.module.ViewModelModule
 import falabella.lakovratim.android.fastseller.presentation.CounterApplication
 import falabella.lakovratim.android.fastseller.presentation.ui.order.OrderListFragment
+import falabella.lakovratim.android.fastseller.presentation.ui.payment.PaymentFragment
 import falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.TaskDetailFragment
 import javax.inject.Singleton
 
@@ -35,6 +36,5 @@ interface AppComponent : FragmentInjector {
 interface FragmentInjector {
     fun inject(orderListFragment: OrderListFragment)
     fun inject(taskDetailFragment: TaskDetailFragment)
-
-
+    fun inject(paymentFragment: PaymentFragment)
 }

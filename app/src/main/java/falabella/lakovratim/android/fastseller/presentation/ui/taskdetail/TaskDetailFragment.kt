@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import falabella.lakovratim.android.fastseller.R
@@ -58,6 +59,11 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
                     "Registrar\nvisita"
                 ),
 
+                OrderOptions(
+                    OrderMenu.PayWithQR(),
+                    resources.getDrawable(R.drawable.ic_qai_pago_directo_qr, null),
+                    "Pago\ncon QR"
+                ),
 
                 OrderOptions(
                     OrderMenu.Call(),
@@ -75,9 +81,9 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
         }
 
-        val lim = GridLayoutManager(context, 4)
+   /*     val lim = GridLayoutManager(context, 5)
         lim.orientation = LinearLayoutManager.VERTICAL
-        binding.recyclerViewOptions.layoutManager = lim
+        binding.recyclerViewOptions.layoutManager = lim*/
     }
 
 
@@ -94,6 +100,10 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
             }
             is OrderMenu.Refuse -> {
 
+            }
+
+            is OrderMenu.PayWithQR ->{
+                findNavController().navigate(R.id.paymentFragment)
             }
 
             is OrderMenu.Call -> callCustomer()
