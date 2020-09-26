@@ -37,4 +37,11 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pospone_date">Elige la fecha a posterga</string>
     <string name="date_format">dd/MM/yyyy</string>
+    <string name="visit_registration_title">Registro de Visita</string>
+    <string name="who_received">Nombre de quien recibe</string>
+    <string name="rut">Rut</string>
+    <string name="order_delivered">¿El pedido fue entregado?</string>
+    <string name="reschedule">Reagendar Visita</string>
+    <string name="comment">Ingresa un comentario</string>
+    <string name="picture_of_delivery">Foto de la entrega del pedido</string>
 </resources>
