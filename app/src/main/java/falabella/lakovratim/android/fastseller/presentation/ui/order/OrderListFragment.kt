@@ -10,7 +10,8 @@ import falabella.lakovratim.android.fastseller.presentation.appComponent
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
 import javax.inject.Inject
 
-class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
+class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
+    OrderListAdapter.ActionListener {
 
     @Inject
     lateinit var orderListAdapter: OrderListAdapter
@@ -32,7 +33,10 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        hideProgress()
+
         binding.orderRecycler.adapter = orderListAdapter.apply {
+            actionListener = this@OrderListFragment
             items = listOf()
         }
 
@@ -48,5 +52,9 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
             )
             context = requireContext()
         }
+    }
+
+    override fun onEmptyFilter(isEmpty: Boolean) {
+        TODO("Not yet implemented")
     }
 }
