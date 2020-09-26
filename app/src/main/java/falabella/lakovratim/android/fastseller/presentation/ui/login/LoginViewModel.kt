@@ -15,7 +15,6 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
     private val loginRepository: LoginRepository = LoginRepository(sharedPrefs)
 
 
-
     fun hasSession() =
         loginRepository.getSession()
 

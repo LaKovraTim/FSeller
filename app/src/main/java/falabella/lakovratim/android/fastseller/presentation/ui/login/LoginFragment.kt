@@ -9,14 +9,10 @@ import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentLoginBinding
 import falabella.lakovratim.android.fastseller.presentation.ui.MainActivity
-import falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.BottomSheetDeliveryFragment
-import falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.BottomSheetPostponeFragment
 import falabella.lakovratim.android.fastseller.presentation.util.Constant.USERNAME_PATTERN
-import falabella.lakovratim.android.fastseller.presentation.util.Constant.USER_ARG
 import falabella.lakovratim.android.fastseller.presentation.util.extension.addSpaceFilter
 import falabella.lakovratim.android.fastseller.presentation.util.extension.finishWithFade
 import falabella.lakovratim.android.fastseller.presentation.util.extension.webLink

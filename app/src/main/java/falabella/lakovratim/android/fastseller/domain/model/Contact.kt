@@ -7,5 +7,5 @@ data class Contact(
     @SerializedName("email")
     var email: String?,
     @SerializedName("phone")
-    var phone: Int?
+    var phone: String?
 )

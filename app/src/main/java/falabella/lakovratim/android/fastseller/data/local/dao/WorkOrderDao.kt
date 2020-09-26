@@ -1,7 +1,7 @@
 package falabella.lakovratim.android.fastseller.data.local.dao
 
 import androidx.room.*
-import falabella.lakovratim.android.fastseller.domain.model.WorkOrderResponse
+import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 
 /**
  * @author   Andres Lobosz
@@ -10,15 +10,15 @@ import falabella.lakovratim.android.fastseller.domain.model.WorkOrderResponse
 @Dao
 interface WorkOrderDao {
     @Query("SELECT * FROM workorders")
-    suspend fun getOrder(): WorkOrderResponse
+    suspend fun getOrder(): List<WorkOrder>
 
     @Query("DELETE FROM workorders")
     suspend fun deleteOrders()
 
     @Update
-    fun updateOrder(workOrderResponse: WorkOrderResponse)
+    fun updateOrder(workOrder: WorkOrder)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveOrders(paymentMethods: WorkOrderResponse)
+    suspend fun saveOrders(vararg orders: WorkOrder)
 
 }
