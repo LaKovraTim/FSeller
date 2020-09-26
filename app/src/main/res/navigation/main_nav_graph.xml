@@ -21,7 +21,7 @@
         android:id="@+id/taskDetailFragment"
         android:name="falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.TaskDetailFragment"
         android:label="TaskDetailFragment"
-        tools:layout="@layout/fragment_task_detail" >
+        tools:layout="@layout/fragment_task_detail">
         <action
             android:id="@+id/action_taskDetailFragment_to_bottomSheetDeliveryFragment"
             app:destination="@id/bottomSheetDeliveryFragment" />
@@ -37,4 +37,9 @@
         android:id="@+id/bottomSheetPostponeFragment"
         android:name="falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.BottomSheetPostponeFragment"
         android:label="BottomSheetPostponeFragment" />
+    <fragment
+        android:id="@+id/visitRegistrationFragment"
+        android:name="falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.VisitRegistrationFragment"
+        android:label="VisitRegistrationFragment"
+        tools:layout="@layout/fragment_visit_registration" />
 </navigation>
