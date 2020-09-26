@@ -2,7 +2,7 @@
     <string name="app_name">FastSeller</string>
     <string name="default_notification">Hi there</string>
     <string name="login">Iniciar Sesion</string>
-    <string name="forgot_pass">¿Se te olvidó tu contraseña?</string>
+    <string name="forgot_pass"><a href="https://www.linio.cl/account/password/recover/request">¿Se te olvidó tu contraseña?</a></string>
     <string name="text_orders">Pedidos</string>
     <string name="see_detail">Ver el detalle → </string>
     <string name="empty_credencials">Ingresa los datos correctamente</string>
@@ -26,7 +26,7 @@
     <string name="order_number">Pedido #%d</string>
     <string name="made_by">Realizada por: %s</string>
     <string name="delivety_date">Fecha entrega: %s</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="got_it">Aceptar</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
 </resources>
