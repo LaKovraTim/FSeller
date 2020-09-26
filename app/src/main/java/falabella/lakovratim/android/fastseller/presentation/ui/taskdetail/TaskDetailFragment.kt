@@ -54,14 +54,9 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
                 OrderOptions(
                     OrderMenu.Delivered(),
                     resources.getDrawable(R.drawable.ic_check, null),
-                    getString(R.string.text_delivered)
+                    "Registrar\nvisita"
                 ),
-                OrderOptions(
-                    OrderMenu.Postpone(),
-                    resources.getDrawable(R.drawable.ic_schedule, null),
-                    getString(R.string.text_postpone)
 
-                ),
                 OrderOptions(
                     OrderMenu.Refuse(), resources.getDrawable(R.drawable.ic_tv_off_rounded, null),
                     getString(R.string.text_refuse)
