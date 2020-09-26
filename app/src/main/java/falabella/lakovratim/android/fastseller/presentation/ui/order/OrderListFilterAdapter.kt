@@ -1,6 +1,5 @@
 package falabella.lakovratim.android.fastseller.presentation.ui.order
 
-import android.content.Context
 import android.content.res.ColorStateList
 import android.os.Build
 import android.view.LayoutInflater
@@ -9,11 +8,10 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.AdapterFilterItemBinding
-import falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.MapBottomSheet
 import javax.inject.Inject
 
-class OrderFilterAdapter @Inject constructor() :
-    RecyclerView.Adapter<OrderFilterAdapter.ViewHolder>() {
+class OrderListFilterAdapter @Inject constructor() :
+    RecyclerView.Adapter<OrderListFilterAdapter.ViewHolder>() {
 
     var items: List<String> = listOf()
     private var previousPosition = -1

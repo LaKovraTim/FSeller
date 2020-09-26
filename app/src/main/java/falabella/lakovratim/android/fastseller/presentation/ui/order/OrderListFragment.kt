@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentOrderListBinding
 import falabella.lakovratim.android.fastseller.domain.model.Customer
@@ -22,8 +23,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     lateinit var orderListAdapter: OrderListAdapter
 
     @Inject
-    lateinit var orderFilterAdapter: OrderFilterAdapter
-
+    lateinit var orderListFilterAdapter: OrderListFilterAdapter
 
     override fun setBinding(
         inflater: LayoutInflater,
@@ -82,7 +82,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 "2020/09/26",
                 Customer(null, null, "Elba", null, null, "Lazo"),
                 "2020/09/26",
-                123456,
+                5699968,
                 arrayListOf(),
                 "1",
                 ""
@@ -92,9 +92,9 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 arrayListOf(),
                 "Ninguno",
                 "2020/09/26",
-                Customer(null, null, "Elba", null, null, "Lazo"),
+                Customer(null, null, "Juan", null, null, "Perez"),
                 "2020/09/26",
-                3443434,
+                5699969,
                 arrayListOf(),
                 "1",
                 ""
@@ -104,9 +104,9 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 arrayListOf(),
                 "Ninguno",
                 "2020/09/26",
-                Customer(null, null, "Elba", null, null, "Lazo"),
+                Customer(null, null, "Ramiro", null, null, "Ramirez"),
                 "2020/09/26",
-                123456,
+                5699970,
                 arrayListOf(),
                 "1",
                 ""
@@ -116,9 +116,9 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 arrayListOf(),
                 "Ninguno",
                 "2020/09/26",
-                Customer(null, null, "Elba", null, null, "Lazo"),
-                "2020/09/26",
-                3443434,
+                Customer(null, null, "Rob", null, null, "Martin"),
+                "2020/09/28",
+                5699971,
                 arrayListOf(),
                 "1",
                 ""
@@ -132,7 +132,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     }
 
     private fun showFilters() {
-        binding.recyclerViewFilter.adapter = orderFilterAdapter.apply {
+        binding.recyclerViewFilter.adapter = orderListFilterAdapter.apply {
             items = listOf(
                 getString(R.string.text_filter_active),
                 getString(R.string.text_filter_retry),
@@ -147,5 +147,9 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         } else {
             binding.orderRecycler.visible()
         }
+    }
+
+    override fun onSelectItem(item: WorkOrderResponse) {
+        findNavController().navigate(R.id.action_orderListFragment_to_taskDetailFragment)
     }
 }
