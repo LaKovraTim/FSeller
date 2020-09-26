@@ -11,4 +11,15 @@
     <string name="text_filter_retry">Reintentando</string>
     <string name="text_filter_cancel">Cancelados</string>
     <string name="text_order_statuses">Estados del pedido</string>
+    <string name="text_order_detail">Detalle del pedido</string>
+
+
+
+
+    <!-- TASK DETAIL-->
+    <string name="text_realized_by">Detalle del pedido</string>
+    <string name="text_date_detail">Fecha de solicitud</string>
+    <string name="text_payment_method">Medio de pago</string>
+
+    <!-- -->
 </resources>
