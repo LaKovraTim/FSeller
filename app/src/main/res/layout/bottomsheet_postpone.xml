@@ -22,38 +22,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="38dp"
-
-            android:text="¿El pedido fue entregado?"
-            app:layout_constraintBottom_toTopOf="@+id/radioGroup_character"
+            android:text="@string/pospone_date"
+            app:layout_constraintBottom_toTopOf="@+id/dateEditText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <RadioGroup
-            android:id="@+id/radioGroup_character"
+        <Button
+            android:id="@+id/dateEditText"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="48dp"
             android:gravity="center"
-            android:orientation="horizontal"
+            android:textSize="16sp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="48dp"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:background="@drawable/button_border"
             app:layout_constraintBottom_toTopOf="@+id/voucherButtonDone"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            android:textColor="@color/text_color"
+            android:drawablePadding="12dp">
 
-            <RadioButton
-                android:id="@+id/radioButton_male"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="32dp"
-                android:checked="true"
-                android:text="@string/yes" />
-
-            <RadioButton
-                android:id="@+id/radioButton_female"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="@string/no" />
-        </RadioGroup>
+        </Button>
 
         <Button
             android:id="@+id/voucherButtonDone"
@@ -78,7 +69,7 @@
             app:layout_constraintEnd_toEndOf="@+id/textView13"
             app:layout_constraintStart_toStartOf="@+id/textView13"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_check" />
+            app:srcCompat="@drawable/ic_calendar" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
