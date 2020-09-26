@@ -38,7 +38,6 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        BottomSheetDeliveryFragment().show(childFragmentManager.beginTransaction(), null)
         return binding.root
     }
 
