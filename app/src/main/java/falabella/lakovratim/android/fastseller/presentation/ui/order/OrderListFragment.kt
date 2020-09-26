@@ -6,9 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentOrderListBinding
+import falabella.lakovratim.android.fastseller.domain.model.Customer
+import falabella.lakovratim.android.fastseller.domain.model.WorkOrderResponse
 import falabella.lakovratim.android.fastseller.presentation.appComponent
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
+import falabella.lakovratim.android.fastseller.presentation.util.extension.hideKeyboard
 import falabella.lakovratim.android.fastseller.presentation.util.extension.invisible
+import falabella.lakovratim.android.fastseller.presentation.util.extension.visible
 import javax.inject.Inject
 
 class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
@@ -34,6 +38,20 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.searchView.setOnQueryTextListener(object :
+            android.widget.SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                requireActivity().hideKeyboard()
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                orderListAdapter.filter.filter(newText)
+                return true
+            }
+        })
+
         binding.orderListSwipe.setColorSchemeResources(
             R.color.colorPrimaryDark,
             R.color.colorPrimary,
@@ -49,10 +67,63 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
 
         binding.orderRecycler.adapter = orderListAdapter.apply {
             actionListener = this@OrderListFragment
-            items = listOf()
+            items = mock()
         }
 
         showFilters()
+    }
+
+    private fun mock(): List<WorkOrderResponse> {
+        return listOf(
+            WorkOrderResponse(
+                1,
+                arrayListOf(),
+                "Ninguno",
+                "2020/09/26",
+                Customer(null, null, "Elba", null, null, "Lazo"),
+                "2020/09/26",
+                123456,
+                arrayListOf(),
+                "1",
+                ""
+            ),
+            WorkOrderResponse(
+                1,
+                arrayListOf(),
+                "Ninguno",
+                "2020/09/26",
+                Customer(null, null, "Elba", null, null, "Lazo"),
+                "2020/09/26",
+                3443434,
+                arrayListOf(),
+                "1",
+                ""
+            ),
+            WorkOrderResponse(
+                1,
+                arrayListOf(),
+                "Ninguno",
+                "2020/09/26",
+                Customer(null, null, "Elba", null, null, "Lazo"),
+                "2020/09/26",
+                123456,
+                arrayListOf(),
+                "1",
+                ""
+            ),
+            WorkOrderResponse(
+                1,
+                arrayListOf(),
+                "Ninguno",
+                "2020/09/26",
+                Customer(null, null, "Elba", null, null, "Lazo"),
+                "2020/09/26",
+                3443434,
+                arrayListOf(),
+                "1",
+                ""
+            )
+        )
     }
 
     override fun hideProgress() {
@@ -74,7 +145,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         if (isEmpty) {
             binding.orderRecycler.invisible()
         } else {
-            binding.orderRecycler.invisible()
+            binding.orderRecycler.visible()
         }
     }
 }

@@ -21,7 +21,7 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
             auxItems.addAll(value)
             field = value
         }
-    private var auxItems: ArrayList<WorkOrderResponse> = arrayListOf()
+    private var auxItems: MutableList<WorkOrderResponse> = mutableListOf()
 
     var actionListener: ActionListener? = null
 
@@ -40,7 +40,10 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
 
         with(holder.itemView.context) {
             holder.orderItemTitle.text = this.getString(R.string.order_number, order.number)
-            holder.orderItemClient.text = this.getString(R.string.made_by, order.customer)
+            holder.orderItemClient.text = this.getString(
+                R.string.made_by,
+                "${order.customer?.firstName} ${order.customer?.secondName}"
+            )
             holder.orderItemDate.text = this.getString(R.string.delivety_date, order.deliveryDate)
             holder.orderItemDescription.setOnClickListener {
                 Toast.makeText(this, "In Development", Toast.LENGTH_SHORT).show()
@@ -62,16 +65,16 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
         override fun performFiltering(constraint: CharSequence?): FilterResults {
             return FilterResults().apply {
                 values = if (constraint.isNullOrEmpty()) {
-                    items as ArrayList
+                    items
                 } else {
                     items.filter { it.number.toString().contains(constraint.trim(), true) }
-                }
+                } as MutableList
             }
         }
 
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
             auxItems.clear()
-            auxItems.addAll(results?.values as ArrayList<WorkOrderResponse>)
+            auxItems.addAll(results?.values as MutableList<WorkOrderResponse>)
             actionListener?.onEmptyFilter(auxItems.isEmpty())
             notifyDataSetChanged()
         }
