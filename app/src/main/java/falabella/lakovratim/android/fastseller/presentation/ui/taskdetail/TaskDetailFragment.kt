@@ -7,7 +7,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import falabella.lakovratim.android.fastseller.R
@@ -59,6 +58,14 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
                     "Registrar\nvisita"
                 ),
 
+
+                OrderOptions(
+                    OrderMenu.Call(),
+                    resources.getDrawable(R.drawable.ic_check, null),
+                    "Llamar\nal cliente"
+                ),
+
+
                 OrderOptions(
                     OrderMenu.Refuse(), resources.getDrawable(R.drawable.ic_tv_off_rounded, null),
                     getString(R.string.text_refuse)
@@ -68,7 +75,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
         }
 
-        val lim = GridLayoutManager(context, 3)
+        val lim = GridLayoutManager(context, 4)
         lim.orientation = LinearLayoutManager.VERTICAL
         binding.recyclerViewOptions.layoutManager = lim
     }
@@ -77,7 +84,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
     private fun orderOptions(option: OrderMenu) {
         when (option) {
             is OrderMenu.SeeMap -> openWaze()
-            is OrderMenu.Delivered ->     {
+            is OrderMenu.Delivered -> {
                 BottomSheetDeliveryFragment().show(childFragmentManager.beginTransaction(), null)
                 //findNavController().navigate(R.id.action_taskDetailFragment_to_bottomSheetDeliveryFragment)
             }
@@ -88,17 +95,30 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
             is OrderMenu.Refuse -> {
 
             }
+
+            is OrderMenu.Call -> callCustomer()
         }
 
     }
 
     private fun openWaze() {
-        try {
-            val uri = "waze://?ll=40.761043, -73.980545&navigate=yes"
-            requireActivity().startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
-        } catch (ex: Exception) {
-            requireActivity().startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.waze")))
-        }
+        val gmmIntentUri = Uri.parse("geo:37.7749,-122.4194")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        mapIntent.setPackage("com.google.android.apps.maps")
+        requireActivity().startActivity(mapIntent)
+
+
+        /*    try {
+                val uri = "waze://?ll=40.761043, -73.980545&navigate=yes"
+                requireActivity().startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
+            } catch (ex: Exception) {
+                requireActivity().startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.waze")))
+            }*/
+    }
+
+    private fun callCustomer() {
+        val surf = Intent(Intent.ACTION_DIAL, Uri.parse("tel:55555555"))
+        requireActivity().startActivity(surf)
     }
 }
 
