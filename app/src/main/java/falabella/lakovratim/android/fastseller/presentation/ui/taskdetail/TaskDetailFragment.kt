@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentTaskDetailBinding
 import falabella.lakovratim.android.fastseller.domain.model.OrderOptions
@@ -65,6 +67,10 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
             option = ::orderOptions
 
         }
+
+        val lim = GridLayoutManager(context, 3)
+        lim.orientation = LinearLayoutManager.VERTICAL
+        binding.recyclerViewOptions.layoutManager = lim
     }
 
 
