@@ -56,7 +56,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
                 OrderOptions(
                     OrderMenu.Delivered(),
                     resources.getDrawable(R.drawable.ic_check, null),
-                    "Registrar\nvisita"
+                    "Registrar visita"
                 ),
 
                 OrderOptions(
