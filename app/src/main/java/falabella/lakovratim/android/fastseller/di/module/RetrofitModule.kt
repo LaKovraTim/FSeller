@@ -45,7 +45,7 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideAPIService(retrofit: Retrofit): CounterAPI {
+    fun provideAPIService(retrofit: Retrofit):  CounterAPI {
         return retrofit.create(CounterAPI::class.java)
     }
 }

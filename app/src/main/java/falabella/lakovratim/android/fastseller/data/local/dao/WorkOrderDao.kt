@@ -10,15 +10,15 @@ import falabella.lakovratim.android.fastseller.domain.model.WorkOrderResponse
 @Dao
 interface WorkOrderDao {
     @Query("SELECT * FROM workorders")
-    suspend fun getPaymentMethods(): WorkOrderResponse
+    suspend fun getOrder(): WorkOrderResponse
 
     @Query("DELETE FROM workorders")
-    suspend fun deleteAllPaymentMethods()
+    suspend fun deleteOrders()
 
     @Update
-    fun updateUsers(workOrderResponse: WorkOrderResponse)
+    fun updateOrder(workOrderResponse: WorkOrderResponse)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun savePaymentMethods(paymentMethods: WorkOrderResponse)
+    suspend fun saveOrders(paymentMethods: WorkOrderResponse)
 
 }
