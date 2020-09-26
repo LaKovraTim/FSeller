@@ -2,7 +2,6 @@ package falabella.lakovratim.android.fastseller.presentation.ui.taskdetail
 
 import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,7 +56,7 @@ class BottomSheetPostponeFragment : BottomSheetDialogFragment() {
                     })
             }
         }
-        dialog.setCanceledOnTouchOutside(false)
+        dialog.setCanceledOnTouchOutside(true)
         return dialog
     }
 
