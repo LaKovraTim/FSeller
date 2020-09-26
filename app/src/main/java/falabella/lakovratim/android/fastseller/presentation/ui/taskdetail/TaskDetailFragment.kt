@@ -11,9 +11,7 @@ import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentTaskDetailBinding
 import falabella.lakovratim.android.fastseller.domain.model.OrderOptions
 import falabella.lakovratim.android.fastseller.presentation.appComponent
-import falabella.lakovratim.android.fastseller.presentation.ui.order.OrderFilterAdapter
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
-import kotlinx.android.synthetic.main.fragment_task_detail.*
 import javax.inject.Inject
 
 
