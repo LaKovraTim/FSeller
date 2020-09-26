@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentOrderListBinding
@@ -11,10 +13,11 @@ import falabella.lakovratim.android.fastseller.domain.model.Customer
 import falabella.lakovratim.android.fastseller.domain.model.Product
 import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import falabella.lakovratim.android.fastseller.presentation.appComponent
+import falabella.lakovratim.android.fastseller.presentation.ui.MainActivityViewModel
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
-import falabella.lakovratim.android.fastseller.presentation.util.extension.hideKeyboard
-import falabella.lakovratim.android.fastseller.presentation.util.extension.invisible
-import falabella.lakovratim.android.fastseller.presentation.util.extension.visible
+import falabella.lakovratim.android.fastseller.presentation.util.Resource
+import falabella.lakovratim.android.fastseller.presentation.util.ResourceResult
+import falabella.lakovratim.android.fastseller.presentation.util.extension.*
 import javax.inject.Inject
 
 class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
@@ -26,6 +29,8 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     @Inject
     lateinit var orderListFilterAdapter: OrderListFilterAdapter
 
+    private val viewModel: MainActivityViewModel by activityViewModels { viewModelFactory }
+
     override fun setBinding(
         inflater: LayoutInflater,
         container: ViewGroup?
@@ -36,8 +41,25 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         appComponent().inject(this)
     }
 
+    private fun handleWorkOrders(resource: Resource<List<WorkOrder>>?) {
+        when (resource) {
+            is Resource.Success -> {
+                binding.progressInclude.gone()
+            }
+            is Resource.Error -> {
+                binding.progressInclude.gone()
+            }
+            is Resource.Loading -> {
+                binding.progressInclude.visible()
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        observe(viewModel.workOrders, ::handleWorkOrders)
+        viewModel.getOrders()
 
         binding.searchView.setOnQueryTextListener(object :
             android.widget.SearchView.OnQueryTextListener {

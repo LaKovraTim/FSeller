@@ -9,10 +9,10 @@ import retrofit2.http.*
 import java.io.File
 
 interface CounterAPI {
-    @GET("/sellers/{sellerId}/work-orders/")
+    @GET("capillary/v1/sellers/{sellerId}/work-orders/")
     suspend fun getOrders(@Path("sellerId") sellerId: String): List<WorkOrder>
 
-    @POST("/sellers/{sellerId}/work-orders/{workOrderId}/retries")
+    @POST("capillary/v1/sellers/{sellerId}/work-orders/{workOrderId}/retries")
     suspend fun sendOrder(
         @Path("sellerId") sellerId: String,
         @Path("workOrderId") orderId: String,
