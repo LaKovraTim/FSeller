@@ -43,8 +43,8 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
             items = listOf(
                 OrderOptions(resources.getDrawable(R.drawable.ic_place,null), "Ver mapa"),
                 OrderOptions(resources.getDrawable(R.drawable.ic_check,null), "Entregado"),
-                OrderOptions(resources.getDrawable(R.drawable.ic_schedule,null), "Postergar Pedido"),
-                OrderOptions(resources.getDrawable(R.drawable.ic_tv_off_rounded,null), "Rechazar pedido"),)
+                OrderOptions(resources.getDrawable(R.drawable.ic_schedule,null), "Postergar\nPedido"),
+                OrderOptions(resources.getDrawable(R.drawable.ic_tv_off_rounded,null), "Rechazar\npedido"),)
         }
 
 

@@ -18,7 +18,8 @@
             android:id="@+id/optionItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:background="@drawable/ic_circle"
             app:layout_constraintBottom_toTopOf="@+id/optionItemTitle"
             app:layout_constraintEnd_toEndOf="parent"
@@ -45,13 +46,12 @@
 
         <TextView
             android:id="@+id/optionItemTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="32dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/optionItem"
+            app:layout_constraintStart_toStartOf="@+id/optionItem"
             app:layout_constraintTop_toBottomOf="@+id/optionItem" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
