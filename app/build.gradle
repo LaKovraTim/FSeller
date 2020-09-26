@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "falabella.lakovratim.android.fastSeller"
-        minSdkVersion 21
+        minSdkVersion 23
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
@@ -118,4 +118,7 @@ dependencies {
 
     //map
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
+
+    implementation 'androidx.security:security-crypto:1.0.0-alpha02'
+
 }

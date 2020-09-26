@@ -8,12 +8,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentLoginBinding
 import falabella.lakovratim.android.fastseller.presentation.ui.MainActivity
 import falabella.lakovratim.android.fastseller.presentation.util.Constant.USERNAME_PATTERN
 import falabella.lakovratim.android.fastseller.presentation.util.Constant.USER_ARG
 import falabella.lakovratim.android.fastseller.presentation.util.extension.addSpaceFilter
+import falabella.lakovratim.android.fastseller.presentation.util.extension.finishWithFade
 import falabella.lakovratim.android.fastseller.presentation.util.extension.webLink
 import kotlinx.android.synthetic.main.fragment_login.*
 import java.util.regex.Pattern
@@ -21,12 +24,17 @@ import java.util.regex.Pattern
 
 class LoginFragment : Fragment() {
 
+    private val viewModel: LoginViewModel by activityViewModels()
     private var _binding: FragmentLoginBinding? = null
     private val binding
         get() = _binding!!
 
     private var isValidUsername = false
     private var isValidPass = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,20 +69,32 @@ class LoginFragment : Fragment() {
         binding.forgotPassword.webLink(R.color.textColor)
 
         binding.buttonLogin.setOnClickListener {
-            if(binding.editTextTextPassword.text.isNullOrEmpty() || binding.editTextTextUser.text.isNullOrEmpty())
+            if (binding.editTextTextPassword.text.isNullOrEmpty() || binding.editTextTextUser.text.isNullOrEmpty()) {
                 Toast.makeText(context, getString(R.string.empty_credencials), Toast.LENGTH_SHORT)
                     .show()
+                return@setOnClickListener
+            }
             if (!validateFields()) {
                 return@setOnClickListener
             }
-
-            Intent(
-                context, MainActivity::class.java
-            ).putExtra(USER_ARG, binding.editTextTextUser.toString())
-                .addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP).also {
-                    startActivity(it)
-                }
+            if (viewModel.login(
+                    binding.editTextTextUser.text.toString(),
+                    binding.editTextTextPassword.text.toString()
+                )
+            )
+                showOrders()
+            else{
+                Toast.makeText(context, getString(R.string.wrong_username), Toast.LENGTH_SHORT)
+                    .show()
+            }
         }
+    }
+
+    private fun showOrders() {
+        Intent(context, MainActivity::class.java).also {
+                startActivity(it)
+            }
+        activity?.finishWithFade()
     }
 
     private fun validateFields(): Boolean =
