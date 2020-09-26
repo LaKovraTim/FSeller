@@ -12,8 +12,6 @@ data class Customer(
     var firstName: String?,
     @SerializedName("receiver")
     var `receiver`: Receiver?,
-    @SerializedName("run")
-    var run: String?,
     @SerializedName("secondName")
     var secondName: String?
 )

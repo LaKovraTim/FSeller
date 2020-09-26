@@ -27,7 +27,7 @@
 
     <string name="content_description_retail_logo">Logo Retail</string>
     <string name="no_order_in_list">Sin resultados</string>
-    <string name="order_number">Pedido #%d</string>
+    <string name="order_number">Pedido #%s</string>
     <string name="made_by">Realizada por: %s</string>
     <string name="delivety_date">Fecha entrega: %s</string>
     <string name="got_it">Aceptar</string>

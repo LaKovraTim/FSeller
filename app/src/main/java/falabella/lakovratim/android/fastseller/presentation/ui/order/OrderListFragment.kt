@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentOrderListBinding
 import falabella.lakovratim.android.fastseller.domain.model.Customer
-import falabella.lakovratim.android.fastseller.domain.model.WorkOrderResponse
+import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import falabella.lakovratim.android.fastseller.presentation.appComponent
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
 import falabella.lakovratim.android.fastseller.presentation.util.extension.hideKeyboard
@@ -67,15 +67,15 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
 
         binding.orderRecycler.adapter = orderListAdapter.apply {
             actionListener = this@OrderListFragment
-            items = mock()
+            items = mutableListOf()
         }
 
         showFilters()
     }
 
-    private fun mock(): List<WorkOrderResponse> {
+    /*private fun mock(): List<WorkOrders> {
         return listOf(
-            WorkOrderResponse(
+            WorkOrders(
                 1,
                 arrayListOf(),
                 "Ninguno",
@@ -87,7 +87,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 "1",
                 ""
             ),
-            WorkOrderResponse(
+            WorkOrders(
                 1,
                 arrayListOf(),
                 "Ninguno",
@@ -99,7 +99,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 "1",
                 ""
             ),
-            WorkOrderResponse(
+            WorkOrders(
                 1,
                 arrayListOf(),
                 "Ninguno",
@@ -111,7 +111,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 "1",
                 ""
             ),
-            WorkOrderResponse(
+            WorkOrders(
                 1,
                 arrayListOf(),
                 "Ninguno",
@@ -125,7 +125,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
             )
         )
     }
-
+*/
     override fun hideProgress() {
         super.hideProgress()
         binding.orderListSwipe.isRefreshing = false
@@ -149,7 +149,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         }
     }
 
-    override fun onSelectItem(item: WorkOrderResponse) {
+    override fun onSelectItem(item: WorkOrder) {
         findNavController().navigate(R.id.action_orderListFragment_to_taskDetailFragment)
     }
 }

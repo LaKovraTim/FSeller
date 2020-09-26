@@ -11,7 +11,7 @@ data class Address(
     @SerializedName("location")
     var location: Location?,
     @SerializedName("number")
-    var number: Int?,
+    var number: String?,
     @SerializedName("refers")
     var refers: String?,
     @SerializedName("region")

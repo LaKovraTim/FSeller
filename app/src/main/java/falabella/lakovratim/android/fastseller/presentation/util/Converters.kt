@@ -22,11 +22,11 @@ class Converters {
 
 
     @TypeConverter
-    fun attemptFromString(value: String?): Attempt? =
-        gson.fromJson(value, object : TypeToken<Attempt?>() {}.type)
+    fun attemptFromString(value: String?): Retry? =
+        gson.fromJson(value, object : TypeToken<Retry?>() {}.type)
 
     @TypeConverter
-    fun fromAttempt(attempt: Attempt?): String? = gson.toJson(attempt)
+    fun fromAttempt(attempt: Retry?): String? = gson.toJson(attempt)
 
 
     @TypeConverter
@@ -72,11 +72,11 @@ class Converters {
         gson.toJson(receiver)
 
     @TypeConverter
-    fun workOrderFromString(value: String?): WorkOrderResponse? =
-        gson.fromJson(value, object : TypeToken<WorkOrderResponse?>() {}.type)
+    fun workOrderFromString(value: String?): WorkOrder? =
+        gson.fromJson(value, object : TypeToken<WorkOrder?>() {}.type)
 
     @TypeConverter
-    fun fromWorkOrder(workOrderResponse: WorkOrderResponse?): String? =
+    fun fromWorkOrder(workOrderResponse: WorkOrder?): String? =
         gson.toJson(workOrderResponse)
 
 
@@ -94,15 +94,27 @@ class Converters {
 
 
     @TypeConverter
-    fun fromStringAttempts(value: String?): ArrayList<Attempt?>? =
-        gson.fromJson<ArrayList<Attempt?>>(
+    fun fromStringAttempts(value: String?): ArrayList<Retry?>? =
+        gson.fromJson<ArrayList<Retry?>>(
             value,
-            object : TypeToken<ArrayList<Attempt?>?>() {}.type
+            object : TypeToken<ArrayList<Retry?>?>() {}.type
         )
 
 
     @TypeConverter
-    fun fromArrayAttempt(list: ArrayList<Attempt?>?): String? =
+    fun fromArrayAttempt(list: ArrayList<Retry?>?): String? =
         gson.toJson(list)
 
+
+    @TypeConverter
+    fun fromStringWorkOrders(value: String?): ArrayList<WorkOrder?>? =
+        gson.fromJson<ArrayList<WorkOrder?>>(
+            value,
+            object : TypeToken<ArrayList<Retry?>?>() {}.type
+        )
+
+
+    @TypeConverter
+    fun fromArrayWorkOrder(list: ArrayList<WorkOrder?>?): String? =
+        gson.toJson(list)
 }
