@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
-import android.widget.Toast
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.recyclerview.widget.RecyclerView
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.AdapterOrderListItemBinding
@@ -35,10 +35,15 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
         )
     }
 
+    //TODO delete
+    private val logos = arrayOf(R.drawable.ic_fala, R.drawable.ic_sodimac, R.drawable.ic_linio)
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val order = auxItems[position]
 
         with(holder.itemView.context) {
+
+            holder.orderItemImage.setImageDrawable(AppCompatResources.getDrawable(this, logos.random()))
             holder.orderItemTitle.text = this.getString(R.string.order_number, order.number)
             holder.orderItemClient.text = this.getString(
                 R.string.made_by,
@@ -46,7 +51,7 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
             )
             holder.orderItemDate.text = this.getString(R.string.delivety_date, order.deliveryDate)
             holder.orderItemDescription.setOnClickListener {
-                Toast.makeText(this, "In Development", Toast.LENGTH_SHORT).show()
+                actionListener?.onSelectItem(order)
             }
         }
     }
@@ -54,6 +59,7 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
     override fun getItemCount(): Int = auxItems.size
 
     class ViewHolder(binding: AdapterOrderListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        val orderItemImage = binding.orderItemImage
         val orderItemTitle = binding.orderItemTitle
         val orderItemDate = binding.orderItemDate
         val orderItemDescription = binding.orderItemDescription
@@ -82,5 +88,6 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
 
     interface ActionListener {
         fun onEmptyFilter(isEmpty: Boolean)
+        fun onSelectItem(item: WorkOrderResponse)
     }
 }
