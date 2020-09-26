@@ -1,5 +1,6 @@
-package falabella.lakovratim.android.fastseller.data.local
+package falabella.lakovratim.android.fastseller.data
 
+import falabella.lakovratim.android.fastseller.data.local.CounterDatabase
 import falabella.lakovratim.android.fastseller.data.remote.CounterAPI
 import javax.inject.Inject
 
