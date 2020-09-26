@@ -5,6 +5,7 @@ import androidx.room.Room
 import falabella.lakovratim.android.fastseller.data.local.CounterDatabase
 import dagger.Module
 import dagger.Provides
+import falabella.lakovratim.android.fastseller.data.local.DATABASE_NAME
 import javax.inject.Singleton
 
 @Module
@@ -16,6 +17,6 @@ class DatabaseModule {
         Room.databaseBuilder(
             context,
             CounterDatabase::class.java,
-            "NN"
+            DATABASE_NAME
         ).allowMainThreadQueries().build()
 }
