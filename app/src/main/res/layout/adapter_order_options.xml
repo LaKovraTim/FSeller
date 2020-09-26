@@ -50,6 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             tools:text="TextView"
+            android:gravity="center"
             android:lines="2"
             android:fontFamily="@font/source_sans_pro_reg"
             app:layout_constraintBottom_toBottomOf="parent"
