@@ -69,7 +69,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                orderListAdapter.filter.filter(newText)
+                filterOrdered(newText)
                 return true
             }
         })
@@ -183,6 +183,6 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         }
     }
 
-    private fun filterOrdered(value: String) = orderListAdapter.filter.filter(value)
+    private fun filterOrdered(value: String?) = orderListAdapter.filter.filter(value)
 
 }
