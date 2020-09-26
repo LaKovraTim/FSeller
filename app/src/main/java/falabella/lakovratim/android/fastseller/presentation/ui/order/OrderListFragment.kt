@@ -34,6 +34,17 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.orderListSwipe.setColorSchemeResources(
+            R.color.colorPrimaryDark,
+            R.color.colorPrimary,
+            R.color.colorAccent
+        )
+        binding.orderListSwipe.setOnRefreshListener {
+            //TODO call to get order list
+            hideProgress()
+        }
+
+        //TODO remove
         hideProgress()
 
         binding.orderRecycler.adapter = orderListAdapter.apply {
@@ -42,6 +53,11 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         }
 
         showFilters()
+    }
+
+    override fun hideProgress() {
+        super.hideProgress()
+        binding.orderListSwipe.isRefreshing = false
     }
 
     private fun showFilters() {
