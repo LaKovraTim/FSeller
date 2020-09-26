@@ -13,6 +13,7 @@ import androidx.fragment.app.viewModels
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentLoginBinding
 import falabella.lakovratim.android.fastseller.presentation.ui.MainActivity
+import falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.BottomSheetDeliveryFragment
 import falabella.lakovratim.android.fastseller.presentation.util.Constant.USERNAME_PATTERN
 import falabella.lakovratim.android.fastseller.presentation.util.Constant.USER_ARG
 import falabella.lakovratim.android.fastseller.presentation.util.extension.addSpaceFilter
@@ -32,15 +33,12 @@ class LoginFragment : Fragment() {
     private var isValidUsername = false
     private var isValidPass = false
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
+        BottomSheetDeliveryFragment().show(childFragmentManager.beginTransaction(), null)
         return binding.root
     }
 
