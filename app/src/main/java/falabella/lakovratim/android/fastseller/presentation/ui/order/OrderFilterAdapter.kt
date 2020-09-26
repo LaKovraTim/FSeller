@@ -37,8 +37,6 @@ class OrderFilterAdapter @Inject constructor() :
             previousPosition = position;
             notifyDataSetChanged();
         }
-        //MapBottomSheet.newInstance()
-          //  .show(holder.itemView.context.supportFragmentManager, "")
 
         if(position == previousPosition){
             holder.filterItem.backgroundTintList = ColorStateList.valueOf(holder.itemView.context.resources.getColor(R.color.greenBackground,null));

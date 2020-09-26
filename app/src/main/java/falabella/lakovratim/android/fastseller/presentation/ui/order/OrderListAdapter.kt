@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.AdapterOrderListItemBinding
@@ -47,6 +48,8 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
             holder.orderItemDate.text = this.getString(R.string.delivety_date, order.deliveryDate)
             holder.orderItemDescription.setOnClickListener {
                 Toast.makeText(this, "In Development", Toast.LENGTH_SHORT).show()
+                it.findNavController()
+                    .navigate(R.id.taskDetailFragment)
             }
         }
     }

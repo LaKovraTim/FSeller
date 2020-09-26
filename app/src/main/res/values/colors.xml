@@ -13,4 +13,5 @@
     <color name="white">#FFFFFF</color>
     <color name="textHintColor">#CCA9A9A9</color>
     <color name="greenBackground">#B8C900</color>
+    <color name="greenBank">#399624</color>
 </resources>

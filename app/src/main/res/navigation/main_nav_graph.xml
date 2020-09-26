@@ -7,7 +7,15 @@
 
     <fragment
         android:id="@+id/orderListFragment"
-        tools:layout="@layout/fragment_order_list"
         android:name="falabella.lakovratim.android.fastseller.presentation.ui.order.OrderListFragment"
-        android:label="OrderListFragment" />
+        android:label="OrderListFragment"
+        tools:layout="@layout/fragment_order_list">
+        <action
+            android:id="@+id/action_orderListFragment_to_taskDetailFragment"
+            app:destination="@id/taskDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/taskDetailFragment"
+        android:name="falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.TaskDetailFragment"
+        android:label="TaskDetailFragment" />
 </navigation>
