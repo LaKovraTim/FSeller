@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentOrderListBinding
 import falabella.lakovratim.android.fastseller.presentation.appComponent
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
@@ -13,6 +14,10 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
 
     @Inject
     lateinit var orderListAdapter: OrderListAdapter
+
+    @Inject
+    lateinit var orderFilterAdapter: OrderFilterAdapter
+
 
     override fun setBinding(
         inflater: LayoutInflater,
@@ -29,6 +34,14 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>() {
 
         binding.orderRecycler.adapter = orderListAdapter.apply {
             items = listOf(1, 2, 3, 4, 5, 6, 7)
+        }
+
+        showFilters()
+    }
+
+    private fun showFilters() {
+        binding.recyclerViewFilter.adapter = orderFilterAdapter.apply {
+            items = listOf(getString(R.string.text_filter_active),getString(R.string.text_filter_retry),getString(R.string.text_filter_cancel))
         }
     }
 }
