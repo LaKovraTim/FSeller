@@ -44,6 +44,10 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         when (resource) {
             is Resource.Success -> {
                 binding.progressInclude.gone()
+                viewModel.workOrders.value?.data?.let {
+                    showWorkOrders(it)
+                }
+
             }
             is Resource.Error -> {
                 binding.progressInclude.gone()
@@ -87,13 +91,18 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         //TODO remove
         hideProgress()
 
-        binding.orderRecycler.adapter = orderListAdapter.apply {
-            actionListener = this@OrderListFragment
-            items = mock()
-        }
-
         showFilters()
     }
+
+
+    private fun showWorkOrders(data: List<WorkOrder>) {
+        binding.orderRecycler.adapter = orderListAdapter.apply {
+           actionListener = this@OrderListFragment
+           items = data
+       }
+    }
+
+
 
     private fun mock(): List<WorkOrder> {
         return listOf(
