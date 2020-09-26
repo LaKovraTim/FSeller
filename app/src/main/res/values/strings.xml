@@ -3,4 +3,5 @@
     <string name="default_notification">Hi there</string>
     <string name="login">Iniciar Sesion</string>
     <string name="forgot_pass">¿Se te olvidó tu contraseña?</string>
+    <string name="text_orders">Pedidos</string>
 </resources>
