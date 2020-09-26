@@ -12,10 +12,10 @@
         android:layout_width="0dp"
         android:layout_height="150dp"
         android:scaleType="fitXY"
+        android:src="@drawable/login_img"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:src="@drawable/login_img" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextTextUser"
@@ -28,6 +28,8 @@
         android:ems="10"
         android:inputType="text|textWebEmailAddress"
         android:maxLength="30"
+        android:textColor="@color/textHintColor"
+        android:textSize="14sp"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -39,8 +41,11 @@
         android:layout_marginTop="8dp"
         android:background="@drawable/button_rounded"
         android:ems="10"
+        android:imeOptions="actionDone"
         android:inputType="textPassword"
         android:maxLength="12"
+        android:textColor="@color/textHintColor"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextUser"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editTextTextUser"
@@ -55,12 +60,12 @@
 
     <Button
         android:id="@+id/buttonLogin"
+        style="?android:attr/borderlessButtonStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
-        android:background="@drawable/button_rounded"
+        android:background="@drawable/ripple"
         android:backgroundTint="@color/grey"
-        android:enabled="false"
         android:text="@string/login"
         android:textColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
@@ -98,12 +103,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
+        android:clickable="true"
+        android:focusable="true"
         android:fontFamily="sans-serif-condensed-light"
         android:text="@string/forgot_pass"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
-        android:clickable="true"
-        android:focusable="true" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
 
     <ImageView
         android:id="@+id/imageView2"

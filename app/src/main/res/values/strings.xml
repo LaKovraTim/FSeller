@@ -3,4 +3,6 @@
     <string name="default_notification">Hi there</string>
     <string name="login">Iniciar Sesion</string>
     <string name="forgot_pass">¿Se te olvidó tu contraseña?</string>
+    <string name="empty_credencials">Ingresa los datos correctamente</string>
+    <string name="wrong_username">Revisa tus credenciales y vuelve a intentar</string>
 </resources>
