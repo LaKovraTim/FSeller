@@ -51,7 +51,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
     private fun showWorker() {
         viewModel.workOrder.value?.let {
-            binding.textDetailNumber.text = it.id
+            binding.textDetailNumber.text =  getString(R.string.text_order_detail_with_number, it.id)
             binding.textRealizedByValue.text =
                 "${it.customer?.firstName} ${it.customer?.secondName}"
             binding.textCreationDate.text = it.creationDate!!
