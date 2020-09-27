@@ -53,7 +53,6 @@ open class MainActivityViewModel @Inject constructor(
             _workOrders.postValue(Resource.Success(response))
         }
         getWorkOrdersUseCase.execute("100", ::handleSuccess, ::handleFailure)
-
     }
 
     fun sendOrder(photo: File? = null, comment: String?, success: Boolean) {

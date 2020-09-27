@@ -2,7 +2,6 @@
 
 package falabella.lakovratim.android.fastseller.presentation.ui.order
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -54,22 +53,29 @@ class OrderListAdapter @Inject constructor() :
         }
     }
 
-    //TODO delete
-    private val logos = arrayOf(R.drawable.ic_fala, R.drawable.ic_sodimac, R.drawable.ic_linio)
-
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val order = auxItems[position]
 
         with(holder.itemView.context) {
 
+            val identifierDrawable = this.resources.getIdentifier(
+                "ic_${order.commerceCode}",
+                "drawable",
+                this.packageName
+            )
+
             when (holder) {
                 is NormalHolder -> {
-                    holder.orderItemImage.setImageDrawable(
-                        AppCompatResources.getDrawable(
-                            this,
-                            logos.random()
+
+                    if (identifierDrawable > 0) {
+                        holder.orderItemImage.setImageDrawable(
+                            AppCompatResources.getDrawable(
+                                this,
+                                identifierDrawable
+                            )
                         )
-                    )
+                    }
+
                     holder.orderItemTitle.text = this.getString(R.string.order_number, order.id)
                     holder.orderItemClient.text = this.getString(
                         R.string.made_by,
@@ -82,12 +88,15 @@ class OrderListAdapter @Inject constructor() :
                     }
                 }
                 is ItemToSelectHolder -> {
-                    holder.orderItemImage.setImageDrawable(
-                        AppCompatResources.getDrawable(
-                            this,
-                            logos.random()
+
+                    if (identifierDrawable > 0) {
+                        holder.orderItemImage.setImageDrawable(
+                            AppCompatResources.getDrawable(
+                                this,
+                                identifierDrawable
+                            )
                         )
-                    )
+                    }
                     holder.orderItemTitle.text = this.getString(R.string.order_number, order.id)
                     holder.orderItemClient.text = this.getString(
                         R.string.made_by,

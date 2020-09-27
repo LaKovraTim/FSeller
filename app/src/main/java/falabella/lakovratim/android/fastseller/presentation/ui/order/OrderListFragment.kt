@@ -132,10 +132,6 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
             viewModel.getOrders()
             hideProgress()
         }
-
-        //TODO remove
-        hideProgress()
-
         showFilters()
     }
 
