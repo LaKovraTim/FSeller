@@ -153,8 +153,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
             viewModel.getOrders()
             hideProgress()
         }
-        showFilters().apply {
-        }
+
     }
 
     private fun showWorkOrders(data: List<WorkOrder>) {
@@ -162,7 +161,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
             actionListener = this@OrderListFragment
             items = data
         }
-        filterOrdered("EN_TRANSITO")
+        showFilters()
     }
 
 
@@ -179,6 +178,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 OrderFilter(Filter.Cancel, getString(R.string.text_filter_cancel)))
             filter = ::order
             previousPosition=0
+            filterOrdered("EN_TRANSITO")
         }
     }
 
