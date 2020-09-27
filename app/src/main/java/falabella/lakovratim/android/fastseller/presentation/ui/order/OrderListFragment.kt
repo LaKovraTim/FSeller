@@ -161,9 +161,10 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     private fun showFilters() {
         binding.recyclerViewFilter.adapter = orderListFilterAdapter.apply {
             items = listOf(
-                OrderFilter(Filter.Active(), getString(R.string.text_filter_active)),
-                OrderFilter(Filter.Retry(), getString(R.string.text_filter_retry)),
-                OrderFilter(Filter.Cancel(), getString(R.string.text_filter_cancel))
+                OrderFilter(Filter.Active, getString(R.string.text_filter_active)),
+                OrderFilter(Filter.Retry, getString(R.string.text_filter_retry)),
+                OrderFilter(Filter.Cancel, getString(R.string.text_filter_cancel)),
+                OrderFilter(Filter.All, getString(R.string.text_filter_all))
             )
             filter = ::order
         }
@@ -184,11 +185,13 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
 
     private fun order(option: Filter) {
         when (option) {
-            is Filter.Active -> filterOrdered("activo")
+            is Filter.Active -> filterOrdered("ACTIVA")
+            is Filter.Retry -> filterOrdered("PENDIENTE")
+            is Filter.Cancel -> filterOrdered("CANCELADA")
+           is Filter.All -> filterOrdered(null)
 
-            is Filter.Retry -> filterOrdered("pendiente")
 
-            is Filter.Cancel -> filterOrdered("cancelado")
+
         }
     }
 

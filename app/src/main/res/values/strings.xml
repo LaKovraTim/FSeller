@@ -10,6 +10,7 @@
     <string name="text_filter_active">Activos</string>
     <string name="text_filter_retry">Reintentando</string>
     <string name="text_filter_cancel">Cancelados</string>
+    <string name="text_filter_all">Todos</string>
     <string name="text_order_statuses">Estados del pedido</string>
     <string name="text_order_detail">Detalle del pedido</string>
     <string name="prefs_file">prefs</string>

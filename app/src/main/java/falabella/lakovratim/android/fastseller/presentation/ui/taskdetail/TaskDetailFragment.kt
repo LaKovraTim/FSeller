@@ -47,31 +47,31 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         binding.recyclerViewOptions.adapter = orderOptionsAdapter.apply {
             items = listOf(
                 OrderOptions(
-                    OrderMenu.SeeMap(),
+                    OrderMenu.SeeMap,
                     resources.getDrawable(R.drawable.ic_place, null),
                     getString(R.string.text_see_map)
                 ),
                 OrderOptions(
-                    OrderMenu.Delivered(),
+                    OrderMenu.Delivered,
                     resources.getDrawable(R.drawable.ic_check, null),
                     "Registrar\nvisita"
                 ),
 
                 OrderOptions(
-                    OrderMenu.PayWithQR(),
+                    OrderMenu.PayWithQR,
                     resources.getDrawable(R.drawable.ic_qai_pago_directo_qr, null),
                     "Pago\ncon QR"
                 ),
 
                 OrderOptions(
-                    OrderMenu.Call(),
+                    OrderMenu.Call,
                     resources.getDrawable(R.drawable.ic_phone_in_talk, null),
                     "Llamar\nal cliente"
                 ),
 
 
                 OrderOptions(
-                    OrderMenu.Refuse(), resources.getDrawable(R.drawable.ic_tv_off_rounded, null),
+                    OrderMenu.Refuse, resources.getDrawable(R.drawable.ic_tv_off_rounded, null),
                     getString(R.string.text_refuse)
                 ),
             )
