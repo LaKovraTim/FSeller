@@ -10,7 +10,7 @@ import falabella.lakovratim.android.fastseller.data.local.TABLE_WORK_ORDER
 data class WorkOrder(
 
     @SerializedName("cashOnDelivery")
-    var cashOnDelivery: Boolean?,
+    var cashOnDelivery: Boolean = false,
     @SerializedName("comment")
     var comment: String?,
     @SerializedName("commerceCode")
