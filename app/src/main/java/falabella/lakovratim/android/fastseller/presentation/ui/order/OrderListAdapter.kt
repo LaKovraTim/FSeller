@@ -185,7 +185,7 @@ class OrderListAdapter @Inject constructor() :
     fun changeItems(toSelect: Boolean) {
         when {
             toSelect -> {
-                items.filter { !it.status.equals("cancelado", true) }
+                items.filter { !it.isCancelled() }
                     .forEach {
                         it.type = WorkOrder.SELECT_TYPE_ITEM
                         it.isSelected = true

@@ -41,4 +41,8 @@ data class WorkOrder(
         const val NORMAL_TYPE_ITEM = 0
         const val SELECT_TYPE_ITEM = 1
     }
+
+    fun isCancelled(): Boolean {
+        return status?.contains("cancelado", true) == false
+    }
 }
