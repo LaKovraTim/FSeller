@@ -11,10 +11,10 @@ import retrofit2.http.*
 import java.io.File
 
 interface CounterAPI {
-    @GET("capillary/v1/sellers/{sellerId}/work-orders/")
+    @GET("capillary/v1/sellers/{sellerId}/work-orders")
     suspend fun getOrders(@Path("sellerId") sellerId: String): List<WorkOrder>
 
-    @PATCH("capillary/v1/sellers/{sellerId}/work-orders/")
+    @PATCH("capillary/v1/sellers/{sellerId}/work-orders")
     suspend fun changeOrderState(@Path("sellerId") sellerId: String, @Body request: OrderStateRequest): Response<Void>?
 
     @Multipart
