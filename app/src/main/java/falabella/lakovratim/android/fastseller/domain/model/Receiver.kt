@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Receiver(
     @SerializedName("firstName")
-    var firstName: String?,
+    var firstName: Any?,
     @SerializedName("secondName")
-    var secondName: String?
+    var secondName: Any?
 )

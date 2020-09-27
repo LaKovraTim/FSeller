@@ -11,7 +11,7 @@ interface IRepository {
     suspend fun getOrders(sellerId: String): List<WorkOrder>
     suspend fun sendOrder(
         sellerId: String,
-        workerId: String,
+        workerId: String?,
         image: File?,
         comment: String?,
         lalitude: Double?,

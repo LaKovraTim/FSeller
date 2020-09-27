@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import falabella.lakovratim.android.fastseller.R
@@ -52,7 +53,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
             binding.textDetailNumber.text = it.id
             binding.textRealizedByValue.text =
                 "${it.customer?.firstName} ${it.customer?.secondName}"
-            binding.textCreationDate.text = it.creationDate
+            binding.textCreationDate.text = it.creationDate!!
            // binding.textAmount.text = it.
             binding.textReceiverName.text = "${it.customer?.receiver?.firstName} ${it.customer?.receiver?.secondName}"
             binding.textAddress.text ="${it.customer?.address?.street} ${it.customer?.address?.number} ${it.customer?.address?.comuna}"
@@ -127,24 +128,42 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
     }
 
-    private fun openWaze() {
-        val gmmIntentUri = Uri.parse("geo:37.7749,-122.4194")
-        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-        mapIntent.setPackage("com.google.android.apps.maps")
-        requireActivity().startActivity(mapIntent)
+    fun openWaze() {
+        try {
+            val url =
+                "waze://?ll=" + viewModel.workOrder.value?.customer?.address?.location?.lat + ", " + viewModel.workOrder.value?.customer?.address?.location?.lon + "&navigate=yes"
 
+            val intentWaze = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+            intentWaze.setPackage("com.waze")
+            val uriGoogle = "google.navigation:q=" + viewModel.workOrder.value?.customer?.address?.location?.lat + "," + viewModel.workOrder.value?.customer?.address?.location?.lon
 
-        /*    try {
-                val uri = "waze://?ll=40.761043, -73.980545&navigate=yes"
-                requireActivity().startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(uri)))
-            } catch (ex: Exception) {
-                requireActivity().startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.waze")))
-            }*/
+            val intentGoogleNav = Intent(Intent.ACTION_VIEW, Uri.parse(uriGoogle))
+            intentGoogleNav.setPackage("com.google.android.apps.maps")
+            val title: String = "Vamos!!"
+            val chooserIntent = Intent.createChooser(intentGoogleNav, title)
+            val arr = arrayOfNulls<Intent>(1)
+            arr[0] = intentWaze
+            chooserIntent.putExtra(Intent.EXTRA_INITIAL_INTENTS, arr)
+            context?.startActivity(chooserIntent)
+        } catch (e: Exception) {
+            Toast.makeText(context, "No es posible obtener la localización", Toast.LENGTH_SHORT)
+                .show()
+        }
     }
 
+
+
+
+
     private fun callCustomer() {
-        val surf = Intent(Intent.ACTION_DIAL, Uri.parse("tel:55555555"))
-        requireActivity().startActivity(surf)
+        try {
+            val surf = Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+ viewModel.workOrder.value?.customer?.contact?.phone))
+            requireActivity().startActivity(surf)
+        } catch (e: Exception) {
+            Toast.makeText(context, "No es posible obtener el número del cliente", Toast.LENGTH_SHORT)
+                .show()
+        }
+
     }
 }
 

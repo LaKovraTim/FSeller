@@ -61,7 +61,7 @@ open class MainActivityViewModel @Inject constructor(
         sendOrderUseCase.execute(
             Order(
                 "100",
-                workOrder.value!!.id,
+                workOrder.value?.id,
                 null,
                 comment,
                 workOrder.value?.customer?.address?.location?.lat?.toDouble(),
