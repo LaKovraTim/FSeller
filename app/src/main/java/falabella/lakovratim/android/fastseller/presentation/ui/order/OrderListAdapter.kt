@@ -86,7 +86,7 @@ class OrderListAdapter @Inject constructor() :
                     holder.orderItemDate.text =
                         this.getString(R.string.delivety_date, order.deliveryDate)
                     holder.orderItemCommune.text = order.customer?.address?.comuna
-                    holder.orderItemAttempt.text = "Intentos: ${order.retries?.size.toString()}"
+                    holder.orderItemAttempt.text = "Intentos de entrega: ${order.retries?.size.toString()}"
                     holder.card.setOnClickListener {
                         actionListener?.onSelectItem(order)
                     }
@@ -136,7 +136,7 @@ class OrderListAdapter @Inject constructor() :
                         actionListener?.onSelectItem(order)
                     }
                     holder.orderItemCommune.text = order.customer?.address?.comuna
-                    holder.orderItemAttempt.text = "Intentos: ${order.retries?.size.toString()}"
+                    holder.orderItemAttempt.text = "Intentos de entrega: ${order.retries?.size.toString()}"
 
 
                     fun changeSelected(order: WorkOrder) {
