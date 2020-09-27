@@ -143,8 +143,12 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     override fun onEmptyFilter(isEmpty: Boolean) {
         if (isEmpty) {
             binding.orderRecycler.invisible()
+            binding.orderEmptyList.visible()
+
         } else {
             binding.orderRecycler.visible()
+            binding.orderEmptyList.invisible()
+
         }
     }
 
@@ -164,6 +168,8 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     }
 
     private fun filterOrdered(value: String?) = orderListAdapter.filter.filter(value)
+
+
 
 
 }

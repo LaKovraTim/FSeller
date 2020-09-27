@@ -201,5 +201,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         }
 
     }
+
+
 }
 
