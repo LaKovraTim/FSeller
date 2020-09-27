@@ -9,6 +9,7 @@ import java.io.File
  */
 interface IRepository {
     suspend fun getOrders(sellerId: String): List<WorkOrder>
+    suspend fun changeOrderState(workerIds: Pair<String,List<String>>): Boolean
     suspend fun sendOrder(
         sellerId: String,
         workerId: String?,

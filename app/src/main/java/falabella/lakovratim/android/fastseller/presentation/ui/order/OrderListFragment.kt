@@ -60,10 +60,25 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         }
     }
 
+    private fun handleChangeOrder(resource: Resource<Boolean>?) {
+        when (resource) {
+            is Resource.Success -> {
+                binding.progressInclude.gone()
+            }
+            is Resource.Error -> {
+                binding.progressInclude.gone()
+            }
+            is Resource.Loading -> {
+                binding.progressInclude.visible()
+            }
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         observe(viewModel.workOrders, ::handleWorkOrders)
+        observe(viewModel.changeOrderState, ::handleChangeOrder)
         viewModel.getOrders()
 
         binding.imageSelectInList.setOnClickListener {
@@ -89,8 +104,8 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         binding.orderSelectedConfirm.setOnClickListener {
             //TODO get only selected items for activation call service
             val selectedItems = orderListAdapter.getSelectedItems()
-            
             binding.imageSelectInList.performClick()
+            viewModel.changeOrdersState(selectedItems.map { it.id })
         }
 
         binding.searchView.setOnQueryTextListener(object :
@@ -175,8 +190,6 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     }
 
     private fun filterOrdered(value: String?) = orderListAdapter.filter.filter(value)
-
-
 
 
 }

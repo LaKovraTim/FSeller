@@ -3,6 +3,7 @@ package falabella.lakovratim.android.fastseller.presentation.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import falabella.lakovratim.android.fastseller.domain.interactor.ChangeOrderStateUseCase
 import falabella.lakovratim.android.fastseller.domain.interactor.GetWorkOrdersUseCase
 import falabella.lakovratim.android.fastseller.domain.interactor.SendOrderUseCase
 import falabella.lakovratim.android.fastseller.domain.model.Customer
@@ -22,7 +23,8 @@ import javax.inject.Inject
 open class MainActivityViewModel @Inject constructor(
     private val repository: IRepository,
     private val getWorkOrdersUseCase: GetWorkOrdersUseCase,
-    private val sendOrderUseCase: SendOrderUseCase
+    private val sendOrderUseCase: SendOrderUseCase,
+    private val changeOrderStateUseCase: ChangeOrderStateUseCase
 ) : ViewModel() {
     private val _workOrders = MutableLiveData<Resource<List<WorkOrder>>>()
     val workOrders: LiveData<Resource<List<WorkOrder>>>
@@ -31,6 +33,10 @@ open class MainActivityViewModel @Inject constructor(
     private val _sendOrder = MutableLiveData<Resource<Boolean>>()
     val sendOrder: LiveData<Resource<Boolean>>
         get() = _sendOrder
+
+    private val _changeOrderState = MutableLiveData<Resource<Boolean>>()
+    val changeOrderState: LiveData<Resource<Boolean>>
+        get() = _changeOrderState
 
     val workOrder = MutableLiveData<WorkOrder?>()
     fun setWorkOrderSelected(orderResponse: WorkOrder?) {
@@ -46,36 +52,8 @@ open class MainActivityViewModel @Inject constructor(
         fun handleSuccess(response: List<WorkOrder>) {
             _workOrders.postValue(Resource.Success(response))
         }
-//        getWorkOrdersUseCase.execute("100", ::handleSuccess, ::handleFailure)
+        getWorkOrdersUseCase.execute("100", ::handleSuccess, ::handleFailure)
 
-        _workOrders.postValue(
-            Resource.Success(
-                listOf(
-                    WorkOrder(
-                        true,
-                        "",
-                        "100",
-                        "3333",
-                        Customer(null, null, "Igor", null, "Qui pa"),
-                        "222",
-                        "123456",
-                        arrayListOf(),
-                        1234, arrayListOf(), "", 2020
-                    ),
-                    WorkOrder(
-                        true,
-                        "",
-                        "100",
-                        "3333",
-                        Customer(null, null, "Igor", null, "Qui pa"),
-                        "222",
-                        "123456444",
-                        arrayListOf(),
-                        1234444, arrayListOf(), "", 2020
-                    )
-                )
-            )
-        )
     }
 
     fun sendOrder(photo: File? = null, comment: String?, success: Boolean) {
@@ -98,6 +76,17 @@ open class MainActivityViewModel @Inject constructor(
                 success
             ), ::handleSuccess, ::handleFailure
         )
+    }
 
+    fun changeOrdersState(workerIds: List<String>) {
+        _changeOrderState.postValue(Resource.Loading())
+        fun handleFailure(failure: Failure) {
+            _changeOrderState.postValue(Resource.Error(failure))
+        }
+
+        fun handleSuccess(response: Boolean) {
+            _changeOrderState.postValue(Resource.Success(response))
+        }
+        changeOrderStateUseCase.execute(Pair("100",workerIds), ::handleSuccess, ::handleFailure)
     }
 }

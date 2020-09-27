@@ -3,6 +3,7 @@ package falabella.lakovratim.android.fastseller.data
 import android.os.Environment
 import falabella.lakovratim.android.fastseller.data.local.CounterDatabase
 import falabella.lakovratim.android.fastseller.data.remote.CounterAPI
+import falabella.lakovratim.android.fastseller.domain.model.OrderStateRequest
 import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import falabella.lakovratim.android.fastseller.domain.repository.IRepository
 import java.io.File
@@ -21,6 +22,10 @@ class Repository @Inject constructor(
     override suspend fun getOrders(sellerId: String): List<WorkOrder> =
         counterAPI.getOrders(sellerId)
 
+    override suspend fun changeOrderState(workerIds: Pair<String,List<String>>): Boolean {
+        val response = counterAPI.changeOrderState(workerIds.first, OrderStateRequest(workerIds.second))
+        return response?.isSuccessful ?: false
+    }
 
     override suspend fun sendOrder(
         sellerId: String,

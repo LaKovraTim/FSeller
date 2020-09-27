@@ -30,7 +30,7 @@ class OrderListAdapter @Inject constructor() :
     var actionListener: ActionListener? = null
 
     override fun getItemViewType(position: Int): Int {
-        return items[position].type
+        return auxItems[position].type
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

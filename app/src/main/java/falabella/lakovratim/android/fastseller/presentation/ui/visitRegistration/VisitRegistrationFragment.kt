@@ -124,7 +124,7 @@ class VisitRegistrationFragment : BaseFragment<FragmentVisitRegistrationBinding>
             }
 
             viewModel.sendOrder(
-                comment = binding.visitRegisterCommentEditText.text?.toString(),
+                comment = binding.visitRegisterCommentEditText.text?.trim()?.toString(),
                 success = binding.rdoGroup.checkedRadioButtonId == R.id.rdo_button_yes
             )
         }
