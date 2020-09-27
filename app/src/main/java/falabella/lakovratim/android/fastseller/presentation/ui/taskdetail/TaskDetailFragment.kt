@@ -43,6 +43,18 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         binding.include.headerBack.setOnClickListener {
             activity?.onBackPressed()
         }
+
+
+        showWorker()
+    }
+
+    private fun showWorker(){
+        viewModel.workOrder.value?.let {
+            binding.textDetailNumber.text = it.id
+            binding.textRealizedByValue.text = "${it.customer?.firstName} ${it.customer?.secondName }"
+
+
+        }
     }
 
 

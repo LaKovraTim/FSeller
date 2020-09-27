@@ -189,7 +189,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout10">
 
                 <TextView
-                    android:id="@+id/textView_6"
+                    android:id="@+id/textDetailNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -199,13 +199,13 @@
                     android:text="Detalle del pedido #5628482153"
                     android:textColor="#3E9742"
                     android:textSize="16sp"
-                    app:layout_constraintBottom_toTopOf="@+id/textView_7"
+                    app:layout_constraintBottom_toTopOf="@+id/textRealizedBy"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_chainStyle="packed" />
 
                 <TextView
-                    android:id="@+id/textView_7"
+                    android:id="@+id/textRealizedBy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -213,10 +213,10 @@
                     android:fontFamily="@font/source_sans_pro_reg"
                     android:text="@string/text_realized_by"
                     app:layout_constraintBottom_toTopOf="@+id/textView_8"
-                    app:layout_constraintEnd_toStartOf="@+id/textView_10"
+                    app:layout_constraintEnd_toStartOf="@+id/textRealizedByValue"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_6" />
+                    app:layout_constraintTop_toBottomOf="@+id/textDetailNumber" />
 
                 <TextView
                     android:id="@+id/textView_8"
@@ -231,7 +231,7 @@
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView_7" />
+                    app:layout_constraintTop_toBottomOf="@+id/textRealizedBy" />
 
                 <TextView
                     android:id="@+id/textView_9"
@@ -249,17 +249,17 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView_8" />
 
                 <TextView
-                    android:id="@+id/textView_10"
+                    android:id="@+id/textRealizedByValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
                     android:text="Cristian Silva"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView_7"
+                    app:layout_constraintBottom_toBottomOf="@+id/textRealizedBy"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView_7"
-                    app:layout_constraintTop_toTopOf="@+id/textView_7" />
+                    app:layout_constraintStart_toEndOf="@+id/textRealizedBy"
+                    app:layout_constraintTop_toTopOf="@+id/textRealizedBy" />
 
                 <TextView
                     android:id="@+id/textView_11"

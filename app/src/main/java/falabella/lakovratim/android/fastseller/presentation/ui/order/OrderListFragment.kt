@@ -47,7 +47,6 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 viewModel.workOrders.value?.data?.let {
                     showWorkOrders(it)
                 }
-
             }
             is Resource.Error -> {
                 binding.progressInclude.gone()
@@ -180,6 +179,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
 
     override fun onSelectItem(item: WorkOrder) {
         viewModel.setWorkOrderSelected(item)
+
         findNavController().navigate(R.id.action_orderListFragment_to_taskDetailFragment)
     }
 
