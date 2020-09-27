@@ -74,7 +74,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
-                        android:text="Cristian"
+                        android:text="Andrés"
                         android:textColor="#7E8389"
                         android:textSize="15sp"
                         app:layout_constraintEnd_toEndOf="@+id/textView"
