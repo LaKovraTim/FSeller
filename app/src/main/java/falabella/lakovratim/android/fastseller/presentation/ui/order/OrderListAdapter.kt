@@ -2,6 +2,7 @@
 
 package falabella.lakovratim.android.fastseller.presentation.ui.order
 
+import android.content.res.ColorStateList
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,6 +15,8 @@ import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.AdapterOrderListItemBinding
 import falabella.lakovratim.android.fastseller.databinding.AdapterOrderListItemToSelectBinding
 import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
+import falabella.lakovratim.android.fastseller.presentation.util.extension.gone
+import falabella.lakovratim.android.fastseller.presentation.util.extension.visible
 import javax.inject.Inject
 
 class OrderListAdapter @Inject constructor() :
@@ -80,6 +83,12 @@ class OrderListAdapter @Inject constructor() :
                     holder.card.setOnClickListener {
                         actionListener?.onSelectItem(order)
                     }
+                    when (order.status) {
+                        "PENDIENTE" ->  holder.orderItemCardState.backgroundTintList = ColorStateList.valueOf(holder.itemView.context.resources.getColor(R.color.yellow,null))
+                        "CANCELADA" -> holder.orderItemCardState.backgroundTintList = ColorStateList.valueOf(holder.itemView.context.resources.getColor(R.color.red,null))
+                        else -> holder.orderItemCardState.backgroundTintList = ColorStateList.valueOf(holder.itemView.context.resources.getColor(R.color.greenBank,null))
+                    }
+
                 }
                 is ItemToSelectHolder -> {
                     holder.orderItemImage.setImageDrawable(
@@ -98,6 +107,7 @@ class OrderListAdapter @Inject constructor() :
                     holder.card.setOnClickListener {
                         actionListener?.onSelectItem(order)
                     }
+
 
                     fun changeSelected(order: WorkOrder) {
                         when (order.isSelected) {
@@ -140,6 +150,7 @@ class OrderListAdapter @Inject constructor() :
         val orderItemDescription = binding.orderItemGoToDetail
         val orderItemClient = binding.orderItemClient
         val card = binding.orderItemCard
+        val orderItemCardState = binding.orderItemCardState
     }
 
     class ItemToSelectHolder(binding: AdapterOrderListItemToSelectBinding) :
@@ -150,6 +161,7 @@ class OrderListAdapter @Inject constructor() :
         val orderItemClient = binding.orderItemClient
         val card = binding.orderItemCard
         val orderCheckSelect = binding.orderCheckSelect
+        val orderItemCardState = binding.orderItemCardState
     }
 
     override fun getFilter(): Filter = object : Filter() {
