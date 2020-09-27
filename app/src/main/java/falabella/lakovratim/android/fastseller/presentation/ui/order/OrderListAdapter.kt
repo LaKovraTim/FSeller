@@ -78,7 +78,7 @@ class OrderListAdapter @Inject constructor() :
                         )
                     }
 
-                    holder.orderItemTitle.text = this.getString(R.string.order_number, order.id)
+                    holder.orderItemTitle.text = this.getString(R.string.order_number, order.purchaseOrder.toString())
                     holder.orderItemClient.text = this.getString(
                         R.string.made_by,
                         "${order.customer?.firstName} ${order.customer?.secondName}"
