@@ -12,14 +12,15 @@ interface CounterAPI {
     @GET("capillary/v1/sellers/{sellerId}/work-orders/")
     suspend fun getOrders(@Path("sellerId") sellerId: String): List<WorkOrder>
 
+    @Multipart
     @POST("capillary/v1/sellers/{sellerId}/work-orders/{workOrderId}/retries")
     suspend fun sendOrder(
         @Path("sellerId") sellerId: String,
-        @Path("workOrderId") orderId: String,
-        @Part image: File?,
-        @Part comment: String?,
-        @Part latitud: Double?,
-        @Part longitud: Double?,
-        @Part success: Boolean
+        @Path("workOrderId") workOrderId: String,
+        @Part("image") image: File?,
+        @Part("comment") comment: String?,
+        @Part("latitud") latitud: Double?,
+        @Part("longitud") longitud: Double?,
+        @Part("success") success: Boolean
     ): Response<Void>?
 }

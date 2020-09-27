@@ -11,7 +11,7 @@ data class Order(
     var workerId: String,
     var image: File?,
     var comment: String?,
-    var lalitude: Double?,
+    var latitude: Double?,
     var longitude: Double?,
     var success: Boolean
 )

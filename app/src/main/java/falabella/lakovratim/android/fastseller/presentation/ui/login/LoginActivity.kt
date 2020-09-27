@@ -28,7 +28,7 @@ class LoginActivity : AppCompatActivity() {
 
         lifecycleScope.launch() {
             whenStarted {
-                delay(2000)
+                delay(3000)
                 val session = viewModel.hasSession()
                 if (session.second) {
                     Intent(baseContext, MainActivity::class.java).also {

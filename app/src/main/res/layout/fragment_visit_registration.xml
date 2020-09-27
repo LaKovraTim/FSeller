@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -44,6 +45,7 @@
             android:id="@+id/title_radio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/source_sans_pro_reg"
             android:text="@string/order_delivered"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -65,6 +67,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/source_sans_pro_reg"
                 android:text="@string/yes" />
 
             <RadioButton
@@ -72,6 +75,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:fontFamily="@font/source_sans_pro_reg"
                 android:text="@string/no" />
         </RadioGroup>
 
@@ -83,7 +87,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="50dp"
-            android:textColorHint="@color/greenBackground"
+            android:textColorHint="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/rdo_group">
@@ -92,13 +96,14 @@
                 android:id="@+id/visit_register_who_receive_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:fontFamily="@font/source_sans_pro_reg"
                 android:hint="@string/who_received"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:lines="1"
                 android:maxLength="30"
-                android:textColor="@color/greenBank"
-                android:textColorHint="@color/greenBank" />
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -108,7 +113,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="50dp"
-            android:textColorHint="@color/greenBackground"
+            android:textColorHint="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/visit_register_who_receive_input_layout">
@@ -118,24 +123,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:digits="1234567890kK-"
+                android:fontFamily="@font/source_sans_pro_reg"
                 android:hint="@string/rut"
                 android:imeOptions="actionNext"
                 android:inputType="text"
                 android:lines="1"
                 android:maxLength="10"
-                android:textColor="@color/greenBank"
-                android:textColorHint="@color/greenBank" />
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/visit_register_date_input_layout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="50dp"
-            android:textColorHint="@color/greenBackground"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="5dp"
+            android:textColorHint="@color/grey"
+            app:layout_constraintEnd_toStartOf="@+id/visit_register_calendar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/visit_register_rut_input_layout">
 
@@ -143,14 +149,31 @@
                 android:id="@+id/visit_register_date_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:hint="@string/reschedule"
+                android:clickable="true"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/source_sans_pro_reg"
                 android:imeOptions="actionNext"
-                android:inputType="text"
+                android:inputType="none"
                 android:lines="1"
                 android:maxLength="11"
-                android:textColor="@color/greenBank"
-                android:textColorHint="@color/greenBank" />
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey"
+                tools:hint="@string/reschedule" />
         </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/visit_register_calendar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="50dp"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/visit_register_date_input_layout"
+            app:layout_constraintTop_toTopOf="@+id/visit_register_date_input_layout"
+            app:srcCompat="@drawable/ic_calendar" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/visit_register_comment_input_layout"
@@ -159,7 +182,7 @@
             android:layout_marginStart="50dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="50dp"
-            android:textColorHint="@color/greenBackground"
+            android:textColorHint="@color/grey"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/visit_register_date_input_layout">
@@ -167,21 +190,23 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/visit_register_comment_edit_text"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="132dp"
+                android:fontFamily="@font/source_sans_pro_reg"
                 android:gravity="top"
                 android:hint="@string/comment"
                 android:imeOptions="actionDone"
                 android:inputType="textMultiLine"
                 android:lines="4"
                 android:maxLength="100"
-                android:textColor="@color/greenBank"
-                android:textColorHint="@color/greenBank" />
+                android:textColor="@color/grey"
+                android:textColorHint="@color/grey" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
             android:id="@+id/title_take_photo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/source_sans_pro_reg"
             android:padding="5dp"
             android:text="@string/picture_of_delivery"
             app:layout_constraintEnd_toEndOf="parent"
@@ -193,7 +218,7 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/background_take_photo"
+            android:background="@drawable/button_with_stroke"
             android:clickable="true"
             android:focusable="true"
             android:foreground="?selectableItemBackground"
@@ -207,8 +232,10 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginTop="5dp"
+            android:background="@drawable/button_with_stroke"
             android:clickable="true"
             android:focusable="true"
+            android:padding="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn_take_photo"
             app:layout_constraintTop_toBottomOf="@+id/title_take_photo"
@@ -219,10 +246,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="10dp"
             android:background="@drawable/ripple_green"
+            android:fontFamily="@font/source_sans_pro_reg"
             android:text="@string/got_it"
+            android:textAllCaps="false"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
