@@ -74,6 +74,7 @@ class LoginFragment : Fragment() {
                     .show()
                 return@setOnClickListener
             }
+            viewModel.setIP(binding.editTextTextIP.text.toString().trim())
             if (viewModel.login(
                     binding.editTextTextUser.text.toString(),
                     binding.editTextTextPassword.text.toString()

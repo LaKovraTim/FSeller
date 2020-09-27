@@ -37,15 +37,19 @@ class RetrofitModule {
     }
 
     @Provides
-    @Singleton
+//    @Singleton
     fun provideRetrofit(okHttpClient: OkHttpClient, context: Context): Retrofit {
 
-        val sharedPrefs: PreferencesDataSource by lazy {
-            PreferencesDataSource(context)
+        val sharedPrefs = PreferencesDataSource(context)
+
+        val url = if (sharedPrefs.getIP().isNullOrEmpty()) {
+            "http://192.168.0.3:9001/"
+        } else {
+            "http://${sharedPrefs.getIP()}:9001/"
         }
 
         val retrofitBuilder = Retrofit.Builder()
-            .baseUrl("http://${sharedPrefs.getIP()}:9001/")
+            .baseUrl(url)
             .client(okHttpClient)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
