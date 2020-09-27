@@ -4,11 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentOrderListBinding
-import falabella.lakovratim.android.fastseller.domain.model.Customer
 import falabella.lakovratim.android.fastseller.domain.model.OrderFilter
 import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import falabella.lakovratim.android.fastseller.presentation.appComponent
@@ -29,6 +30,8 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     lateinit var orderListFilterAdapter: OrderListFilterAdapter
 
     private val viewModel: MainActivityViewModel by activityViewModels { viewModelFactory }
+
+    private var isListInModeSelect: Boolean = false
 
     override fun setBinding(
         inflater: LayoutInflater,
@@ -62,6 +65,26 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
 
         observe(viewModel.workOrders, ::handleWorkOrders)
         viewModel.getOrders()
+
+        binding.imageSelectInList.setOnClickListener {
+            isListInModeSelect = !isListInModeSelect
+            when {
+                isListInModeSelect -> {
+                    (it as ImageView).setColorFilter(
+                        ContextCompat.getColor(requireContext(), R.color.blue)
+                    )
+                    binding.orderSelectedConfirm.visible()
+                }
+                else -> {
+                    (it as ImageView).setColorFilter(
+                        ContextCompat.getColor(requireContext(), R.color.textColor)
+                    )
+                    binding.orderSelectedConfirm.gone()
+                }
+            }
+            it.invalidate()
+            orderListAdapter.changeItems(isListInModeSelect)
+        }
 
         binding.searchView.setOnQueryTextListener(object :
             android.widget.SearchView.OnQueryTextListener {
@@ -141,7 +164,6 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     }
 
     private fun filterOrdered(value: String?) = orderListAdapter.filter.filter(value)
-
 
 
 }
