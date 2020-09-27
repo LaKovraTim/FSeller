@@ -2,6 +2,7 @@
 
 package falabella.lakovratim.android.fastseller.presentation.ui.order
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -154,7 +155,7 @@ class OrderListAdapter @Inject constructor() :
     override fun getFilter(): Filter = object : Filter() {
 
         override fun performFiltering(constraint: CharSequence?): FilterResults {
-            return FilterResults().apply {
+            val filterResult = FilterResults().apply {
                 values = if (constraint.isNullOrEmpty()) {
                     items
                 } else {
@@ -165,7 +166,10 @@ class OrderListAdapter @Inject constructor() :
                         )
                     }
                 } as MutableList
+
             }
+
+            return filterResult
         }
 
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
@@ -174,6 +178,8 @@ class OrderListAdapter @Inject constructor() :
             actionListener?.onEmptyFilter(auxItems.isEmpty())
             notifyDataSetChanged()
         }
+
+
     }
 
     fun changeItems(toSelect: Boolean) {

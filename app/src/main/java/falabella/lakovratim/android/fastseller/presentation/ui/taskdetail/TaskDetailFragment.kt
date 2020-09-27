@@ -13,10 +13,12 @@ import androidx.navigation.fragment.findNavController
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentTaskDetailBinding
 import falabella.lakovratim.android.fastseller.domain.model.OrderOptions
+import falabella.lakovratim.android.fastseller.domain.model.Receiver
 import falabella.lakovratim.android.fastseller.presentation.appComponent
 import falabella.lakovratim.android.fastseller.presentation.ui.MainActivityViewModel
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
 import falabella.lakovratim.android.fastseller.presentation.util.OrderMenu
+import falabella.lakovratim.android.fastseller.presentation.util.extension.gone
 import falabella.lakovratim.android.fastseller.presentation.util.extension.visible
 import javax.inject.Inject
 
@@ -49,23 +51,44 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         showWorker()
     }
 
+    @SuppressLint("SetTextI18n")
     private fun showWorker() {
         viewModel.workOrder.value?.let {
-            binding.textDetailNumber.text =  getString(R.string.text_order_detail_with_number, it.id)
+            binding.textDetailNumber.text = getString(R.string.text_order_detail_with_number, it.id)
             binding.textRealizedByValue.text =
                 "${it.customer?.firstName} ${it.customer?.secondName}"
+
             binding.textCreationDate.text = it.creationDate!!
-            binding.textAmount.text = "$${(it.total ?: "").toString()}"
-            binding.textReceiverName.text =
-                "${it.customer?.receiver?.firstName} ${it.customer?.receiver?.secondName}"
-            binding.textAddress.text =
-                "${it.customer?.address?.street} ${it.customer?.address?.number} ${it.customer?.address?.comuna}"
+
+            validateTotal(it.total)
+
+            validateCustomer(it.customer?.receiver)
+
+            binding.textAddress.text = "${it.customer?.address?.street} ${it.customer?.address?.number} ${it.customer?.address?.comuna}"
             binding.textReceiverDate.text = it.deliveryDate
 
 
             if (it.cashOnDelivery) {
                 binding.cashOnDelivery.visible()
             }
+        }
+    }
+
+    private fun validateTotal(total: Int?) {
+        total?.let {
+            binding.textAmount.text = "$${it}"
+        } ?: run {
+            binding.textAmountTitle.gone()
+            binding.textAmount.gone()
+        }
+    }
+
+    private fun validateCustomer(receiver: Receiver?) {
+        receiver?.firstName?.let {
+            binding.textReceiverName.text = "${receiver?.firstName} ${receiver?.secondName}"
+        } ?: run {
+            binding.textReceiverName.gone()
+            binding.textView7.gone()
         }
     }
 
@@ -178,5 +201,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         }
 
     }
+
+
 }
 
