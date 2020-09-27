@@ -22,7 +22,7 @@ interface CounterAPI {
     suspend fun sendOrder(
         @Path("sellerId") sellerId: String,
         @Path("workOrderId") workOrderId: String,
-        @Part("image") image: File?,
+        /*@Part("image") image: File?,*/
         @Part("comment") comment: String?,
         @Part("latitud") latitud: Double?,
         @Part("longitud") longitud: Double?,

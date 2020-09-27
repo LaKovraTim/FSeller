@@ -56,7 +56,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         viewModel.workOrder.value?.let {
 
             binding.textStateValue.text = it.status?.replace("_", " ")?.let {
-                it.take(0).toUpperCase() + it.substring(1, it.length)
+                "${it.first().toUpperCase()}${it.substring(1, it.length).toLowerCase()}"
             }
 
             binding.textPhone.text = it.customer?.contact?.phone
@@ -67,6 +67,9 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
                 "${it.customer?.firstName} ${it.customer?.secondName}"
 
             binding.textCreationDate.text = it.creationDate!!
+
+            it.customer?.address?.refers?:binding.textView11.gone()
+            binding.textRef.text = it.customer?.address?.refers
 
             validateTotal(it.total)
 

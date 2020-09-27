@@ -19,8 +19,9 @@ class Repository @Inject constructor(
     override suspend fun getOrders(sellerId: String): List<WorkOrder> =
         counterAPI.getOrders(sellerId)
 
-    override suspend fun changeOrderState(workerIds: Pair<String,List<String>>): Boolean {
-        val response = counterAPI.changeOrderState(workerIds.first, OrderStateRequest(workerIds.second))
+    override suspend fun changeOrderState(workerIds: Pair<String, List<String>>): Boolean {
+        val response =
+            counterAPI.changeOrderState(workerIds.first, OrderStateRequest(workerIds.second))
         return response?.isSuccessful ?: false
     }
 
@@ -42,8 +43,7 @@ class Repository @Inject constructor(
         val response = counterAPI.sendOrder(
             sellerId,
             workerId!!,
-            null
-            /*createFileForTest()*/,
+            /*createFileForTest()*/
             comment,
             latitude,
             longitude,
