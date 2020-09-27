@@ -152,7 +152,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         binding.recyclerViewFilter.adapter = orderListFilterAdapter.apply {
             items = listOf(
                 OrderFilter(Filter.All, getString(R.string.text_filter_all)),
-                OrderFilter(Filter.Retry, getString(R.string.text_filter_retry)),
+                OrderFilter(Filter.Retry, getString(R.string.text_filter_active)),
                 OrderFilter(Filter.Cancel, getString(R.string.text_filter_cancel))
             )
             filter = ::order
@@ -189,7 +189,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     private fun order(option: Filter) {
         when (option) {
             is Filter.All -> filterOrdered(null)
-            is Filter.Retry -> filterOrdered("PENDIENTE")
+            is Filter.Retry -> filterOrdered("EN_TRANSITO")
             is Filter.Cancel -> filterOrdered("CANCELADA")
         }
     }
