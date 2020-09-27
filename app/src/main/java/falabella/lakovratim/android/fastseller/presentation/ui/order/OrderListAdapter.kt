@@ -172,6 +172,24 @@ class OrderListAdapter @Inject constructor() :
         }
     }
 
+    fun changeItems(toSelect: Boolean) {
+        when {
+            toSelect -> {
+                items.forEach {
+                    it.type = WorkOrder.SELECT_TYPE_ITEM
+                    it.isSelected = true
+                }
+            }
+            else -> {
+                items.forEach {
+                    it.type = WorkOrder.NORMAL_TYPE_ITEM
+                    it.isSelected = false
+                }
+            }
+        }
+        notifyDataSetChanged()
+    }
+
     interface ActionListener {
         fun onEmptyFilter(isEmpty: Boolean)
         fun onSelectItem(item: WorkOrder)

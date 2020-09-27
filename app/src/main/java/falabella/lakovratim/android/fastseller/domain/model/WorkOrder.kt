@@ -34,5 +34,11 @@ data class WorkOrder(
     var status: String?,
     @SerializedName("total")
     var total: Int?,
-    var isSelected: Boolean = false
-)
+    var isSelected: Boolean = false,
+    var type: Int = NORMAL_TYPE_ITEM
+) {
+    companion object {
+        const val NORMAL_TYPE_ITEM = 0
+        const val SELECT_TYPE_ITEM = 1
+    }
+}
