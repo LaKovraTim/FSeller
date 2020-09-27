@@ -70,7 +70,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Enviado a:"
                     app:layout_constraintBottom_toTopOf="@+id/textView8"
-                    app:layout_constraintEnd_toStartOf="@+id/textView10"
+                    app:layout_constraintEnd_toStartOf="@+id/textReceiverName"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -83,7 +83,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="Dirección:"
                     app:layout_constraintBottom_toTopOf="@+id/textView9"
-                    app:layout_constraintEnd_toStartOf="@+id/textView11"
+                    app:layout_constraintEnd_toStartOf="@+id/textAddress"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
@@ -97,19 +97,19 @@
                     android:layout_marginBottom="32dp"
                     android:text="Fecha de entrega:"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textView12"
+                    app:layout_constraintEnd_toStartOf="@+id/textReceiverDate"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
                 <TextView
-                    android:id="@+id/textView10"
+                    android:id="@+id/textReceiverName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
-                    android:text="Cristian Silva"
+                    tools:text="Cristian Silva"
                     app:layout_constraintBottom_toBottomOf="@+id/textView7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -117,12 +117,12 @@
                     app:layout_constraintTop_toTopOf="@+id/textView7" />
 
                 <TextView
-                    android:id="@+id/textView11"
+                    android:id="@+id/textAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
-                    android:text="Lira 245 Depto 404, Santiago"
+                    tools:text="Lira 245 Depto 404, Santiago"
                     app:layout_constraintBottom_toBottomOf="@+id/textView8"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -130,12 +130,12 @@
                     app:layout_constraintTop_toTopOf="@+id/textView8" />
 
                 <TextView
-                    android:id="@+id/textView12"
+                    android:id="@+id/textReceiverDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
-                    android:text="Lunes, 28 de Septiembre"
+                    tools:text="Lunes, 28 de Septiembre"
                     app:layout_constraintBottom_toBottomOf="@+id/textView9"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -240,9 +240,9 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginBottom="32dp"
                     android:fontFamily="@font/source_sans_pro_reg"
-                    android:text="Fecha de entrega"
+                    android:text="Monto de compra"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/textDeliveryDate"
+                    app:layout_constraintEnd_toStartOf="@+id/textAmount"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
                     app:layout_constraintStart_toStartOf="parent"
@@ -274,13 +274,12 @@
                     app:layout_constraintTop_toTopOf="@+id/textView_8" />
 
                 <TextView
-                    android:id="@+id/textDeliveryDate"
+                    android:id="@+id/textAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
-                    tools:text="28/09/20"
-                    android:textColor="#3E9742"
+                    tools:text="$2.000"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_9"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"

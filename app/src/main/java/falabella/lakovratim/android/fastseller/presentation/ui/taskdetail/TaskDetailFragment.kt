@@ -53,7 +53,10 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
             binding.textRealizedByValue.text =
                 "${it.customer?.firstName} ${it.customer?.secondName}"
             binding.textCreationDate.text = it.creationDate
-            binding.textDeliveryDate.text = it.deliveryDate
+           // binding.textAmount.text = it.
+            binding.textReceiverName.text = "${it.customer?.receiver?.firstName} ${it.customer?.receiver?.secondName}"
+            binding.textAddress.text ="${it.customer?.address?.street} ${it.customer?.address?.number} ${it.customer?.address?.comuna}"
+            binding.textReceiverDate.text = it.deliveryDate
         }
     }
 
