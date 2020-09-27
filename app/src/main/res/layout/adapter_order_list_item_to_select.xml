@@ -15,7 +15,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/circle_empty"
         tools:ignore="ContentDescription" />
-
     <androidx.cardview.widget.CardView
         android:id="@+id/order_item_card"
         android:layout_width="0dp"
@@ -40,22 +39,22 @@
                 android:id="@+id/order_item_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:contentDescription="@string/content_description_retail_logo"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/order_item_attempt"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/order_item_title"
                 app:srcCompat="@drawable/ic_fala" />
 
             <TextView
                 android:id="@+id/order_item_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:fontFamily="@font/source_sans_pro_reg"
                 android:textColor="@color/text_color"
                 android:textSize="14sp"
                 app:layout_constraintStart_toEndOf="@+id/order_item_image"
-                app:layout_constraintTop_toTopOf="@+id/order_item_image"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:text="OC 129823483890234" />
 
             <TextView
@@ -86,17 +85,45 @@
                 tools:text="Fecha entrega: 26/09/2020" />
 
             <TextView
+                android:id="@+id/order_item_state"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/source_sans_pro_reg"
+                android:maxLines="2"
+                android:textColor="@color/text_color"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/order_item_date"
+                app:layout_constraintStart_toEndOf="@+id/order_item_image"
+                app:layout_constraintTop_toBottomOf="@+id/order_item_date"
+                tools:text="Quilicura"
+                android:textAllCaps="true"/>
+
+            <TextView
+                android:id="@+id/order_item_attempt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/source_sans_pro_reg"
+                android:maxLines="2"
+                android:textColor="@color/text_color"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/order_item_state"
+                app:layout_constraintTop_toBottomOf="@+id/order_item_state"
+                tools:text="Intentos: 3" />
+
+            <TextView
                 android:id="@+id/order_item_go_to_detail"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="15dp"
+                android:layout_marginBottom="8dp"
                 android:fontFamily="@font/source_sans_pro_semibold"
                 android:text="@string/see_detail"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/order_item_date" />
+                app:layout_constraintTop_toBottomOf="@+id/order_item_attempt" />
 
             <View
                 android:id="@+id/order_item_card_state"
@@ -110,7 +137,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
 
     </androidx.cardview.widget.CardView>
 
