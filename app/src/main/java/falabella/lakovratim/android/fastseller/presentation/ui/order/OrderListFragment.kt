@@ -66,14 +66,14 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         when (resource) {
             is Resource.Success -> {
                 if (resource.data == true)
-                    showDialog("Estas listo para salir a repartir!! Recuerda llevar tu mascarilla.")
+                    showDialog("Estas listo para comenzar!! Recuerda llevar tu mascarilla.")
                 else
-                    showDialog("Ha ocurrido un error, intetena nuevamente.")
+                    showDialog("Ha ocurrido un error, intenta nuevamente.")
 
                 binding.progressInclude.gone()
             }
             is Resource.Error -> {
-                showDialog("Ha ocurrido un error, intetena nuevamente.")
+                showDialog("Ha ocurrido un error, intenta nuevamente.")
                 binding.progressInclude.gone()
             }
             is Resource.Loading -> {
