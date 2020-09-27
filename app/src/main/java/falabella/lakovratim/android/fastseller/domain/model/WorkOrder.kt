@@ -43,6 +43,6 @@ data class WorkOrder(
     }
 
     fun isCancelled(): Boolean {
-        return status?.contains("cancelado", true) == false
+        return status?.contains("cancelada", true) == true
     }
 }
