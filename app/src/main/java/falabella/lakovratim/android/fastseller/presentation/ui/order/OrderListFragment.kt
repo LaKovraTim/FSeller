@@ -84,7 +84,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
             R.color.colorAccent
         )
         binding.orderListSwipe.setOnRefreshListener {
-            //TODO call to get order list
+            viewModel.getOrders()
             hideProgress()
         }
 
