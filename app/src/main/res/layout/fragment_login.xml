@@ -61,7 +61,7 @@
         android:imeOptions="actionDone"
         android:inputType="text"
         android:digits="0,1,2,3,4,5,6,7,8,9,."
-        android:maxLength="12"
+        android:maxLength="30"
         android:textColor="@color/textHintColor"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="@+id/editTextTextPassword"
