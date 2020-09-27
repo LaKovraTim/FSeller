@@ -178,6 +178,7 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 OrderFilter(Filter.All, getString(R.string.text_filter_all)),
                 OrderFilter(Filter.Cancel, getString(R.string.text_filter_cancel)))
             filter = ::order
+            previousPosition=0
         }
     }
 

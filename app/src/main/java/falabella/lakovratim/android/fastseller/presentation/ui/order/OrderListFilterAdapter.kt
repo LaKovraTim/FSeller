@@ -18,7 +18,7 @@ class OrderListFilterAdapter @Inject constructor() :
     RecyclerView.Adapter<OrderListFilterAdapter.ViewHolder>() {
 
     var items: List<OrderFilter> = listOf()
-    private var previousPosition = -1
+    var previousPosition = -1
     lateinit var filter: KFunction1<Filter, Unit>
 
 
