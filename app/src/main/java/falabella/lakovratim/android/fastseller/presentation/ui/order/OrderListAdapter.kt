@@ -7,13 +7,16 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.AdapterOrderListItemBinding
+import falabella.lakovratim.android.fastseller.databinding.AdapterOrderListItemToSelectBinding
 import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import javax.inject.Inject
 
-class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAdapter.ViewHolder>(),
+class OrderListAdapter @Inject constructor() :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>(),
     Filterable {
 
     var items: List<WorkOrder> = listOf()
@@ -25,51 +28,123 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
 
     var actionListener: ActionListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            AdapterOrderListItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        return when (viewType) {
+            0 -> NormalHolder(
+                AdapterOrderListItemBinding.inflate(
+                    LayoutInflater.from(parent.context),
+                    parent,
+                    false
+                )
             )
-        )
+            else -> {
+                ItemToSelectHolder(
+                    AdapterOrderListItemToSelectBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
+            }
+        }
     }
 
     //TODO delete
     private val logos = arrayOf(R.drawable.ic_fala, R.drawable.ic_sodimac, R.drawable.ic_linio)
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val order = auxItems[position]
 
         with(holder.itemView.context) {
 
-            holder.orderItemImage.setImageDrawable(
-                AppCompatResources.getDrawable(
-                    this,
-                    logos.random()
-                )
-            )
-            holder.orderItemTitle.text = this.getString(R.string.order_number, order.id)
-            holder.orderItemClient.text = this.getString(
-                R.string.made_by,
-                "${order.customer?.firstName} ${order.customer?.secondName}"
-            )
-            holder.orderItemDate.text = this.getString(R.string.delivety_date, order.deliveryDate)
-            holder.card.setOnClickListener {
-                actionListener?.onSelectItem(order)
+            when (holder) {
+                is NormalHolder -> {
+                    holder.orderItemImage.setImageDrawable(
+                        AppCompatResources.getDrawable(
+                            this,
+                            logos.random()
+                        )
+                    )
+                    holder.orderItemTitle.text = this.getString(R.string.order_number, order.id)
+                    holder.orderItemClient.text = this.getString(
+                        R.string.made_by,
+                        "${order.customer?.firstName} ${order.customer?.secondName}"
+                    )
+                    holder.orderItemDate.text =
+                        this.getString(R.string.delivety_date, order.deliveryDate)
+                    holder.card.setOnClickListener {
+                        actionListener?.onSelectItem(order)
+                    }
+                }
+                is ItemToSelectHolder -> {
+                    holder.orderItemImage.setImageDrawable(
+                        AppCompatResources.getDrawable(
+                            this,
+                            logos.random()
+                        )
+                    )
+                    holder.orderItemTitle.text = this.getString(R.string.order_number, order.id)
+                    holder.orderItemClient.text = this.getString(
+                        R.string.made_by,
+                        "${order.customer?.firstName} ${order.customer?.secondName}"
+                    )
+                    holder.orderItemDate.text =
+                        this.getString(R.string.delivety_date, order.deliveryDate)
+                    holder.card.setOnClickListener {
+                        actionListener?.onSelectItem(order)
+                    }
+
+                    fun changeSelected(order: WorkOrder) {
+                        when (order.isSelected) {
+                            true -> {
+                                holder.orderCheckSelect.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        R.drawable.circle_check
+                                    )
+                                )
+                            }
+                            else -> {
+                                holder.orderCheckSelect.setImageDrawable(
+                                    ContextCompat.getDrawable(
+                                        this,
+                                        R.drawable.circle_empty
+                                    )
+                                )
+                            }
+                        }
+                    }
+
+                    changeSelected(order)
+                    holder.orderCheckSelect.setOnClickListener {
+                        order.isSelected = !order.isSelected
+                        changeSelected(order)
+                    }
+                }
             }
         }
     }
 
     override fun getItemCount(): Int = auxItems.size
 
-    class ViewHolder(binding: AdapterOrderListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class NormalHolder(binding: AdapterOrderListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         val orderItemImage = binding.orderItemImage
         val orderItemTitle = binding.orderItemTitle
         val orderItemDate = binding.orderItemDate
-        val orderItemDescription = binding.orderItemDescription
+        val orderItemDescription = binding.orderItemGoToDetail
         val orderItemClient = binding.orderItemClient
         val card = binding.orderItemCard
+    }
+
+    class ItemToSelectHolder(binding: AdapterOrderListItemToSelectBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        val orderItemImage = binding.orderItemImage
+        val orderItemTitle = binding.orderItemTitle
+        val orderItemDate = binding.orderItemDate
+        val orderItemClient = binding.orderItemClient
+        val card = binding.orderItemCard
+        val orderCheckSelect = binding.orderCheckSelect
     }
 
     override fun getFilter(): Filter = object : Filter() {
@@ -79,7 +154,12 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
                 values = if (constraint.isNullOrEmpty()) {
                     items
                 } else {
-                    items.filter { it.id.contains(constraint.trim(), true) || it.status!!.contains(constraint.trim(), true)}
+                    items.filter {
+                        it.id.contains(constraint.trim(), true) || it.status!!.contains(
+                            constraint.trim(),
+                            true
+                        )
+                    }
                 } as MutableList
             }
         }

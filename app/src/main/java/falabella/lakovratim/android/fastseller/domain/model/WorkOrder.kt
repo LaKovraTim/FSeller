@@ -33,5 +33,6 @@ data class WorkOrder(
     @SerializedName("status")
     var status: String?,
     @SerializedName("total")
-    var total: Int?
+    var total: Int?,
+    var isSelected: Boolean = false
 )
