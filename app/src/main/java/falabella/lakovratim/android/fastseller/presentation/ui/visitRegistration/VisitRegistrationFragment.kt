@@ -134,14 +134,14 @@ class VisitRegistrationFragment : BaseFragment<FragmentVisitRegistrationBinding>
         when (resource) {
             is Resource.Success -> {
                 binding.progressInclude.gone()
-                viewModel.workOrders.value?.data?.let {
-                    findNavController().navigate(R.id.action_visitRegistrationFragment_to_orderListFragment)
-
-                }
-
+                if (resource.data == true)
+                    showSuccessDialog(getString(R.string.success_delivery))
+                else
+                    showErrorDialog(getString(R.string.fail_delivery))
             }
             is Resource.Error -> {
                 binding.progressInclude.gone()
+                showErrorDialog(getString(R.string.fail_delivery))
             }
             is Resource.Loading -> {
                 binding.progressInclude.visible()
@@ -161,6 +161,22 @@ class VisitRegistrationFragment : BaseFragment<FragmentVisitRegistrationBinding>
             .create()
             .show()
     }
+
+    private fun showSuccessDialog(message: String) {
+        AlertDialog.Builder(requireContext())
+            .setMessage(message)
+            .setCancelable(false)
+            .setPositiveButton(
+                "Ok"
+            ) { dialog, _ -> dialog.dismiss()
+                viewModel.workOrders.value?.data?.let {
+                    findNavController().navigate(R.id.action_visitRegistrationFragment_to_orderListFragment)
+
+                }}
+            .create()
+            .show()
+    }
+
 
     private fun takePhoto() {
         Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
