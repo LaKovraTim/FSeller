@@ -2,6 +2,7 @@
 
 package falabella.lakovratim.android.fastseller.presentation.ui.order
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -21,6 +22,7 @@ class OrderListAdapter @Inject constructor() :
 
     var items: List<WorkOrder> = listOf()
         set(value) {
+            auxItems.clear()
             auxItems.addAll(value)
             field = value
         }
@@ -83,9 +85,35 @@ class OrderListAdapter @Inject constructor() :
                     )
                     holder.orderItemDate.text =
                         this.getString(R.string.delivety_date, order.deliveryDate)
+                    holder.orderItemCommune.text = order.customer?.address?.comuna
+                    holder.orderItemAttempt.text = "Intentos: ${order.retries?.size.toString()}"
                     holder.card.setOnClickListener {
                         actionListener?.onSelectItem(order)
                     }
+                    when (order.status) {
+                        "PENDIENTE" -> holder.orderItemCardState.backgroundTintList =
+                            ColorStateList.valueOf(
+                                holder.itemView.context.resources.getColor(
+                                    R.color.yellow,
+                                    null
+                                )
+                            )
+                        "CANCELADA" -> holder.orderItemCardState.backgroundTintList =
+                            ColorStateList.valueOf(
+                                holder.itemView.context.resources.getColor(
+                                    R.color.red,
+                                    null
+                                )
+                            )
+                        else -> holder.orderItemCardState.backgroundTintList =
+                            ColorStateList.valueOf(
+                                holder.itemView.context.resources.getColor(
+                                    R.color.greenBank,
+                                    null
+                                )
+                            )
+                    }
+
                 }
                 is ItemToSelectHolder -> {
 
@@ -107,6 +135,9 @@ class OrderListAdapter @Inject constructor() :
                     holder.card.setOnClickListener {
                         actionListener?.onSelectItem(order)
                     }
+                    holder.orderItemCommune.text = order.customer?.address?.comuna
+                    holder.orderItemAttempt.text = "Intentos: ${order.retries?.size.toString()}"
+
 
                     fun changeSelected(order: WorkOrder) {
                         when (order.isSelected) {
@@ -129,6 +160,30 @@ class OrderListAdapter @Inject constructor() :
                         }
                     }
 
+                    when (order.status) {
+                        "PENDIENTE" -> holder.orderItemCardState.backgroundTintList =
+                            ColorStateList.valueOf(
+                                holder.itemView.context.resources.getColor(
+                                    R.color.yellow,
+                                    null
+                                )
+                            )
+                        "CANCELADA" -> holder.orderItemCardState.backgroundTintList =
+                            ColorStateList.valueOf(
+                                holder.itemView.context.resources.getColor(
+                                    R.color.red,
+                                    null
+                                )
+                            )
+                        else -> holder.orderItemCardState.backgroundTintList =
+                            ColorStateList.valueOf(
+                                holder.itemView.context.resources.getColor(
+                                    R.color.greenBank,
+                                    null
+                                )
+                            )
+                    }
+
                     changeSelected(order)
                     holder.orderCheckSelect.setOnClickListener {
                         order.isSelected = !order.isSelected
@@ -139,6 +194,7 @@ class OrderListAdapter @Inject constructor() :
         }
     }
 
+
     override fun getItemCount(): Int = auxItems.size
 
     class NormalHolder(binding: AdapterOrderListItemBinding) :
@@ -146,9 +202,12 @@ class OrderListAdapter @Inject constructor() :
         val orderItemImage = binding.orderItemImage
         val orderItemTitle = binding.orderItemTitle
         val orderItemDate = binding.orderItemDate
+        val orderItemCommune = binding.orderItemState
+        val orderItemAttempt = binding.orderItemAttempt
         val orderItemDescription = binding.orderItemGoToDetail
         val orderItemClient = binding.orderItemClient
         val card = binding.orderItemCard
+        val orderItemCardState = binding.orderItemCardState
     }
 
     class ItemToSelectHolder(binding: AdapterOrderListItemToSelectBinding) :
@@ -156,9 +215,12 @@ class OrderListAdapter @Inject constructor() :
         val orderItemImage = binding.orderItemImage
         val orderItemTitle = binding.orderItemTitle
         val orderItemDate = binding.orderItemDate
+        val orderItemCommune = binding.orderItemState
+        val orderItemAttempt = binding.orderItemAttempt
         val orderItemClient = binding.orderItemClient
         val card = binding.orderItemCard
         val orderCheckSelect = binding.orderCheckSelect
+        val orderItemCardState = binding.orderItemCardState
     }
 
     override fun getFilter(): Filter = object : Filter() {
