@@ -226,7 +226,7 @@
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/source_sans_pro_reg"
                     android:text="@string/text_date_detail"
-                    app:layout_constraintBottom_toTopOf="@+id/textView_9"
+                    app:layout_constraintBottom_toTopOf="@+id/textAmountTitle"
                     app:layout_constraintEnd_toStartOf="@+id/textCreationDate"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -234,7 +234,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textRealizedBy" />
 
                 <TextView
-                    android:id="@+id/textView_9"
+                    android:id="@+id/textAmountTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -280,11 +280,11 @@
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
                     tools:text="$2.000"
-                    app:layout_constraintBottom_toBottomOf="@+id/textView_9"
+                    app:layout_constraintBottom_toBottomOf="@+id/textAmountTitle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
-                    app:layout_constraintStart_toEndOf="@+id/textView_9"
-                    app:layout_constraintTop_toTopOf="@+id/textView_9" />
+                    app:layout_constraintStart_toEndOf="@+id/textAmountTitle"
+                    app:layout_constraintTop_toTopOf="@+id/textAmountTitle" />
 
                 <ImageView
                     android:id="@+id/imageView_4"

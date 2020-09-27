@@ -2,6 +2,7 @@
 
 package falabella.lakovratim.android.fastseller.presentation.ui.order
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -81,6 +82,7 @@ class OrderListAdapter @Inject constructor() : RecyclerView.Adapter<OrderListAda
                 } else {
                     items.filter { it.id.contains(constraint.trim(), true) || it.status!!.contains(constraint.trim(), true)}
                 } as MutableList
+
             }
         }
 
