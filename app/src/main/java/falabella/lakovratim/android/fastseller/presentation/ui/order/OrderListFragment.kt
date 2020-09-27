@@ -102,57 +102,6 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
        }
     }
 
-
-
-    private fun mock(): List<WorkOrder> {
-        return listOf(
-            WorkOrder(
-                "1",
-                "Ninguno",
-                "2020/09/26",
-                Customer(null, null, "Rob", null, "Martin"),
-                "2020/09/28",
-                arrayListOf(),
-                1,
-                arrayListOf(),
-                "pendiente"
-            ),
-            WorkOrder(
-                "1",
-                "Ninguno",
-                "2020/09/26",
-                Customer(null, null, "Rob", null, "Martin"),
-                "2020/09/28",
-                arrayListOf(),
-                1,
-                arrayListOf(),
-                "pendiente"
-            ),
-            WorkOrder(
-                "1",
-                "Ninguno",
-                "2020/09/26",
-                Customer(null, null, "Rob", null, "Martin"),
-                "2020/09/28",
-                arrayListOf(),
-                1,
-                arrayListOf(),
-                "pendiente"
-            ),
-            WorkOrder(
-                "1",
-                "Ninguno",
-                "2020/09/26",
-                Customer(null, null, "Rob", null, "Martin"),
-                "2020/09/28",
-                arrayListOf(),
-                1,
-                arrayListOf(),
-                "Activo"
-            )
-        )
-    }
-
     override fun hideProgress() {
         super.hideProgress()
         binding.orderListSwipe.isRefreshing = false

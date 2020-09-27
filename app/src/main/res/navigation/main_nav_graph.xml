@@ -47,7 +47,13 @@
         android:id="@+id/visitRegistrationFragment"
         android:name="falabella.lakovratim.android.fastseller.presentation.ui.visitRegistration.VisitRegistrationFragment"
         android:label="VisitRegistrationFragment"
-        tools:layout="@layout/fragment_visit_registration" />
+        tools:layout="@layout/fragment_visit_registration" >
+        <action
+            android:id="@+id/action_visitRegistrationFragment_to_orderListFragment"
+            app:destination="@id/orderListFragment"
+            app:launchSingleTop="false"
+            app:popUpTo="@id/nav_graph" />
+    </fragment>
     <fragment
         android:id="@+id/paymentFragment"
         android:name="falabella.lakovratim.android.fastseller.presentation.ui.payment.PaymentFragment"

@@ -8,7 +8,7 @@ import java.io.File
  */
 data class Order(
     var sellerId: String,
-    var workerId: String,
+    var workerId: String?,
     var image: File?,
     var comment: String?,
     var latitude: Double?,

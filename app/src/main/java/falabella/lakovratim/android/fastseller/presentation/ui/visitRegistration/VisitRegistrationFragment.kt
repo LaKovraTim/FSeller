@@ -12,12 +12,16 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentVisitRegistrationBinding
+import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import falabella.lakovratim.android.fastseller.presentation.appComponent
 import falabella.lakovratim.android.fastseller.presentation.ui.MainActivityViewModel
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
+import falabella.lakovratim.android.fastseller.presentation.util.Resource
 import falabella.lakovratim.android.fastseller.presentation.util.extension.gone
+import falabella.lakovratim.android.fastseller.presentation.util.extension.observe
 import falabella.lakovratim.android.fastseller.presentation.util.extension.visible
 import java.text.SimpleDateFormat
 import java.util.*
@@ -41,6 +45,8 @@ class VisitRegistrationFragment : BaseFragment<FragmentVisitRegistrationBinding>
     @SuppressLint("SimpleDateFormat")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        observe(viewModel.sendOrder, ::handleSendOrder)
 
         binding.include.headerBack.setOnClickListener {
             activity?.onBackPressed()
@@ -122,6 +128,27 @@ class VisitRegistrationFragment : BaseFragment<FragmentVisitRegistrationBinding>
                 success = binding.rdoGroup.checkedRadioButtonId == R.id.rdo_button_yes
             )
         }
+    }
+
+    private fun handleSendOrder(resource: Resource<Boolean>?) {
+        when (resource) {
+            is Resource.Success -> {
+                binding.progressInclude.gone()
+                viewModel.workOrders.value?.data?.let {
+                    findNavController().navigate(R.id.action_visitRegistrationFragment_to_orderListFragment)
+
+                }
+
+            }
+            is Resource.Error -> {
+                binding.progressInclude.gone()
+            }
+            is Resource.Loading -> {
+                binding.progressInclude.visible()
+            }
+        }
+
+
     }
 
     private fun showErrorDialog(message: String) {

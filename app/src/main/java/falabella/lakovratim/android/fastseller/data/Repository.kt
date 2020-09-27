@@ -24,7 +24,7 @@ class Repository @Inject constructor(
 
     override suspend fun sendOrder(
         sellerId: String,
-        workerId: String,
+        workerId: String?,
         image: File?,
         comment: String?,
         latitude: Double?,
@@ -39,7 +39,7 @@ class Repository @Inject constructor(
 
         val response = counterAPI.sendOrder(
             sellerId,
-            workerId,
+            workerId!!,
             null
             /*createFileForTest()*/,
             comment,
@@ -49,20 +49,5 @@ class Repository @Inject constructor(
         )
         return response?.isSuccessful ?: false
 
-    }
-
-    private fun createFileForTest(): File? {
-        val file: File = File(
-            Environment.getExternalStorageDirectory().toString() + "/" + File.separator + "test.txt"
-        )
-        file.createNewFile()
-        val data1 = byteArrayOf(1, 1, 0, 0)
-        if (file.exists()) {
-            val fo: OutputStream = FileOutputStream(file)
-            fo.write(data1)
-            fo.close()
-            println("file created: $file")
-        }
-        return file
     }
 }
