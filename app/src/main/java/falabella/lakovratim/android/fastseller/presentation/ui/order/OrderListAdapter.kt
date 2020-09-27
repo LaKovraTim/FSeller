@@ -22,6 +22,7 @@ class OrderListAdapter @Inject constructor() :
 
     var items: List<WorkOrder> = listOf()
         set(value) {
+            auxItems.clear()
             auxItems.addAll(value)
             field = value
         }
