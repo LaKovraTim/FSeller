@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import falabella.lakovratim.android.fastseller.domain.interactor.GetWorkOrdersUseCase
 import falabella.lakovratim.android.fastseller.domain.interactor.SendOrderUseCase
+import falabella.lakovratim.android.fastseller.domain.model.Customer
 import falabella.lakovratim.android.fastseller.domain.model.Order
 import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import falabella.lakovratim.android.fastseller.domain.repository.IRepository
@@ -45,8 +46,36 @@ open class MainActivityViewModel @Inject constructor(
         fun handleSuccess(response: List<WorkOrder>) {
             _workOrders.postValue(Resource.Success(response))
         }
-        getWorkOrdersUseCase.execute("100", ::handleSuccess, ::handleFailure)
+//        getWorkOrdersUseCase.execute("100", ::handleSuccess, ::handleFailure)
 
+        _workOrders.postValue(
+            Resource.Success(
+                listOf(
+                    WorkOrder(
+                        true,
+                        "",
+                        "100",
+                        "3333",
+                        Customer(null, null, "Igor", null, "Qui pa"),
+                        "222",
+                        "123456",
+                        arrayListOf(),
+                        1234, arrayListOf(), "", 2020
+                    ),
+                    WorkOrder(
+                        true,
+                        "",
+                        "100",
+                        "3333",
+                        Customer(null, null, "Igor", null, "Qui pa"),
+                        "222",
+                        "123456444",
+                        arrayListOf(),
+                        1234444, arrayListOf(), "", 2020
+                    )
+                )
+            )
+        )
     }
 
     fun sendOrder(photo: File? = null, comment: String?, success: Boolean) {

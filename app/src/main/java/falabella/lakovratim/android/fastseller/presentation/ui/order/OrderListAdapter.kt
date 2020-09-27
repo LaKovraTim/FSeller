@@ -28,6 +28,10 @@ class OrderListAdapter @Inject constructor() :
 
     var actionListener: ActionListener? = null
 
+    override fun getItemViewType(position: Int): Int {
+        return items[position].type
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
             0 -> NormalHolder(
@@ -175,10 +179,11 @@ class OrderListAdapter @Inject constructor() :
     fun changeItems(toSelect: Boolean) {
         when {
             toSelect -> {
-                items.forEach {
-                    it.type = WorkOrder.SELECT_TYPE_ITEM
-                    it.isSelected = true
-                }
+                items.filter { !it.status.equals("cancelado", true) }
+                    .forEach {
+                        it.type = WorkOrder.SELECT_TYPE_ITEM
+                        it.isSelected = true
+                    }
             }
             else -> {
                 items.forEach {
@@ -188,6 +193,10 @@ class OrderListAdapter @Inject constructor() :
             }
         }
         notifyDataSetChanged()
+    }
+
+    fun getSelectedItems(): List<WorkOrder> {
+        return items.filter { it.isSelected }.toList()
     }
 
     interface ActionListener {

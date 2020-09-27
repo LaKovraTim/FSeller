@@ -86,6 +86,13 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
             orderListAdapter.changeItems(isListInModeSelect)
         }
 
+        binding.orderSelectedConfirm.setOnClickListener {
+            //TODO get only selected items for activation call service
+            val selectedItems = orderListAdapter.getSelectedItems()
+            
+            binding.imageSelectInList.performClick()
+        }
+
         binding.searchView.setOnQueryTextListener(object :
             android.widget.SearchView.OnQueryTextListener {
 

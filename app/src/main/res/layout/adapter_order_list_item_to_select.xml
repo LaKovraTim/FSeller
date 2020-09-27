@@ -7,8 +7,8 @@
 
     <ImageView
         android:id="@+id/order_check_select"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/order_item_card"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,14 +18,15 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/order_item_card"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:layout_marginStart="70dp"
         android:foreground="?selectableItemBackground"
         app:cardCornerRadius="6dp"
         app:cardElevation="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -33,11 +34,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_card_item_to_select"
-            android:paddingStart="15dp"
-            android:paddingTop="5dp"
-            android:paddingEnd="10dp"
-            android:paddingBottom="15dp">
+            android:background="@drawable/background_card_item">
 
             <ImageView
                 android:id="@+id/order_item_image"
@@ -93,16 +90,27 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
-                android:layout_marginEnd="5dp"
+                android:layout_marginEnd="15dp"
                 android:fontFamily="@font/source_sans_pro_semibold"
                 android:text="@string/see_detail"
                 android:textSize="12sp"
-                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/order_item_date" />
 
+            <View
+                android:id="@+id/order_item_card_state"
+                android:layout_width="5dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/ic_state_red"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.cardview.widget.CardView>
 
