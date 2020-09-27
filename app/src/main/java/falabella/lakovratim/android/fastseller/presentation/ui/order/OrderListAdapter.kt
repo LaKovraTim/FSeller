@@ -226,21 +226,20 @@ class OrderListAdapter @Inject constructor() :
     override fun getFilter(): Filter = object : Filter() {
 
         override fun performFiltering(constraint: CharSequence?): FilterResults {
-            val filterResult = FilterResults().apply {
+            return FilterResults().apply {
                 values = if (constraint.isNullOrEmpty()) {
                     items
                 } else {
                     items.filter {
-                        it.id.contains(constraint.trim(), true) || it.status!!.contains(
+                        it.id.contains(constraint.trim(), true)
+                                || it.status?.contains(constraint.trim(), true) == true
+                                || it.customer?.address?.comuna?.contains(
                             constraint.trim(),
                             true
-                        )
+                        ) == true
                     }
                 } as MutableList
-
             }
-
-            return filterResult
         }
 
         override fun publishResults(constraint: CharSequence?, results: FilterResults?) {
@@ -256,7 +255,7 @@ class OrderListAdapter @Inject constructor() :
     fun changeItems(toSelect: Boolean) {
         when {
             toSelect -> {
-                items.filter { !it.isCancelled() }
+                items.filter { it.isSelectable() }
                     .forEach {
                         it.type = WorkOrder.SELECT_TYPE_ITEM
                         it.isSelected = true
