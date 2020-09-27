@@ -100,7 +100,6 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
                 //findNavController().navigate(R.id.action_taskDetailFragment_to_bottomSheetPostponeFragment)
             }
             is OrderMenu.Refuse -> {
-                viewModel.sendOrder("todo bien entregado", true)
 
             }
 
