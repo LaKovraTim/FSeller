@@ -40,7 +40,8 @@ class Repository @Inject constructor(
         val response = counterAPI.sendOrder(
             sellerId,
             workerId,
-            createFileForTest(),
+            null
+            /*createFileForTest()*/,
             comment,
             latitude,
             longitude,

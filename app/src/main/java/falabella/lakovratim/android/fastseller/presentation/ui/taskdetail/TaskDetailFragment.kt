@@ -7,11 +7,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentTaskDetailBinding
 import falabella.lakovratim.android.fastseller.domain.model.OrderOptions
 import falabella.lakovratim.android.fastseller.presentation.appComponent
+import falabella.lakovratim.android.fastseller.presentation.ui.MainActivityViewModel
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
 import falabella.lakovratim.android.fastseller.presentation.util.OrderMenu
 import javax.inject.Inject
@@ -21,6 +23,8 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
     @Inject
     lateinit var orderOptionsAdapter: OrderOptionsAdapter
+
+    private val viewModel: MainActivityViewModel by activityViewModels { viewModelFactory }
 
     override fun setBinding(
         inflater: LayoutInflater,
@@ -96,6 +100,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
                 //findNavController().navigate(R.id.action_taskDetailFragment_to_bottomSheetPostponeFragment)
             }
             is OrderMenu.Refuse -> {
+                viewModel.sendOrder("todo bien entregado", true)
 
             }
 

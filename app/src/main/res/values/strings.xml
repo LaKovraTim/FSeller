@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">FastSeller</string>
+    <string name="app_name">FSeller</string>
     <string name="default_notification">Hi there</string>
     <string name="login">Iniciar Sesion</string>
     <string name="forgot_pass"><a href="https://www.linio.cl/account/password/recover/request">¿Se te olvidó tu contraseña?</a></string>

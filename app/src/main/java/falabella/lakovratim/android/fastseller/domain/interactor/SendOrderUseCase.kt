@@ -1,7 +1,6 @@
 package falabella.lakovratim.android.fastseller.domain.interactor
 
 import falabella.lakovratim.android.fastseller.domain.model.Order
-import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import falabella.lakovratim.android.fastseller.domain.repository.IRepository
 import falabella.lakovratim.android.fastseller.domain.util.BaseUseCase
 import javax.inject.Inject
@@ -19,7 +18,7 @@ class SendOrderUseCase @Inject constructor(
             params.workerId,
             params.image,
             params.comment,
-            params.lalitude,
+            params.latitude,
             params.longitude,
             params.success
         )

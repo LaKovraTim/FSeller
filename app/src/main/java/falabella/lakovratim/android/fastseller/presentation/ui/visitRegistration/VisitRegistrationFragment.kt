@@ -11,8 +11,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.activityViewModels
 import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.FragmentVisitRegistrationBinding
+import falabella.lakovratim.android.fastseller.presentation.ui.MainActivityViewModel
 import falabella.lakovratim.android.fastseller.presentation.util.BaseFragment
 import falabella.lakovratim.android.fastseller.presentation.util.extension.gone
 import falabella.lakovratim.android.fastseller.presentation.util.extension.visible
@@ -20,6 +22,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class VisitRegistrationFragment : BaseFragment<FragmentVisitRegistrationBinding>() {
+
+    val viewModel: MainActivityViewModel by activityViewModels { viewModelFactory }
 
     override fun setBinding(
         inflater: LayoutInflater,
@@ -106,7 +110,10 @@ class VisitRegistrationFragment : BaseFragment<FragmentVisitRegistrationBinding>
                 }
             }
 
-            //TODO call to service
+            viewModel.sendOrder(
+                comment = binding.visitRegisterCommentEditText.text?.toString(),
+                success = binding.rdoGroup.checkedRadioButtonId == R.id.rdo_button_yes
+            )
         }
     }
 
