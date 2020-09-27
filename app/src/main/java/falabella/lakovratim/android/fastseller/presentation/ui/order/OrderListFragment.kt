@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -177,7 +178,15 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     override fun onSelectItem(item: WorkOrder) {
         viewModel.setWorkOrderSelected(item)
 
-        findNavController().navigate(R.id.action_orderListFragment_to_taskDetailFragment)
+        if (item.isCancelled()) {
+            Toast.makeText(
+                requireContext(),
+                "No puedes gestionar un pedido cancelado",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            findNavController().navigate(R.id.action_orderListFragment_to_taskDetailFragment)
+        }
     }
 
 
