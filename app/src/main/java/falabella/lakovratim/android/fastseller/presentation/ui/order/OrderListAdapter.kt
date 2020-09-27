@@ -3,7 +3,6 @@
 package falabella.lakovratim.android.fastseller.presentation.ui.order
 
 import android.content.res.ColorStateList
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Filter
@@ -15,8 +14,6 @@ import falabella.lakovratim.android.fastseller.R
 import falabella.lakovratim.android.fastseller.databinding.AdapterOrderListItemBinding
 import falabella.lakovratim.android.fastseller.databinding.AdapterOrderListItemToSelectBinding
 import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
-import falabella.lakovratim.android.fastseller.presentation.util.extension.gone
-import falabella.lakovratim.android.fastseller.presentation.util.extension.visible
 import javax.inject.Inject
 
 class OrderListAdapter @Inject constructor() :
@@ -87,9 +84,27 @@ class OrderListAdapter @Inject constructor() :
                         actionListener?.onSelectItem(order)
                     }
                     when (order.status) {
-                        "PENDIENTE" ->  holder.orderItemCardState.backgroundTintList = ColorStateList.valueOf(holder.itemView.context.resources.getColor(R.color.yellow,null))
-                        "CANCELADA" -> holder.orderItemCardState.backgroundTintList = ColorStateList.valueOf(holder.itemView.context.resources.getColor(R.color.red,null))
-                        else -> holder.orderItemCardState.backgroundTintList = ColorStateList.valueOf(holder.itemView.context.resources.getColor(R.color.greenBank,null))
+                        "PENDIENTE" -> holder.orderItemCardState.backgroundTintList =
+                            ColorStateList.valueOf(
+                                holder.itemView.context.resources.getColor(
+                                    R.color.yellow,
+                                    null
+                                )
+                            )
+                        "CANCELADA" -> holder.orderItemCardState.backgroundTintList =
+                            ColorStateList.valueOf(
+                                holder.itemView.context.resources.getColor(
+                                    R.color.red,
+                                    null
+                                )
+                            )
+                        else -> holder.orderItemCardState.backgroundTintList =
+                            ColorStateList.valueOf(
+                                holder.itemView.context.resources.getColor(
+                                    R.color.greenBank,
+                                    null
+                                )
+                            )
                     }
 
                 }
@@ -135,6 +150,27 @@ class OrderListAdapter @Inject constructor() :
                         }
                     }
 
+                    when (order.status) {
+                        "PENDIENTE" -> holder.orderItemCardState.backgroundTintList = ColorStateList.valueOf(
+                            holder.itemView.context.resources.getColor(
+                                R.color.yellow,
+                                null
+                            )
+                        )
+                        "CANCELADA" -> holder.orderItemCardState.backgroundTintList = ColorStateList.valueOf(
+                            holder.itemView.context.resources.getColor(
+                                R.color.red,
+                                null
+                            )
+                        )
+                        else -> holder.orderItemCardState.backgroundTintList = ColorStateList.valueOf(
+                            holder.itemView.context.resources.getColor(
+                                R.color.greenBank,
+                                null
+                            )
+                        )
+                    }
+
                     changeSelected(order)
                     holder.orderCheckSelect.setOnClickListener {
                         order.isSelected = !order.isSelected
@@ -145,6 +181,9 @@ class OrderListAdapter @Inject constructor() :
         }
     }
 
+
+
+
     override fun getItemCount(): Int = auxItems.size
 
     class NormalHolder(binding: AdapterOrderListItemBinding) :
@@ -152,7 +191,7 @@ class OrderListAdapter @Inject constructor() :
         val orderItemImage = binding.orderItemImage
         val orderItemTitle = binding.orderItemTitle
         val orderItemDate = binding.orderItemDate
-        val orderItemCommune= binding.orderItemState
+        val orderItemCommune = binding.orderItemState
         val orderItemAttempt = binding.orderItemAttempt
         val orderItemDescription = binding.orderItemGoToDetail
         val orderItemClient = binding.orderItemClient
@@ -165,7 +204,7 @@ class OrderListAdapter @Inject constructor() :
         val orderItemImage = binding.orderItemImage
         val orderItemTitle = binding.orderItemTitle
         val orderItemDate = binding.orderItemDate
-        val orderItemCommune= binding.orderItemState
+        val orderItemCommune = binding.orderItemState
         val orderItemAttempt = binding.orderItemAttempt
         val orderItemClient = binding.orderItemClient
         val card = binding.orderItemCard
