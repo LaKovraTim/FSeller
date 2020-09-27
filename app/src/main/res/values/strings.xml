@@ -8,15 +8,16 @@
     <string name="empty_credencials">Ingresa los datos correctamente</string>
     <string name="wrong_username">Revisa tus credenciales y vuelve a intentar</string>
     <string name="text_filter_active">Activos</string>
-    <string name="text_filter_retry">Reintentando</string>
+    <string name="text_filter_retry">Reintentos</string>
     <string name="text_filter_cancel">Cancelados</string>
+    <string name="text_filter_all">Todos</string>
     <string name="text_order_statuses">Estados del pedido</string>
     <string name="text_order_detail">Detalle del pedido</string>
     <string name="prefs_file">prefs</string>
 
 
     <!-- TASK DETAIL-->
-    <string name="text_realized_by">Detalle del pedido</string>
+    <string name="text_realized_by">Realizado por</string>
     <string name="text_date_detail">Fecha de solicitud</string>
     <string name="text_payment_method">Medio de pago</string>
     <string name="text_see_map">Ver mapa</string>

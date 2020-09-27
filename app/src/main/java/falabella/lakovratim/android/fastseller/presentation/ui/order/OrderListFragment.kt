@@ -47,7 +47,6 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
                 viewModel.workOrders.value?.data?.let {
                     showWorkOrders(it)
                 }
-
             }
             is Resource.Error -> {
                 binding.progressInclude.gone()
@@ -94,13 +93,13 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         showFilters()
     }
 
-
     private fun showWorkOrders(data: List<WorkOrder>) {
         binding.orderRecycler.adapter = orderListAdapter.apply {
-           actionListener = this@OrderListFragment
-           items = data
-       }
+            actionListener = this@OrderListFragment
+            items = data
+        }
     }
+
 
     override fun hideProgress() {
         super.hideProgress()
@@ -110,9 +109,9 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     private fun showFilters() {
         binding.recyclerViewFilter.adapter = orderListFilterAdapter.apply {
             items = listOf(
-                OrderFilter(Filter.Active(), getString(R.string.text_filter_active)),
-                OrderFilter(Filter.Retry(), getString(R.string.text_filter_retry)),
-                OrderFilter(Filter.Cancel(), getString(R.string.text_filter_cancel))
+                OrderFilter(Filter.All, getString(R.string.text_filter_all)),
+                OrderFilter(Filter.Retry, getString(R.string.text_filter_retry)),
+                OrderFilter(Filter.Cancel, getString(R.string.text_filter_cancel))
             )
             filter = ::order
         }
@@ -128,20 +127,21 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
 
     override fun onSelectItem(item: WorkOrder) {
         viewModel.setWorkOrderSelected(item)
+
         findNavController().navigate(R.id.action_orderListFragment_to_taskDetailFragment)
     }
 
 
     private fun order(option: Filter) {
         when (option) {
-            is Filter.Active -> filterOrdered("activo")
-
-            is Filter.Retry -> filterOrdered("pendiente")
-
-            is Filter.Cancel -> filterOrdered("cancelado")
+            is Filter.All -> filterOrdered(null)
+            is Filter.Retry -> filterOrdered("PENDIENTE")
+            is Filter.Cancel -> filterOrdered("CANCELADA")
         }
     }
 
     private fun filterOrdered(value: String?) = orderListAdapter.filter.filter(value)
+
+
 
 }

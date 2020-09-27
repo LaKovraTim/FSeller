@@ -44,6 +44,21 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         binding.include.headerBack.setOnClickListener {
             activity?.onBackPressed()
         }
+
+        showWorker()
+    }
+
+    private fun showWorker() {
+        viewModel.workOrder.value?.let {
+            binding.textDetailNumber.text = it.id
+            binding.textRealizedByValue.text =
+                "${it.customer?.firstName} ${it.customer?.secondName}"
+            binding.textCreationDate.text = it.creationDate!!
+           // binding.textAmount.text = it.
+            binding.textReceiverName.text = "${it.customer?.receiver?.firstName} ${it.customer?.receiver?.secondName}"
+            binding.textAddress.text ="${it.customer?.address?.street} ${it.customer?.address?.number} ${it.customer?.address?.comuna}"
+            binding.textReceiverDate.text = it.deliveryDate
+        }
     }
 
 
@@ -52,31 +67,31 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
         binding.recyclerViewOptions.adapter = orderOptionsAdapter.apply {
             items = listOf(
                 OrderOptions(
-                    OrderMenu.SeeMap(),
+                    OrderMenu.SeeMap,
                     resources.getDrawable(R.drawable.ic_place, null),
                     getString(R.string.text_see_map)
                 ),
                 OrderOptions(
-                    OrderMenu.Delivered(),
+                    OrderMenu.Delivered,
                     resources.getDrawable(R.drawable.ic_check, null),
                     "Registrar\nvisita"
                 ),
 
                 OrderOptions(
-                    OrderMenu.PayWithQR(),
+                    OrderMenu.PayWithQR,
                     resources.getDrawable(R.drawable.ic_qai_pago_directo_qr, null),
                     "Pago\ncon QR"
                 ),
 
                 OrderOptions(
-                    OrderMenu.Call(),
+                    OrderMenu.Call,
                     resources.getDrawable(R.drawable.ic_phone_in_talk, null),
                     "Llamar\nal cliente"
                 ),
 
 
                 OrderOptions(
-                    OrderMenu.Refuse(), resources.getDrawable(R.drawable.ic_tv_off_rounded, null),
+                    OrderMenu.Refuse, resources.getDrawable(R.drawable.ic_tv_off_rounded, null),
                     getString(R.string.text_refuse)
                 ),
             )
@@ -135,6 +150,10 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
                 .show()
         }
     }
+
+
+
+
 
     private fun callCustomer() {
         try {

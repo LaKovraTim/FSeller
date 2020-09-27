@@ -1,10 +1,10 @@
 package falabella.lakovratim.android.fastseller.presentation.util
 
 sealed class OrderMenu {
-    class SeeMap : OrderMenu()
-    class Delivered : OrderMenu()
-    class Postpone : OrderMenu()
-    class Refuse : OrderMenu()
-    class Call : OrderMenu()
-    class PayWithQR : OrderMenu()
+    object SeeMap : OrderMenu()
+    object Delivered : OrderMenu()
+    object Postpone : OrderMenu()
+    object Refuse : OrderMenu()
+    object Call : OrderMenu()
+    object PayWithQR : OrderMenu()
 }
