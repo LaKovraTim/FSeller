@@ -52,7 +52,7 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
             binding.textDetailNumber.text = it.id
             binding.textRealizedByValue.text =
                 "${it.customer?.firstName} ${it.customer?.secondName}"
-            binding.textCreationDate.text = it.creationDate
+            binding.textCreationDate.text = it.creationDate!!
            // binding.textAmount.text = it.
             binding.textReceiverName.text = "${it.customer?.receiver?.firstName} ${it.customer?.receiver?.secondName}"
             binding.textAddress.text ="${it.customer?.address?.street} ${it.customer?.address?.number} ${it.customer?.address?.comuna}"
@@ -141,6 +141,10 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
                 requireActivity().startActivity( Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=com.waze")))
             }*/
     }
+
+
+
+
 
     private fun callCustomer() {
         val surf = Intent(Intent.ACTION_DIAL, Uri.parse("tel:55555555"))
