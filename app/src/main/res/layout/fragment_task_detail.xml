@@ -156,7 +156,7 @@
                 android:id="@+id/constraintLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintBottom_toTopOf="@+id/constraintLayout10"
+                app:layout_constraintBottom_toTopOf="@+id/cashOnDelivery"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -186,7 +186,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout10">
+                app:layout_constraintTop_toBottomOf="@+id/cashOnDelivery">
 
                 <TextView
                     android:id="@+id/textDetailNumber"
@@ -196,7 +196,7 @@
                     android:layout_marginBottom="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
                     android:lineSpacingExtra="1sp"
-                    android:text="Detalle del pedido #5628482153"
+                    tools:text="Detalle del pedido #5628482153"
                     android:textColor="#3E9742"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/textRealizedBy"
@@ -298,7 +298,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraintLayout6"
-                android:layout_width="411dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -312,6 +312,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="32dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="32dp"
                     android:layout_marginBottom="24dp"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
@@ -328,26 +329,26 @@
                     android:id="@+id/textView10"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
                     android:layout_marginTop="24dp"
                     android:text="Opciones para el pedido "
                     android:textSize="15sp"
                     app:layout_constraintBottom_toTopOf="@+id/recyclerViewOptions"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/recyclerViewOptions"
                     app:layout_constraintTop_toTopOf="parent" />
 
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/constraintLayout10"
+                android:id="@+id/cashOnDelivery"
                 android:layout_width="0dp"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
 
