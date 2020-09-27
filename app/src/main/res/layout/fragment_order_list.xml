@@ -178,7 +178,6 @@
 
                 <include
                     android:id="@+id/order_empty_list"
-                    android:visibility="invisible"
                     layout="@layout/layout_empty_list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
