@@ -30,6 +30,7 @@ class OrderListAdapter @Inject constructor() :
 
     var actionListener: ActionListener? = null
 
+
     override fun getItemViewType(position: Int): Int {
         return auxItems[position].type
     }

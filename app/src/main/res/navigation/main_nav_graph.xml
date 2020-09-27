@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/visitRegistrationFragment">
+    app:startDestination="@id/orderListFragment">
 
     <fragment
         android:id="@+id/orderListFragment"
@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_taskDetailFragment_to_visitRegistrationFragment"
             app:destination="@id/visitRegistrationFragment" />
+        <action
+            android:id="@+id/action_taskDetailFragment_to_bottomSheetRefuseFragment"
+            app:destination="@id/bottomSheetRefuseFragment" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetDeliveryFragment"
@@ -58,5 +61,9 @@
         android:id="@+id/paymentFragment"
         android:name="falabella.lakovratim.android.fastseller.presentation.ui.payment.PaymentFragment"
         android:label="PaymentFragment" />
+    <dialog
+        android:id="@+id/bottomSheetRefuseFragment"
+        android:name="falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.BottomSheetRefuseFragment"
+        android:label="BottomSheetRefuseFragment" />
 
 </navigation>
