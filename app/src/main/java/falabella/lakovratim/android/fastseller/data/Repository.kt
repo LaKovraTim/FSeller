@@ -1,14 +1,11 @@
 package falabella.lakovratim.android.fastseller.data
 
-import android.os.Environment
 import falabella.lakovratim.android.fastseller.data.local.CounterDatabase
 import falabella.lakovratim.android.fastseller.data.remote.CounterAPI
 import falabella.lakovratim.android.fastseller.domain.model.OrderStateRequest
 import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import falabella.lakovratim.android.fastseller.domain.repository.IRepository
 import java.io.File
-import java.io.FileOutputStream
-import java.io.OutputStream
 import javax.inject.Inject
 
 /**

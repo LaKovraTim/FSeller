@@ -12,6 +12,7 @@ import falabella.lakovratim.android.fastseller.domain.model.WorkOrder
 import falabella.lakovratim.android.fastseller.domain.repository.IRepository
 import falabella.lakovratim.android.fastseller.domain.util.Failure
 import falabella.lakovratim.android.fastseller.presentation.util.Resource
+import falabella.lakovratim.android.fastseller.presentation.util.SingleLiveEvent
 import java.io.File
 import javax.inject.Inject
 
@@ -30,12 +31,12 @@ open class MainActivityViewModel @Inject constructor(
     val workOrders: LiveData<Resource<List<WorkOrder>>>
         get() = _workOrders
 
-    private val _sendOrder = MutableLiveData<Resource<Boolean>>()
-    val sendOrder: LiveData<Resource<Boolean>>
+    private val _sendOrder = SingleLiveEvent<Resource<Boolean>>()
+    val sendOrder: SingleLiveEvent<Resource<Boolean>>
         get() = _sendOrder
 
-    private val _changeOrderState = MutableLiveData<Resource<Boolean>>()
-    val changeOrderState: LiveData<Resource<Boolean>>
+    private val _changeOrderState = SingleLiveEvent<Resource<Boolean>>()
+    val changeOrderState: SingleLiveEvent<Resource<Boolean>>
         get() = _changeOrderState
 
     val workOrder = MutableLiveData<WorkOrder?>()

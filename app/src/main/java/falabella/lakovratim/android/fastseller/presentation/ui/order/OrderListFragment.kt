@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -64,15 +65,35 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     private fun handleChangeOrder(resource: Resource<Boolean>?) {
         when (resource) {
             is Resource.Success -> {
+                if (resource.data == true)
+                    showDialog("Estas listo para salir a repartir!! Recuerda llevar tu mascarilla.")
+                else
+                    showDialog("Ha ocurrido un error, intetena nuevamente.")
+
                 binding.progressInclude.gone()
             }
             is Resource.Error -> {
+                showDialog("Ha ocurrido un error, intetena nuevamente.")
                 binding.progressInclude.gone()
             }
             is Resource.Loading -> {
                 binding.progressInclude.visible()
+
             }
         }
+    }
+
+    private fun showDialog(message: String) {
+        AlertDialog.Builder(requireContext())
+            .setMessage(message)
+            .setCancelable(false)
+            .setPositiveButton(
+                "Ok"
+            ) { dialog, _ -> dialog.dismiss()
+                viewModel.getOrders()
+            }
+            .create()
+            .show()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

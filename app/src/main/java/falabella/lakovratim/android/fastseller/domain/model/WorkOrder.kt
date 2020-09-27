@@ -45,4 +45,9 @@ data class WorkOrder(
     fun isCancelled(): Boolean {
         return status?.contains("cancelada", true) == true
     }
+
+    fun isSelectable(): Boolean {
+        return status?.contains("en_transito", true) == false &&
+                !isCancelled()
+    }
 }
