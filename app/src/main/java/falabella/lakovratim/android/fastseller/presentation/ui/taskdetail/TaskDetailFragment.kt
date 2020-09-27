@@ -44,16 +44,16 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
             activity?.onBackPressed()
         }
 
-
         showWorker()
     }
 
-    private fun showWorker(){
+    private fun showWorker() {
         viewModel.workOrder.value?.let {
             binding.textDetailNumber.text = it.id
-            binding.textRealizedByValue.text = "${it.customer?.firstName} ${it.customer?.secondName }"
-
-
+            binding.textRealizedByValue.text =
+                "${it.customer?.firstName} ${it.customer?.secondName}"
+            binding.textCreationDate.text = it.creationDate
+            binding.textDeliveryDate.text = it.deliveryDate
         }
     }
 

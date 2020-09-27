@@ -8,7 +8,7 @@
     <string name="empty_credencials">Ingresa los datos correctamente</string>
     <string name="wrong_username">Revisa tus credenciales y vuelve a intentar</string>
     <string name="text_filter_active">Activos</string>
-    <string name="text_filter_retry">Reintentando</string>
+    <string name="text_filter_retry">Reintentos</string>
     <string name="text_filter_cancel">Cancelados</string>
     <string name="text_filter_all">Todos</string>
     <string name="text_order_statuses">Estados del pedido</string>

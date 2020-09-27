@@ -93,64 +93,13 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
         showFilters()
     }
 
-
     private fun showWorkOrders(data: List<WorkOrder>) {
         binding.orderRecycler.adapter = orderListAdapter.apply {
-           actionListener = this@OrderListFragment
-           items = data
-       }
+            actionListener = this@OrderListFragment
+            items = data
+        }
     }
 
-
-
-    private fun mock(): List<WorkOrder> {
-        return listOf(
-            WorkOrder(
-                "1",
-                "Ninguno",
-                "2020/09/26",
-                Customer(null, null, "Rob", null, "Martin"),
-                "2020/09/28",
-                arrayListOf(),
-                1,
-                arrayListOf(),
-                "pendiente"
-            ),
-            WorkOrder(
-                "1",
-                "Ninguno",
-                "2020/09/26",
-                Customer(null, null, "Rob", null, "Martin"),
-                "2020/09/28",
-                arrayListOf(),
-                1,
-                arrayListOf(),
-                "pendiente"
-            ),
-            WorkOrder(
-                "1",
-                "Ninguno",
-                "2020/09/26",
-                Customer(null, null, "Rob", null, "Martin"),
-                "2020/09/28",
-                arrayListOf(),
-                1,
-                arrayListOf(),
-                "pendiente"
-            ),
-            WorkOrder(
-                "1",
-                "Ninguno",
-                "2020/09/26",
-                Customer(null, null, "Rob", null, "Martin"),
-                "2020/09/28",
-                arrayListOf(),
-                1,
-                arrayListOf(),
-                "Activo"
-            )
-        )
-    }
 
     override fun hideProgress() {
         super.hideProgress()
@@ -160,10 +109,9 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
     private fun showFilters() {
         binding.recyclerViewFilter.adapter = orderListFilterAdapter.apply {
             items = listOf(
-                OrderFilter(Filter.Active, getString(R.string.text_filter_active)),
+                OrderFilter(Filter.All, getString(R.string.text_filter_all)),
                 OrderFilter(Filter.Retry, getString(R.string.text_filter_retry)),
-                OrderFilter(Filter.Cancel, getString(R.string.text_filter_cancel)),
-                OrderFilter(Filter.All, getString(R.string.text_filter_all))
+                OrderFilter(Filter.Cancel, getString(R.string.text_filter_cancel))
             )
             filter = ::order
         }
@@ -186,13 +134,9 @@ class OrderListFragment : BaseFragment<FragmentOrderListBinding>(),
 
     private fun order(option: Filter) {
         when (option) {
-            is Filter.Active -> filterOrdered("ACTIVA")
+            is Filter.All -> filterOrdered(null)
             is Filter.Retry -> filterOrdered("PENDIENTE")
             is Filter.Cancel -> filterOrdered("CANCELADA")
-           is Filter.All -> filterOrdered(null)
-
-
-
         }
     }
 
