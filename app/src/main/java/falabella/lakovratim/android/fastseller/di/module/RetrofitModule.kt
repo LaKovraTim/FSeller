@@ -1,10 +1,12 @@
 package falabella.lakovratim.android.fastseller.di.module
 
+import android.content.Context
 import com.google.gson.GsonBuilder
-import falabella.lakovratim.android.fastseller.BuildConfig
-import falabella.lakovratim.android.fastseller.data.remote.CounterAPI
 import dagger.Module
 import dagger.Provides
+import falabella.lakovratim.android.fastseller.BuildConfig
+import falabella.lakovratim.android.fastseller.data.preferences.PreferencesDataSource
+import falabella.lakovratim.android.fastseller.data.remote.CounterAPI
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -36,9 +38,14 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(okHttpClient: OkHttpClient, context: Context): Retrofit {
+
+        val sharedPrefs: PreferencesDataSource by lazy {
+            PreferencesDataSource(context)
+        }
+
         val retrofitBuilder = Retrofit.Builder()
-            .baseUrl(BuildConfig.URL)
+            .baseUrl("http://${sharedPrefs.getIP()}:9001/")
             .client(okHttpClient)
             .addConverterFactory(ScalarsConverterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
@@ -47,7 +54,7 @@ class RetrofitModule {
 
     @Provides
     @Singleton
-    fun provideAPIService(retrofit: Retrofit):  CounterAPI {
+    fun provideAPIService(retrofit: Retrofit): CounterAPI {
         return retrofit.create(CounterAPI::class.java)
     }
 }

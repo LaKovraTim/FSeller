@@ -49,5 +49,6 @@
     <string name="picture_of_delivery">Foto de la entrega del pedido</string>
     <string name="fail_delivery">No se ha podido registrar el envio, intenta nuevamente</string>
     <string name="success_delivery">Felicidades!! Haz hecho un excelente trabajo</string>
+    <string name="empty_ip">Ingresa la IP de tu equipo para continuar</string>
 
 </resources>

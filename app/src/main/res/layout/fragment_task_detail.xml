@@ -39,6 +39,7 @@
                 android:id="@+id/xd"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout6"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -54,7 +55,7 @@
                     android:layout_marginBottom="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
                     android:lineSpacingExtra="1sp"
-                    android:text="Tipo de entrega: despacho a domicilio"
+                    android:text="Datos de entrega"
                     android:textColor="#3E9742"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/textView7"
@@ -68,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Enviado a:"
+                    android:text="Recibe:"
                     app:layout_constraintBottom_toTopOf="@+id/textView8"
                     app:layout_constraintEnd_toStartOf="@+id/textReceiverName"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
@@ -104,17 +105,29 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
                 <TextView
+                    android:id="@+id/textView100"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="32dp"
+                    android:text="Teléfono:"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+                <TextView
                     android:id="@+id/textReceiverName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
-                    tools:text="Cristian Silva"
                     app:layout_constraintBottom_toBottomOf="@+id/textView7"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/textView7"
-                    app:layout_constraintTop_toTopOf="@+id/textView7" />
+                    app:layout_constraintTop_toTopOf="@+id/textView7"
+                    tools:text="Cristian Silva" />
 
                 <TextView
                     android:id="@+id/textAddress"
@@ -122,12 +135,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
-                    tools:text="Lira 245 Depto 404, Santiago"
                     app:layout_constraintBottom_toBottomOf="@+id/textView8"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/textView8"
-                    app:layout_constraintTop_toTopOf="@+id/textView8" />
+                    app:layout_constraintTop_toTopOf="@+id/textView8"
+                    tools:text="Lira 245 Depto 404, Santiago" />
 
                 <TextView
                     android:id="@+id/textReceiverDate"
@@ -135,12 +148,22 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
-                    tools:text="Lunes, 28 de Septiembre"
                     app:layout_constraintBottom_toBottomOf="@+id/textView9"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/textView9"
-                    app:layout_constraintTop_toTopOf="@+id/textView9" />
+                    app:layout_constraintTop_toTopOf="@+id/textView9"
+                    tools:text="Lunes, 28 de Septiembre" />
+
+                <TextView
+                    android:id="@+id/textPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/source_sans_pro_reg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView100"
+                    tools:text="6876678678" />
 
                 <ImageView
                     android:id="@+id/imageView4"
@@ -196,13 +219,13 @@
                     android:layout_marginBottom="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
                     android:lineSpacingExtra="1sp"
-                    tools:text="Detalle del pedido #5628482153"
                     android:textColor="#3E9742"
                     android:textSize="16sp"
                     app:layout_constraintBottom_toTopOf="@+id/textRealizedBy"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_chainStyle="packed" />
+                    app:layout_constraintVertical_chainStyle="packed"
+                    tools:text="Detalle del pedido #5628482153" />
 
                 <TextView
                     android:id="@+id/textRealizedBy"
@@ -240,7 +263,7 @@
                     android:layout_marginStart="24dp"
                     android:layout_marginBottom="32dp"
                     android:fontFamily="@font/source_sans_pro_reg"
-                    android:text="Monto de compra"
+                    android:text="Monto a pagar"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/textAmount"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -249,29 +272,49 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView_8" />
 
                 <TextView
+                    android:id="@+id/textView_state"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/source_sans_pro_reg"
+                    android:text="Estado"
+                    app:layout_constraintStart_toStartOf="@+id/textAmountTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/textAmountTitle" />
+
+                <TextView
+                    android:id="@+id/text_state_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="24dp"
+                    android:fontFamily="@font/source_sans_pro_reg"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/textView_state"
+                    tools:text="Cualquier cosa" />
+
+                <TextView
                     android:id="@+id/textRealizedByValue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
-                    tools:text="Cristian Silva"
                     app:layout_constraintBottom_toBottomOf="@+id/textRealizedBy"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/textRealizedBy"
-                    app:layout_constraintTop_toTopOf="@+id/textRealizedBy" />
+                    app:layout_constraintTop_toTopOf="@+id/textRealizedBy"
+                    tools:text="Cristian Silva" />
 
                 <TextView
                     android:id="@+id/textCreationDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
-                    tools:text="25-09-2020"
                     app:layout_constraintBottom_toBottomOf="@+id/textView_8"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/textView_8"
-                    app:layout_constraintTop_toTopOf="@+id/textView_8" />
+                    app:layout_constraintTop_toTopOf="@+id/textView_8"
+                    tools:text="25-09-2020" />
 
                 <TextView
                     android:id="@+id/textAmount"
@@ -279,12 +322,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"
                     android:fontFamily="@font/source_sans_pro_reg"
-                    tools:text="$2.000"
                     app:layout_constraintBottom_toBottomOf="@+id/textAmountTitle"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toEndOf="@+id/textAmountTitle"
-                    app:layout_constraintTop_toTopOf="@+id/textAmountTitle" />
+                    app:layout_constraintTop_toTopOf="@+id/textAmountTitle"
+                    tools:text="$2.000" />
 
                 <ImageView
                     android:id="@+id/imageView_4"
@@ -343,8 +386,8 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cashOnDelivery"
                 android:layout_width="0dp"
-                android:visibility="gone"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"

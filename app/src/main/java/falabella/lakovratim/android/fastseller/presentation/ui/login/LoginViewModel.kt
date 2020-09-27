@@ -2,9 +2,6 @@ package falabella.lakovratim.android.fastseller.presentation.ui.login
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import falabella.lakovratim.android.fastseller.data.LoginRepository
 import falabella.lakovratim.android.fastseller.data.preferences.PreferencesDataSource
 
@@ -24,6 +21,10 @@ class LoginViewModel(app: Application) : AndroidViewModel(app) {
 
     fun logout() {
         loginRepository.logout()
+    }
+
+    fun setIP(ip: String) {
+        sharedPrefs.setIP(ip)
     }
 
 }

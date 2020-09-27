@@ -54,7 +54,15 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
     @SuppressLint("SetTextI18n")
     private fun showWorker() {
         viewModel.workOrder.value?.let {
-            binding.textDetailNumber.text = getString(R.string.text_order_detail_with_number, it.id)
+
+            binding.textStateValue.text = it.status?.replace("_", " ")?.let {
+                it.take(0).toUpperCase() + it.substring(1, it.length)
+            }
+
+            binding.textPhone.text = it.customer?.contact?.phone
+
+            binding.textDetailNumber.text =
+                getString(R.string.text_order_detail_with_number, it.purchaseOrder.toString())
             binding.textRealizedByValue.text =
                 "${it.customer?.firstName} ${it.customer?.secondName}"
 
@@ -64,7 +72,8 @@ class TaskDetailFragment : BaseFragment<FragmentTaskDetailBinding>() {
 
             validateCustomer(it.customer?.receiver)
 
-            binding.textAddress.text = "${it.customer?.address?.street} ${it.customer?.address?.number} ${it.customer?.address?.comuna}"
+            binding.textAddress.text =
+                "${it.customer?.address?.street} ${it.customer?.address?.number} ${it.customer?.address?.comuna}"
             binding.textReceiverDate.text = it.deliveryDate
 
 

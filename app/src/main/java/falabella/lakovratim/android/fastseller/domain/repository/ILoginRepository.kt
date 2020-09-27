@@ -9,5 +9,7 @@ interface ILoginRepository {
     fun login(username: String, password: String): Boolean
     fun logout()
     fun getUser(): String
-    fun getSession(): Pair<String,Boolean>
+    fun getSession(): Pair<String, Boolean>
+    fun setIP(ip: String)
+    fun getIP(): String
 }

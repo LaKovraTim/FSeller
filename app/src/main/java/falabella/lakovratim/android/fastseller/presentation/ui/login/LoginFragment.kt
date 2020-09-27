@@ -63,8 +63,14 @@ class LoginFragment : Fragment() {
         binding.forgotPassword.webLink(R.color.textColor)
 
         binding.buttonLogin.setOnClickListener {
+
             if (binding.editTextTextPassword.text.isNullOrEmpty() || binding.editTextTextUser.text.isNullOrEmpty()) {
                 Toast.makeText(context, getString(R.string.empty_credencials), Toast.LENGTH_SHORT)
+                    .show()
+                return@setOnClickListener
+            }
+            if (binding.editTextTextIP.text.isNullOrEmpty()) {
+                Toast.makeText(context, getString(R.string.empty_ip), Toast.LENGTH_SHORT)
                     .show()
                 return@setOnClickListener
             }
@@ -74,7 +80,7 @@ class LoginFragment : Fragment() {
                 )
             )
                 showOrders()
-            else{
+            else {
                 Toast.makeText(context, getString(R.string.wrong_username), Toast.LENGTH_SHORT)
                     .show()
             }
@@ -83,8 +89,8 @@ class LoginFragment : Fragment() {
 
     private fun showOrders() {
         Intent(context, MainActivity::class.java).also {
-                startActivity(it)
-            }
+            startActivity(it)
+        }
         activity?.finishWithFade()
     }
 

@@ -56,8 +56,8 @@ class PreferencesDataSource(applicationContext: Context) :
     }
 
     override fun saveUser(username: String, password: String): Boolean {
-            return sharedPrefs?.getString("username", "") == username &&
-                    sharedPrefs?.getString("password", "") == password
+        return sharedPrefs?.getString("username", "") == username &&
+                sharedPrefs?.getString("password", "") == password
     }
 
     override fun getUser(): Pair<String, String> {
@@ -82,5 +82,10 @@ class PreferencesDataSource(applicationContext: Context) :
     override fun getSession(): Boolean =
         sharedPrefs?.getBoolean("session", false) ?: false
 
+    override fun getIP(): String = sharedPrefs?.getString("ip", "") ?: ""
+
+    override fun setIP(ip: String) {
+        sharedPrefsEditor?.putString("ip", ip)?.apply()
+    }
 
 }

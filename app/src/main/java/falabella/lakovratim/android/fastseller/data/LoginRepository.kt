@@ -30,4 +30,11 @@ class LoginRepository(private val sharedPreferences: PreferencesDataSource) : IL
         return Pair(sharedPreferences.getUser().first, sharedPreferences.getSession())
 
     }
+
+    override fun setIP(ip: String) {
+        sharedPreferences.setIP(ip)
+    }
+
+    override fun getIP(): String =
+        sharedPreferences.getIP()
 }

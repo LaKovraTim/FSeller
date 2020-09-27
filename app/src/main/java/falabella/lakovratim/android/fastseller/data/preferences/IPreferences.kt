@@ -7,4 +7,6 @@ interface IPreferences {
     fun putSession()
     fun deleteSession()
     fun getSession(): Boolean
+    fun getIP() : String
+    fun setIP(ip: String)
 }
