@@ -11,6 +11,7 @@ import falabella.lakovratim.android.fastseller.presentation.CounterApplication
 import falabella.lakovratim.android.fastseller.presentation.ui.order.OrderListFragment
 import falabella.lakovratim.android.fastseller.presentation.ui.payment.PaymentFragment
 import falabella.lakovratim.android.fastseller.presentation.ui.taskdetail.TaskDetailFragment
+import falabella.lakovratim.android.fastseller.presentation.ui.visitRegistration.VisitRegistrationFragment
 import javax.inject.Singleton
 
 @Singleton
@@ -37,4 +38,5 @@ interface FragmentInjector {
     fun inject(orderListFragment: OrderListFragment)
     fun inject(taskDetailFragment: TaskDetailFragment)
     fun inject(paymentFragment: PaymentFragment)
+    fun inject(visitRegistrationFragment: VisitRegistrationFragment)
 }
